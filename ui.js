@@ -132,7 +132,12 @@
 
   /* ---------- wire the cards ---------- */
   function wire() {
-    var cards = document.querySelectorAll('.legpanel .card, .view .cards > .card');
+    /* Only things you can actually go and do: walks & drives, beaches & drives,
+       activities, diving. Advice cards ("Carry cash in the north") are not doors —
+       there is nothing behind them to open. */
+    var cards = document.querySelectorAll(
+      '.legpanel[id$="-do"] .card, .legpanel[id$="-act"] .card, .legpanel[id$="-dive"] .card'
+    );
     Array.prototype.forEach.call(cards, function (card) {
       if (card.dataset.wired) return;
       if (!card.querySelector('h4')) return;
