@@ -246,13 +246,15 @@ summary.daysum:hover .daytoggle{opacity:.72;}
   /* Foliage / sunset / cars is reference, not a headline. Smaller, one line. */
   .legtitle .meta{font-size:12.5px; gap:4px 14px; margin-top:10px;}
 
-  /* The rail is a jump control, not a chapter heading. */
-  .journey .wrap{padding-top:8px; padding-bottom:8px;}
-  .railday{padding:6px 0 5px;}
-  .railday .rd-num{font-size:17px;}
-  .railday .rd-dow{font-size:8.5px;}
-  .railday .rd-tag{font-size:9px;}
-  .legstrip{margin-bottom:5px;}
+  /* The rail is a jump control, not a chapter heading. The day-of-week is the
+     least load-bearing thing on it — the date is right there — so it goes,
+     and the leg tag (Land / Dive / Gorge) stays because that is the useful bit. */
+  .journey .wrap{padding-top:7px; padding-bottom:7px;}
+  .railday{padding:5px 0 4px; gap:1px;}
+  .railday .dw{display:none;}
+  .railday .dn{font-size:17px; line-height:1.15;}
+  .railday .dm{font-size:9px;}
+  .legstrip{margin-bottom:4px;}
   .legstrip span{font-size:9px;}
 
   .legtitle{padding-top:14px;}
