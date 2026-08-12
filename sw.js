@@ -8,7 +8,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v1';
+var CACHE = 'japan2026-v2';
 var PRECACHE = [
   './',
   './index.html',
@@ -46,8 +46,12 @@ self.addEventListener('fetch', function (e) {
   if (req.method !== 'GET') return;
 
   var url = new URL(req.url);
-  // Never cache the checkbox API — it must always be live or fail honestly.
   if (url.origin !== self.location.origin) return;
+
+  // Never cache the checklist API. It is same-origin, so without this it would
+  // fall into the cache-first branch below and every phone would show a frozen
+  // copy of the ticks. It must be live or fail honestly.
+  if (url.pathname.indexOf('/.netlify/') === 0) return;
 
   var isPage = req.mode === 'navigate' ||
                (req.headers.get('accept') || '').indexOf('text/html') !== -1;

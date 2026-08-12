@@ -1,0 +1,9 @@
+{
+  "name": "japan-2026",
+  "private": true,
+  "type": "module",
+  "description": "Itinerary site. The only dependency is the blob store used by the shared checklist.",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

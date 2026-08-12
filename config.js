@@ -1,15 +1,15 @@
 /* ─────────────────────────────────────────────────────────────
-   The only file you ever need to edit.
+   Almost nothing to configure any more.
 
-   Leave both blank and the checkboxes keep working exactly as they
-   do now — saved on your own device, private to you.
+   The shared checklist works automatically: state lives in Netlify Blobs
+   behind this site's own function, so there is no account to create and
+   no key to paste. Tick something and it updates for all six of you.
 
-   Fill both in and the checkboxes become SHARED: whoever ticks one,
-   it updates for all six of you. Setup takes about three minutes and
-   costs nothing — see DEPLOY.md, step 3.
+   Only touch this if you want to turn sharing OFF and go back to
+   per-device ticks, or point the checklist at a different endpoint.
    ───────────────────────────────────────────────────────────── */
 
 window.TRIP_SYNC = {
-  url: '',   // e.g. 'https://abcdefghijkl.supabase.co'
-  key: ''    // the anon / public key — safe to put here, it is designed to be public
+  disabled: false          // true = ticks stay on your own device
+  // endpoint: './.netlify/functions/checks'   // override only if you move hosts
 };

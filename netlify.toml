@@ -3,6 +3,10 @@
   publish = "."
   command = ""
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # The service worker and the page itself must always revalidate, otherwise a
 # redeploy can sit behind a stale CDN copy and phones keep the old itinerary.
 [[headers]]
@@ -25,3 +29,8 @@
   for = "/icons/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Cache-Control = "no-store"

@@ -1,43 +1,32 @@
-/* Japan 2026 — shared checkboxes.
-
-   Without config.js filled in, this does nothing at all and the page keeps
-   its per-device localStorage behaviour. With it filled in, every tick is
-   written to a shared table and pulled back on every other phone.
-
-   No library, no build step, no bundle to cache offline: Supabase speaks
-   plain REST, so this is ~120 lines of fetch(). Updates arrive by polling
-   while the tab is visible rather than over a websocket — for a trip
-   checklist that is the right trade, and it keeps the offline cache tiny.
-
-   Offline: ticks are queued in localStorage and flushed when signal returns,
-   so the checklist stays usable on the Hakkoda road.
-*/
+/* Japan 2026 — shared checklist.
+ *
+ * Whoever ticks something, it updates for all six of you.
+ *
+ * There is nothing to configure. State lives in Netlify Blobs behind a function
+ * on this same site (netlify/functions/checks.mjs), so there is no third-party
+ * account, no API key published in this file, and no cross-origin request.
+ *
+ * If the endpoint is unreachable — opened from a file:// path, or a host with no
+ * functions — this quietly falls back to per-device localStorage and says so.
+ *
+ * Offline: ticks are queued and flushed when signal returns, which matters on
+ * the Hakkoda road and most of Miyakojima.
+ */
 (function () {
   'use strict';
 
-  var cfg   = window.TRIP_SYNC || {};
-  var LS    = 'japan2026.checks';
-  var OUTBOX= 'japan2026.outbox';
-  var note  = document.querySelector('.chknote p');
+  var ENDPOINT = (window.TRIP_SYNC && window.TRIP_SYNC.endpoint) || './.netlify/functions/checks';
+  var DISABLED = !!(window.TRIP_SYNC && window.TRIP_SYNC.disabled);
+  var LS = 'japan2026.checks';
+  var OUTBOX = 'japan2026.outbox';
+
+  var note = document.querySelector('.chknote p');
   var boxes = Array.prototype.slice.call(document.querySelectorAll('.chkbox'));
   if (!boxes.length) return;
 
-  function setNote(html) { if (note) note.innerHTML = html; }
-
-  if (!cfg.url || !cfg.key) {
-    setNote('<b>Ticks are saved on this device only.</b> To make them shared — so whoever ticks something updates it for all six of you — fill in <code>config.js</code>. It takes three minutes and costs nothing.');
-    return;
-  }
-
-  var API = cfg.url.replace(/\/+$/, '') + '/rest/v1/checks';
-  var HEAD = {
-    'apikey': cfg.key,
-    'Authorization': 'Bearer ' + cfg.key,
-    'Content-Type': 'application/json'
-  };
-
   function readLS(k, d) { try { return JSON.parse(localStorage.getItem(k) || d); } catch (e) { return JSON.parse(d); } }
   function writeLS(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function setNote(html) { if (note) note.innerHTML = html; }
 
   function paintProgress() {
     Array.prototype.forEach.call(document.querySelectorAll('.checkgroup'), function (g) {
@@ -56,21 +45,39 @@
     paintProgress();
   }
 
+  // Show what we already had, instantly — before any network work.
+  apply(readLS(LS, '{}'));
+
+  if (DISABLED) {
+    setNote('<b>Ticks are saved on this device only.</b> Sharing is switched off in <code>config.js</code>.');
+    return;
+  }
+
+  var shared = null;          // null = not yet known
   var lastOk = null;
-  function status(ok, msg) {
-    if (ok) lastOk = new Date();
+
+  function status(ok, hardFail) {
+    if (ok) { lastOk = new Date(); shared = true; }
+    if (hardFail) shared = false;
+    if (shared === false) {
+      setNote('<b>Ticks are saved on this device only.</b> The shared checklist needs the site&rsquo;s own function, which is not reachable from here.');
+      return;
+    }
     var when = lastOk ? lastOk.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '—';
     setNote(ok
-      ? '<b>Shared across all six of you.</b> Tick something here and it updates on everyone else&rsquo;s phone. Last synced ' + when + '.'
-      : '<b>Shared checklist — currently offline.</b> ' + (msg || 'Your ticks are saved here and will sync the moment you have signal.'));
+      ? '<b>Shared across all six of you.</b> Tick something and it appears on everyone else&rsquo;s phone. Last synced ' + when + '.'
+      : '<b>Shared checklist — offline just now.</b> Your ticks are saved here and go up the moment you have signal.');
   }
 
   function pull() {
-    return fetch(API + '?select=k,done', { headers: HEAD, cache: 'no-store' })
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function (rows) {
-        var remote = {};
-        rows.forEach(function (row) { if (row.done) remote[row.k] = true; });
+    return fetch(ENDPOINT, { headers: { 'accept': 'application/json' }, cache: 'no-store' })
+      .then(function (r) {
+        if (r.status === 404) { status(false, true); return false; }
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (remote) {
+        if (!remote) return false;
         // anything still queued locally has not reached the server yet — keep it
         var queued = readLS(OUTBOX, '{}');
         Object.keys(queued).forEach(function (k) {
@@ -80,7 +87,7 @@
         status(true);
         return true;
       })
-      .catch(function (e) { status(false); return false; });
+      .catch(function () { status(false); return false; });
   }
 
   function flush() {
@@ -88,13 +95,18 @@
     var keys = Object.keys(queued);
     if (!keys.length) return Promise.resolve(true);
     var payload = keys.map(function (k) { return { k: k, done: !!queued[k] }; });
-    return fetch(API, {
+    return fetch(ENDPOINT, {
       method: 'POST',
-      headers: Object.assign({}, HEAD, { 'Prefer': 'resolution=merge-duplicates,return=minimal' }),
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify(payload)
     }).then(function (r) {
+      if (r.status === 404) { status(false, true); return false; }
       if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function (state) {
+      if (!state) return false;
       writeLS(OUTBOX, {});
+      apply(state);
       status(true);
       return true;
     }).catch(function () { status(false); return false; });
@@ -104,14 +116,16 @@
     var q = readLS(OUTBOX, '{}');
     q[k] = done;
     writeLS(OUTBOX, q);
+    // reflect locally straight away so the UI never feels laggy
+    var s = readLS(LS, '{}');
+    if (done) s[k] = true; else delete s[k];
+    writeLS(LS, s);
+    paintProgress();
     flush();
   }
 
   boxes.forEach(function (b) {
-    b.addEventListener('change', function () {
-      queue(b.getAttribute('data-k'), b.checked);
-      paintProgress();
-    });
+    b.addEventListener('change', function () { queue(b.getAttribute('data-k'), b.checked); });
   });
 
   var reset = document.getElementById('chkreset');
@@ -122,22 +136,17 @@
     flush();
   });
 
-  // Show whatever we already had, instantly, then reconcile with the server.
-  apply(readLS(LS, '{}'));
-  flush().then(pull);
+  flush().then(function () { return pull(); });
 
   var timer = null;
-  function startPolling() {
-    stopPolling();
-    timer = setInterval(function () { flush().then(pull); }, 30000);
-  }
-  function stopPolling() { if (timer) { clearInterval(timer); timer = null; } }
+  function start() { stop(); timer = setInterval(function () { flush().then(pull); }, 30000); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
 
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) stopPolling();
-    else { flush().then(pull); startPolling(); }
+    if (document.hidden) stop();
+    else { flush().then(pull); start(); }
   });
   window.addEventListener('online', function () { flush().then(pull); });
   window.addEventListener('focus', function () { flush().then(pull); });
-  if (!document.hidden) startPolling();
+  if (!document.hidden) start();
 })();
