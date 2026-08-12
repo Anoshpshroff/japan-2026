@@ -14,6 +14,9 @@
   /* ---------- which photograph belongs to which card ---------- */
   var PHOTOS = [
     /* Most specific first: a card gets its own place, not its region's. */
+    [/osorezan|osore/i,'p-osorezan.jpg'], [/sannai|maruyama/i,'p-sannai.jpg'],
+    [/toriike/i,'p-toriike.jpg'], [/a-factory|cidre/i,'p-afactory.jpg'],
+    [/senbei-jiru/i,'p-senbeijiru.jpg'], [/hinai/i,'p-hinai.jpg'], [/miyako soba/i,'p-miyakosoba.jpg'],
     [/yabiji/i,'p-yabiji.jpg'], [/sunayama/i,'p-sunayama.jpg'], [/yoshino/i,'p-yoshino.jpg'],
     [/kurima/i,'p-kurima.jpg'], [/ikema/i,'p-ikema.jpg'], [/maehama/i,'p-maehama.jpg'],
     [/dakigaeri/i,'p-dakigaeri.jpg'], [/tazawa/i,'p-tazawako.jpg'],
