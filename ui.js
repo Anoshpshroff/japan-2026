@@ -135,12 +135,21 @@
     /* Only things you can actually go and do: walks & drives, beaches & drives,
        activities, diving. Advice cards ("Carry cash in the north") are not doors —
        there is nothing behind them to open. */
+    /* A card is a door if there is something behind it: anything in the doable
+       panels (walks, drives, activities, diving, food), or any card anywhere
+       that resolves to a photograph — which is what makes the Fuji and Kyoto
+       pages openable while 'Carry cash in the north' stays inert. */
     var cards = document.querySelectorAll(
-      '.legpanel[id$="-do"] .card, .legpanel[id$="-act"] .card, .legpanel[id$="-dive"] .card'
+      '.legpanel[id$="-do"] .card, .legpanel[id$="-act"] .card,' +
+      '.legpanel[id$="-dive"] .card, .legpanel[id$="-eat"] .card, .view .cards > .card'
     );
     Array.prototype.forEach.call(cards, function (card) {
       if (card.dataset.wired) return;
-      if (!card.querySelector('h4')) return;
+      var h = card.querySelector('h4');
+      if (!h) return;
+      // Cards outside the doable panels only open if they have a picture to show.
+      if (!card.closest('.legpanel[id$="-do"], .legpanel[id$="-act"], .legpanel[id$="-dive"], .legpanel[id$="-eat"]')
+          && !photoFor(h.textContent.trim(), '')) return;
       card.dataset.wired = '1';
       card.classList.add('is-tappable');
       card.setAttribute('tabindex', '0');
