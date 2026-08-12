@@ -39,7 +39,7 @@ export default async (req) => {
 
   if (req.method === 'GET') {
     try {
-      const state = (await store.get(KEY, { type: 'json' })) || {};
+      const state = (await store.get(KEY, { type: 'json', consistency: 'strong' })) || {};
       return json(state);
     } catch (e) {
       return json({ error: 'read failed', detail: String(e) }, 500);
@@ -57,14 +57,17 @@ export default async (req) => {
     if (changes.length > 500) return json({ error: 'too many changes' }, 413);
 
     try {
-      const state = (await store.get(KEY, { type: 'json' })) || {};
+      const state = (await store.get(KEY, { type: 'json', consistency: 'strong' })) || {};
       for (const c of changes) {
         if (!c || typeof c.k !== 'string' || c.k.length > 120) continue;
         if (c.done) state[c.k] = true;
         else delete state[c.k];
       }
       await store.setJSON(KEY, state);
-      return json(state);
+      // Read back strongly so a silent write failure surfaces as an error here
+      // rather than as a tick that quietly never reaches the other five phones.
+      const confirmed = (await store.get(KEY, { type: 'json', consistency: 'strong' })) || {};
+      return json(confirmed);
     } catch (e) {
       return json({ error: 'write failed', detail: String(e) }, 500);
     }
