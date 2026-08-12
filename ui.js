@@ -44,6 +44,36 @@
 
   var CREDITS = {};   // filled from credits.json, best-effort
 
+  /* ---------- real coordinates, for handing off to a maps app ---------- */
+  var PLACES = {};   // from places.json
+  var PLACE_RULES = [
+    [/dakigaeri/i,'Dakigaeri Gorge'], [/komagatake/i,'Mt Akita-Komagatake'],
+    [/tazawa/i,'Lake Tazawa'], [/tsurunoyu/i,'Tsurunoyu'],
+    [/nyuto|taenoyu|kuroyu|ganiba/i,'Nyuto Onsen'], [/bukeyashiki|samurai street/i,'Bukeyashiki-dori'],
+    [/aspite|hachimantai/i,'Hachimantai Aspite Line'], [/oyasukyo/i,'Oyasukyo Daifunto'],
+    [/katakurinohana/i,'Katakurinohana'],
+    [/oirase/i,'Oirase Gorge'], [/towada/i,'Lake Towada'], [/hakkoda ropeway|ropeway/i,'Hakkoda Ropeway'],
+    [/sukayu/i,'Sukayu Onsen'], [/tsuta/i,'Tsuta-numa'], [/iwaki/i,'Mt Iwaki'],
+    [/juniko|aoike/i,'Juniko Aoike'], [/anmon/i,'Anmon Falls'], [/osorezan/i,'Osorezan'],
+    [/nebuta|warasse/i,'Nebuta Warasse'], [/sannai|maruyama/i,'Sannai-Maruyama'],
+    [/museum of art/i,'Aomori Museum of Art'], [/a-factory|cidre/i,'A-Factory'],
+    [/nokkedon|furukawa/i,'Furukawa Market'], [/hirosaki castle|hirosaki park/i,'Hirosaki Castle'],
+    [/apple pick|apple park|apples/i,'Hirosaki Apple Park'], [/aoni/i,'Aoni Onsen'],
+    [/maehama/i,'Yonaha Maehama'], [/irabu/i,'Irabu Ohashi'], [/kurima/i,'Kurima Ohashi'],
+    [/ikema/i,'Ikema Ohashi'], [/hennazaki/i,'Cape Higashi-Hennazaki'], [/sunayama/i,'Sunayama Beach'],
+    [/yoshino/i,'Yoshino Kaigan'], [/toriike/i,'Toriike'], [/yukishio|salt museum/i,'Yukishio Museum'],
+    [/shigira/i,'Shigira Ougon Onsen'],
+    [/chureito/i,'Chureito Pagoda'], [/kawaguchiko/i,'Kawaguchiko'],
+    [/fushimi/i,'Fushimi Inari'], [/kiyomizu/i,'Kiyomizu-dera'],
+    [/hie shrine/i,'Hie Shrine'], [/shibuya sky/i,'Shibuya Sky'], [/kabuki/i,'Kabuki-za']
+  ];
+  function placeFor(title) {
+    for (var i = 0; i < PLACE_RULES.length; i++)
+      if (PLACE_RULES[i][0].test(title) && PLACES[PLACE_RULES[i][1]]) return PLACES[PLACE_RULES[i][1]];
+    return null;
+  }
+
+
   function photoFor(title, body) {
     var i;
     for (i = 0; i < PHOTOS.length; i++) if (PHOTOS[i][0].test(title)) return PHOTOS[i][1];
@@ -103,6 +133,13 @@
     if (jp) html += '<p class="jp">' + jp.innerHTML + '</p>';
     paras.forEach(function (p) { html += '<p>' + p.innerHTML + '</p>'; });
     if (foot) html += '<p class="sheetfoot">' + foot.innerHTML + '</p>';
+    var pl = placeFor(title);
+    if (pl) {
+      html += '<a class="sheetmap" target="_blank" rel="noopener" ' +
+              'href="https://www.google.com/maps/search/?api=1&query=' + pl.lat + ',' + pl.lon + '">' +
+              '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6c-3 0-5.4 2.4-5.4 5.4 0 4 5.4 11.4 5.4 11.4s5.4-7.4 5.4-11.4c0-3-2.4-5.4-5.4-5.4z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="10" cy="7" r="2.1" fill="currentColor"/></svg>' +
+              'Open in Maps<span class="sheetcoord">' + pl.lat.toFixed(4) + ', ' + pl.lon.toFixed(4) + '</span></a>';
+    }
     html += '</div>';
 
     sheetBody.innerHTML = html;
@@ -171,9 +208,12 @@
 
   function refresh() { wire(); }
 
-  fetch('./photos/credits.json').then(function (r) { return r.json(); })
-    .then(function (list) { list.forEach(function (c) { CREDITS[c.file] = c; }); })
-    .catch(function () {})
+  Promise.all([
+    fetch('./photos/credits.json').then(function (r) { return r.json(); })
+      .then(function (list) { list.forEach(function (c) { CREDITS[c.file] = c; }); }).catch(function () {}),
+    fetch('./places.json').then(function (r) { return r.json(); })
+      .then(function (o) { PLACES = o || {}; }).catch(function () {})
+  ])
     .then(function () {
       refresh();
       window.addEventListener('hashchange', function () { setTimeout(refresh, 60); });

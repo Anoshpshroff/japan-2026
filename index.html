@@ -265,6 +265,16 @@ summary.daysum:hover .daytoggle{opacity:.72;}
 .card.is-tappable:hover::after{opacity:.75; transform:rotate(45deg) translateX(2px);}
 .card{position:relative;}
 
+
+.sheetmap{display:inline-flex; align-items:center; gap:9px; margin-top:20px; min-height:44px;
+  padding:0 17px; border:1px solid var(--rule-2); border-radius:99px; text-decoration:none;
+  font-family:var(--f-mono); font-size:12px; letter-spacing:.04em; color:var(--ink-2);
+  background:var(--bg); transition:border-color .18s ease, color .18s ease;}
+.sheetmap:hover{color:var(--ink-1); border-color:var(--ink-3);}
+.sheetmap svg{width:15px; height:15px; flex:0 0 auto; color:var(--c,var(--ink-3));}
+.sheetcoord{color:var(--ink-3); font-size:10.5px; letter-spacing:.03em;}
+@media (max-width:720px){ .sheetmap{width:100%; justify-content:center;} }
+
 /* ---------- the card sheet ---------- */
 body.sheet-open{overflow:hidden;}
 .sheet[hidden]{display:none !important;}
