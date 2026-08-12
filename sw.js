@@ -8,7 +8,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v2';
+var CACHE = 'japan2026-v3';
 var PRECACHE = [
   './',
   './index.html',
@@ -19,7 +19,15 @@ var PRECACHE = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-512-maskable.png',
-  './icons/apple-touch-icon.png'
+  './icons/apple-touch-icon.png',
+  './photos/tokyo-hie-torii.jpg',
+  './photos/miyako-irabu-ohashi.jpg',
+  './photos/miyako-maehama.jpg',
+  './photos/kakunodate-bukeyashiki.jpg',
+  './photos/dakigaeri-autumn.jpg',
+  './photos/oirase-stream.jpg',
+  './photos/hakkoda-range.jpg',
+  './photos/nebuta-float.jpg'
 ];
 
 self.addEventListener('install', function (e) {

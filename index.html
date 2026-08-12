@@ -231,6 +231,23 @@ summary.daysum:hover .daytoggle{opacity:.72;}
 .track li{margin-bottom:5px;}
 .track .rejoin{margin-top:14px; padding-top:11px; border-top:1px dashed var(--rule-2); font-family:var(--f-mono); font-size:11.5px; color:var(--ink-3);}
 
+
+/* ---------- photographs ---------- */
+.photo{margin:0 0 26px; border:1px solid var(--rule); border-radius:7px; overflow:hidden; background:var(--raised);}
+.photo img{display:block; width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; background:var(--rule);}
+.photo figcaption{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 14px; padding:11px 14px 12px; border-top:1px solid var(--rule);}
+.photo .pcap{font-size:14px; color:var(--ink-2); flex:1 1 260px; line-height:1.45;}
+.photo .pcred{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.05em; color:var(--ink-3); text-decoration:none; white-space:nowrap; border-bottom:1px solid transparent;}
+.photo .pcred:hover{color:var(--ink-2); border-bottom-color:var(--rule-2);}
+@media (max-width:720px){
+  .photo img{aspect-ratio:4/3;}
+  .photo .pcap{font-size:13.5px;}
+}
+@media print{
+  .photo{break-inside:avoid;}
+  .photo .pcred{display:none;}
+}
+
 /* ---------- callouts ---------- */
 .callout{border:1px solid var(--warn-rule); background:var(--warn-bg); border-radius:5px; padding:16px 18px; margin-top:18px;}
 .callout .ct{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--warn); font-weight:700;}
@@ -1147,6 +1164,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Day by day" role="tabpanel" id="p-tok-days" aria-labelledby="t-tok-days" tabindex="0">
+        <figure class="photo"><img src="./photos/tokyo-hie-torii.jpg" alt="The vermilion torii of Hie Shrine illuminated at night" width="1200" height="1600" loading="lazy" decoding="async"><figcaption><span class="pcap">The torii at Hie Shrine, lit after dark — five minutes from your hotel on night one</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Hie_Shrine_Torii_at_night.JPG" target="_blank" rel="noopener">Torsodog · CC BY 3.0</a></figcaption></figure>
+        
         <div class="callout">
           <span class="ct">The honest framing</span>
           <p>You have <b>two full days in Tokyo</b>, not three. The 18th is gone to immigration and the train in; the 21st is gone to Haneda. Every hour of the 19th and 20th is expensive — which is why the Kyoto-versus-Fuji question matters, and why splitting the group beats compromising.</p>
@@ -1788,6 +1807,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Day by day" role="tabpanel" id="p-miy-days" aria-labelledby="t-miy-days" tabindex="0">
+        <figure class="photo"><img src="./photos/miyako-maehama.jpg" alt="Yonaha Maehama beach, white sand meeting turquoise water" width="1600" height="1065" loading="lazy" decoding="async"><figcaption><span class="pcap">Yonaha Maehama — seven kilometres of it, and your sunset on the 21st</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Yonahamaehama_Miyakojima_Okinawa_Japan01bs3s4592.jpg" target="_blank" rel="noopener">663highland · CC BY 2.5</a></figcaption></figure>
+        
         <div class="callout good"><span class="ct">You've timed this well</span>
           <p>From October the cold north wind starts up, putting the Shimoji-jima sites on the sheltered downwind side — so <b>October and November are the prime months for the topography diving Miyako is famous for</b>, and you've dodged the summer heat and the peak of typhoon season. The island is about 30 km across with effectively no public transport, so the cars aren't a convenience, they're the whole plan.</p></div>
 
@@ -2007,6 +2028,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Beaches &amp; drives" role="tabpanel" id="p-miy-do" aria-labelledby="t-miy-do" tabindex="0" hidden>
+        <figure class="photo"><img src="./photos/miyako-irabu-ohashi.jpg" alt="Irabu Ohashi bridge curving across shallow turquoise sea" width="1600" height="1067" loading="lazy" decoding="async"><figcaption><span class="pcap">Irabu Ohashi — 3,540 m, Japan&rsquo;s longest toll-free bridge</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Irabu_ohashi_20120815.jpg" target="_blank" rel="noopener">Rsa · CC BY-SA 3.0</a></figcaption></figure>
+        
         <figure class="legmap"><figcaption><span class="mtag">Miyakojima</span><span class="mnote">Schematic — bridges, beaches and the Shimoji dive area. Island is ~30 km across.</span></figcaption><div class="legmapscroll"><svg viewBox="-72 -14 732 430" role="img" aria-label="Schematic map of Miyakojima and its bridge-linked islands">
 <rect x="-72" y="-14" width="732" height="430" fill="var(--sea-1)" opacity=".16"/>
 <g stroke="var(--sea-2)" stroke-width="1" opacity=".3" fill="none">
@@ -2305,6 +2328,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Day by day" role="tabpanel" id="p-kak-days" aria-labelledby="t-kak-days" tabindex="0">
+        <figure class="photo"><img src="./photos/kakunodate-bukeyashiki.jpg" alt="The samurai street in Kakunodate, dark wooden walls under trees" width="1600" height="1200" loading="lazy" decoding="async"><figcaption><span class="pcap">The samurai quarter at Kakunodate, under the weeping cherries</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Kakunodate_488.jpg" target="_blank" rel="noopener">Kmhkmh · CC BY 3.0</a></figcaption></figure>
+        
         <div class="callout good"><span class="ct">The best-timed thing in your whole itinerary</span>
           <p>Dakigaeri Gorge runs ten kilometres along the Tama river and its maples peak <b>from late October into early November</b> — you are arriving almost exactly on it. The water is a startling mineral blue-green with red maples right over it, which is why it's nicknamed "the Yabakei of Tohoku". Fifteen minutes from Kakunodate station, and you're there on a Tuesday: weekday mornings are markedly quieter, and a foliage festival runs during the season.</p></div>
 
@@ -2437,6 +2462,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Walks &amp; drives" role="tabpanel" id="p-kak-do" aria-labelledby="t-kak-do" tabindex="0" hidden>
+        <figure class="photo"><img src="./photos/dakigaeri-autumn.jpg" alt="Dakigaeri Gorge in autumn, red and gold maples above turquoise water" width="1200" height="900" loading="lazy" decoding="async"><figcaption><span class="pcap">Dakigaeri Gorge in early November — almost exactly your week</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:%E7%A7%8B%E3%81%AE%E6%8A%B1%E8%BF%94%E3%82%8A%E6%B8%93%E8%B0%B7_(Dakigaeri_Gorge_in_autumn)_02_Nov,_2013_-_panoramio.jpg" target="_blank" rel="noopener">Hiroaki Kaneko · CC BY-SA 3.0</a></figcaption></figure>
+        
         <figure class="legmap"><figcaption><span class="mtag">Around Kakunodate</span><span class="mnote">Drive times from the inn. Everything on your two real days is inside an hour.</span></figcaption><div class="legmapscroll"><svg viewBox="-44 -12 786 404" role="img" aria-label="Schematic driving map of the Kakunodate area, north at the top">
 <rect x="-44" y="-12" width="786" height="404" fill="var(--leaf-3)" opacity=".10"/>
 <g stroke="var(--kaku)" stroke-width="3" fill="none" stroke-linecap="round">
@@ -2676,6 +2703,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Day by day" role="tabpanel" id="p-aom-days" aria-labelledby="t-aom-days" tabindex="0">
+        <figure class="photo"><img src="./photos/hakkoda-range.jpg" alt="The Hakkoda mountain range seen across the Aomori plain" width="1600" height="1200" loading="lazy" decoding="async"><figcaption><span class="pcap">The Hakkoda range from the Aomori plain</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Aomori_rice_fields_with_the_Hakk%C5%8Dda_Mountains.jpg" target="_blank" rel="noopener">Mccunicano · CC BY-SA 4.0</a></figcaption></figure>
+        
         <p class="lede">Three full days and more good options than will fit, so this is a menu with a recommended order rather than a fixed plan. The hotel is walkable to the fish market, the Nebuta museum and the cider bar, so low-energy evenings are always available — use that. These days assume you drove Towada and Oirase on the 29th; if you took the train, swap Oirase into the 30th and drop Shirakami.</p>
 
         <div class="spine" style="margin-top:26px;">
@@ -2871,6 +2900,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Walks &amp; drives" role="tabpanel" id="p-aom-do" aria-labelledby="t-aom-do" tabindex="0" hidden>
+        <figure class="photo"><img src="./photos/oirase-stream.jpg" alt="Oirase Gorge, a mossy stream running through dense forest" width="1600" height="1067" loading="lazy" decoding="async"><figcaption><span class="pcap">Oirase Gorge, where the stream and the path run together</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Oirase_Gorge_-_OiraseGorge7015.jpg" target="_blank" rel="noopener">lumoplank · CC0</a></figcaption></figure>
+        
         <figure class="legmap"><figcaption><span class="mtag">Around Aomori</span><span class="mnote">Route 103 is the spine. Hirosaki west, Osorezan north-east, Shirakami far south-west.</span></figcaption><div class="legmapscroll"><svg viewBox="-72 -12 734 444" role="img" aria-label="Schematic driving map of Aomori prefecture, north at the top">
 <rect x="-72" y="-12" width="734" height="444" fill="var(--pine)" opacity=".12"/>
 <g stroke="var(--aomori)" stroke-width="3.5" fill="none" stroke-linecap="round">
@@ -3002,6 +3033,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Activities" role="tabpanel" id="p-aom-act" aria-labelledby="t-aom-act" tabindex="0" hidden>
+        <figure class="photo"><img src="./photos/nebuta-float.jpg" alt="An illuminated Nebuta festival float, painted warrior figures" width="1600" height="730" loading="lazy" decoding="async"><figcaption><span class="pcap">A Nebuta float — the ones at Warasse are these, kept indoors year-round</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:2025_Aomori_Nebuta_Festival_float_3.jpg" target="_blank" rel="noopener">Hiart · CC0</a></figcaption></figure>
+        
       <p class="lede">Four nights and only two committed days, so this leg has the most room in it. Aomori&rsquo;s good things are loud, edible or both — and one of them is only possible because of exactly when you are here.</p>
     <div class="cards">
       <div class="card" style="--c:var(--aomori)">
