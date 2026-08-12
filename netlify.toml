@@ -1,0 +1,27 @@
+# Zero-config deploy: the site is plain static files, nothing to build.
+[build]
+  publish = "."
+  command = ""
+
+# The service worker and the page itself must always revalidate, otherwise a
+# redeploy can sit behind a stale CDN copy and phones keep the old itinerary.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# Everything else (icons, photos) can be cached hard — filenames change when they do.
+[[headers]]
+  for = "/icons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
