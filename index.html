@@ -233,6 +233,33 @@ summary.daysum:hover .daytoggle{opacity:.72;}
 
 
 
+
+/* ---------- first screen: cut furniture, not content ----------
+   Measured on a 375x812 phone: 597px of the opening screen was chrome before
+   a single line of the itinerary. The banner is worth its height — it is the
+   place, not decoration — so the savings come from everything else. */
+@media (max-width:720px){
+  /* The kicker repeats what the registry already holds. Keep leg and dates. */
+  .legtitle .kicker .kmore{display:none;}
+  .legtitle .kicker{font-size:10.5px; letter-spacing:.14em;}
+
+  /* Foliage / sunset / cars is reference, not a headline. Smaller, one line. */
+  .legtitle .meta{font-size:12.5px; gap:4px 14px; margin-top:10px;}
+
+  /* The rail is a jump control, not a chapter heading. */
+  .journey .wrap{padding-top:8px; padding-bottom:8px;}
+  .railday{padding:6px 0 5px;}
+  .railday .rd-num{font-size:17px;}
+  .railday .rd-dow{font-size:8.5px;}
+  .railday .rd-tag{font-size:9px;}
+  .legstrip{margin-bottom:5px;}
+  .legstrip span{font-size:9px;}
+
+  .legtitle{padding-top:14px;}
+  .legtitle h1{margin-top:4px;}
+  .legtabs{margin-top:16px;}
+}
+
 /* photo banners: the leg's own picture, not a decorative SVG on top of one */
 .legbanner.has-photo{position:relative; height:clamp(150px,26vw,260px); padding:0;}
 .legbanner.has-photo img{width:100%; height:100%; object-fit:cover; display:block;}
@@ -1130,7 +1157,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
   <div class="legbanner has-photo"><img src="./photos/tokyo-hie-torii.jpg" alt="The torii at Hie Shrine, lit after dark - five minutes from your hotel on night one" width="1200" height="1600" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Hie_Shrine_Torii_at_night.JPG" target="_blank" rel="noopener">Torsodog · CC BY 3.0</a></div>
   <div class="wrap">
     <div class="legtitle">
-      <p class="kicker">Leg 01 · 18 – 21 October · Via Inn Prime Akasaka</p>
+      <p class="kicker">Leg 01 · 18 – 21 October <span class="kmore">· Via Inn Prime Akasaka</span></p>
       <h1>Tokyo<span>Two real days, and a hard choice on the second</span></h1>
       <div class="meta">
         <span><b>Sun 18</b> arrive 14:35</span><span><b>Mon 19</b> full day</span>
@@ -1446,7 +1473,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
   </div>
   <div class="wrap">
     <div class="legtitle">
-      <p class="kicker">20 October · Track A · day trip from Akasaka</p>
+      <p class="kicker">20 October · Track A <span class="kmore">· day trip from Akasaka</span></p>
       <h1>Mount Fuji<span>Two hours out, and the clearest air of the year</span></h1>
       <div class="meta">
         <span><b>Out</b> 07:30</span><span><b>Back</b> ~20:00</span><span><b>Return</b> ≈ ¥6–8k pp</span>
@@ -1599,7 +1626,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
   </div>
   <div class="wrap">
     <div class="legtitle">
-      <p class="kicker">20 October · Track B · day trip from Tokyo Station</p>
+      <p class="kicker">20 October · Track B <span class="kmore">· day trip from Tokyo Station</span></p>
       <h1>Kyoto<span>Fifteen hours door to door for nine on the ground</span></h1>
       <div class="meta">
         <span><b>Out</b> 06:00</span><span><b>Back</b> ~21:45</span><span><b>Return</b> ≈ ¥28k pp</span>
@@ -1724,7 +1751,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
   <div class="legbanner has-photo"><img src="./photos/miyako-maehama.jpg" alt="Yonaha Maehama - seven kilometres of it, and your sunset on the 21st" width="1600" height="1065" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Yonahamaehama_Miyakojima_Okinawa_Japan01bs3s4592.jpg" target="_blank" rel="noopener">663highland · CC BY 2.5</a></div>
   <div class="wrap">
     <div class="legtitle">
-      <p class="kicker">Leg 02 · 21 – 26 October · Hotel &amp; Villa Seahorse · Two cars on the island</p>
+      <p class="kicker">Leg 02 · 21 – 26 October <span class="kmore">· Hotel &amp; Villa Seahorse · Two cars on the island</span></p>
       <h1>Miyakojima<span>Japan's best cave diving, in its best month</span></h1>
       <div class="meta">
         <span><b>Air</b> ~28 °C</span><span><b>Sea</b> ~27 °C</span><span><b>Sunset</b> ~18:05</span>
@@ -2214,7 +2241,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
   <div class="legbanner has-photo"><img src="./photos/kakunodate-bukeyashiki.jpg" alt="The samurai quarter at Kakunodate, under the weeping cherries" width="1600" height="1200" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Kakunodate_488.jpg" target="_blank" rel="noopener">Kmhkmh · CC BY 3.0</a></div>
   <div class="wrap">
     <div class="legtitle">
-      <p class="kicker">Leg 03 · 26 – 29 October · Katakurinohana · Cars from Morioka, 26th</p>
+      <p class="kicker">Leg 03 · 26 – 29 October <span class="kmore">· Katakurinohana · Cars from Morioka, 26th</span></p>
       <h1>Kakunodate<span>Samurai streets and a gorge at peak colour</span></h1>
       <div class="meta">
         <span><b>Foliage</b> peaks late Oct – early Nov</span><span><b>Sunset</b> ~16:45</span>
@@ -2557,7 +2584,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
   <div class="legbanner has-photo"><img src="./photos/hakkoda-range.jpg" alt="The Hakkoda range from the Aomori plain" width="1600" height="1200" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Aomori_rice_fields_with_the_Hakk%C5%8Dda_Mountains.jpg" target="_blank" rel="noopener">Mccunicano · CC BY-SA 4.0</a></div>
   <div class="wrap">
     <div class="legtitle">
-      <p class="kicker">Leg 04 · 29 October – 2 November · Art Hotel Aomori · Cars</p>
+      <p class="kicker">Leg 04 · 29 October – 2 November <span class="kmore">· Art Hotel Aomori · Cars</span></p>
       <h1>Aomori<span>Volcanoes, beech forest, apples and one closing door</span></h1>
       <div class="meta">
         <span><b>Sunset</b> ~16:35</span><span><b>Full days</b> 30 · 31 · 1</span>
