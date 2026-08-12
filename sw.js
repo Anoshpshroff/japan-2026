@@ -8,7 +8,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v4';
+var CACHE = 'japan2026-v5';
 var PRECACHE = [
   './',
   './index.html',
@@ -34,8 +34,37 @@ var PRECACHE = [
   './photos/fuji-kawaguchiko.jpg',
   './photos/kyoto-fushimi.jpg',
   './photos/nyuto-onsen.jpg',
+  './photos/p-yabiji.jpg',
+  './photos/p-sunayama.jpg',
+  './photos/p-yoshino.jpg',
+  './photos/p-kurima.jpg',
+  './photos/p-ikema.jpg',
+  './photos/p-maehama.jpg',
+  './photos/p-dakigaeri.jpg',
+  './photos/p-tazawako.jpg',
+  './photos/p-aspite.jpg',
+  './photos/p-oyasukyo.jpg',
+  './photos/p-bukeyashiki.jpg',
+  './photos/p-kabazaiku.jpg',
+  './photos/p-aoyagi.jpg',
+  './photos/p-iwaki.jpg',
+  './photos/p-anmon.jpg',
+  './photos/p-sukayu.jpg',
+  './photos/p-aoni.jpg',
+  './photos/p-hirosaki.jpg',
+  './photos/p-chureito.jpg',
+  './photos/p-kiyomizu.jpg',
+  './photos/p-kiritanpo.jpg',
+  './photos/p-inaniwa.jpg',
+  './photos/p-nokkedon.jpg',
+  './photos/p-omatuna.jpg',
+  './photos/p-awamori.jpg',
+  './photos/p-apple.jpg',
+  './photos/p-shamisen.jpg',
+  './photos/p-teamlab.jpg',
+  './photos/p-shibuyasky.jpg',
+  './photos/p-kabukiza.jpg',
   './ui.js',
-  './photos/credits.json',
   './photos/nebuta-float.jpg'
 ];
 

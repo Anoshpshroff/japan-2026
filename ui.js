@@ -13,21 +13,32 @@
 
   /* ---------- which photograph belongs to which card ---------- */
   var PHOTOS = [
-    [/tsurunoyu/i,                              'tsurunoyu-autumn.jpg'],
-    [/komagatake/i,                             'komagatake-summit.jpg'],
-    [/nyuto|taenoyu|kuroyu|ganiba/i,            'nyuto-onsen.jpg'],
-    [/towada/i,                                 'towada-lake.jpg'],
-    [/juniko|aoike|shirakami/i,                 'juniko-aoike.jpg'],
-    [/oirase/i,                                 'oirase-stream.jpg'],
-    [/nebuta|neputa|warasse/i,                  'nebuta-float.jpg'],
-    [/hennazaki|higashi-henna|cape/i,           'miyako-higashihenna.jpg'],
-    [/irabu|kurima|ikema|maehama|sunayama|beach|snorkel|sup|turtle/i, 'miyako-irabu.jpg'],
-    [/fushimi|kiyomizu|gion|kyoto/i,            'kyoto-fushimi.jpg'],
-    [/fuji|kawaguchiko|tenjozan|chureito/i,     'fuji-kawaguchiko.jpg'],
-    [/hakkoda|odake|sukayu|tsuta/i,             'hakkoda-odake.jpg'],
-    [/kakunodate|samurai|kabazaiku|aoyagi|ishiguro|dakigaeri|tazawa|suzuki/i, 'kakunodate-autumn.jpg'],
-    [/teamlab|shibuya|kabuki|sumo|kart|baseball|akasaka|shinjuku/i, 'tokyo-skyline.jpg']
+    /* Most specific first: a card gets its own place, not its region's. */
+    [/yabiji/i,'p-yabiji.jpg'], [/sunayama/i,'p-sunayama.jpg'], [/yoshino/i,'p-yoshino.jpg'],
+    [/kurima/i,'p-kurima.jpg'], [/ikema/i,'p-ikema.jpg'], [/maehama/i,'p-maehama.jpg'],
+    [/dakigaeri/i,'p-dakigaeri.jpg'], [/tazawa/i,'p-tazawako.jpg'],
+    [/aspite|hachimantai/i,'p-aspite.jpg'], [/oyasukyo/i,'p-oyasukyo.jpg'],
+    [/bukeyashiki/i,'p-bukeyashiki.jpg'], [/kabazaiku/i,'p-kabazaiku.jpg'], [/aoyagi/i,'p-aoyagi.jpg'],
+    [/iwaki/i,'p-iwaki.jpg'], [/anmon/i,'p-anmon.jpg'], [/sukayu/i,'p-sukayu.jpg'], [/aoni/i,'p-aoni.jpg'],
+    [/hirosaki/i,'p-hirosaki.jpg'], [/chureito/i,'p-chureito.jpg'], [/kiyomizu/i,'p-kiyomizu.jpg'],
+    [/kiritanpo/i,'p-kiritanpo.jpg'], [/inaniwa/i,'p-inaniwa.jpg'], [/nokkedon/i,'p-nokkedon.jpg'],
+    [/\u014cma|oma tuna/i,'p-omatuna.jpg'], [/awamori/i,'p-awamori.jpg'], [/apple/i,'p-apple.jpg'],
+    [/jamisen|shamisen|sanshin/i,'p-shamisen.jpg'], [/teamlab/i,'p-teamlab.jpg'],
+    [/shibuya sky/i,'p-shibuyasky.jpg'], [/kabuki/i,'p-kabukiza.jpg'],
+
+    /* Then the wider ones, for cards that name a region rather than a spot. */
+    [/tsurunoyu/i,'tsurunoyu-autumn.jpg'], [/komagatake/i,'komagatake-summit.jpg'],
+    [/nyuto|taenoyu|kuroyu|ganiba/i,'nyuto-onsen.jpg'], [/towada/i,'towada-lake.jpg'],
+    [/juniko|aoike|shirakami/i,'juniko-aoike.jpg'], [/oirase/i,'oirase-stream.jpg'],
+    [/nebuta|neputa|warasse/i,'nebuta-float.jpg'], [/hennazaki|cape/i,'miyako-higashihenna.jpg'],
+    [/irabu|17-?end|toguchi|painagama|snorkel|sup\b|turtle/i,'miyako-irabu.jpg'],
+    [/fushimi|gion|geiko|kyoto/i,'kyoto-fushimi.jpg'],
+    [/fuji|kawaguchiko|tenjozan|hoto/i,'fuji-kawaguchiko.jpg'],
+    [/hakkoda|odake|tsuta|gold line/i,'hakkoda-odake.jpg'],
+    [/kakunodate|samurai|ishiguro|suzuki|sake/i,'kakunodate-autumn.jpg'],
+    [/sumo|kart|baseball|akasaka|shinjuku|yokocho|tsukiji|tokyo/i,'tokyo-skyline.jpg']
   ];
+
   var CREDITS = {};   // filled from credits.json, best-effort
 
   function photoFor(title, body) {
