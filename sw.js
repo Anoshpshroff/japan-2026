@@ -8,7 +8,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v3';
+var CACHE = 'japan2026-v4';
 var PRECACHE = [
   './',
   './index.html',
@@ -20,13 +20,22 @@ var PRECACHE = [
   './icons/icon-512.png',
   './icons/icon-512-maskable.png',
   './icons/apple-touch-icon.png',
-  './photos/tokyo-hie-torii.jpg',
-  './photos/miyako-irabu-ohashi.jpg',
-  './photos/miyako-maehama.jpg',
-  './photos/kakunodate-bukeyashiki.jpg',
-  './photos/dakigaeri-autumn.jpg',
+  './photos/tokyo-skyline.jpg',
+  './photos/miyako-irabu.jpg',
+  './photos/miyako-higashihenna.jpg',
+  './photos/kakunodate-autumn.jpg',
+  './photos/tsurunoyu-autumn.jpg',
+  './photos/komagatake-summit.jpg',
   './photos/oirase-stream.jpg',
-  './photos/hakkoda-range.jpg',
+  './photos/hakkoda-odake.jpg',
+  './photos/towada-lake.jpg',
+  './photos/juniko-aoike.jpg',
+  './photos/nebuta-float.jpg',
+  './photos/fuji-kawaguchiko.jpg',
+  './photos/kyoto-fushimi.jpg',
+  './photos/nyuto-onsen.jpg',
+  './ui.js',
+  './photos/credits.json',
   './photos/nebuta-float.jpg'
 ];
 

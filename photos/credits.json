@@ -1,66 +1,142 @@
 [
   {
-    "file": "tokyo-hie-torii.jpg",
-    "caption": "The torii at Hie Shrine, lit after dark — five minutes from your hotel on night one",
-    "title": "Hie Shrine Torii at night.JPG",
-    "artist": "Torsodog",
-    "licence": "CC BY 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Hie_Shrine_Torii_at_night.JPG"
+    "file": "tokyo-skyline.jpg",
+    "caption": "Shibuya and Shinjuku at dusk, from the Yebisu tower",
+    "title": "Shibuya and Shinjuku from Yebisu Garden Place Tower, Ebisu, Tokyo, Japan, 2024 May.jpg",
+    "artist": "Ximonic (Simo Räsänen)",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Shibuya_and_Shinjuku_from_Yebisu_Garden_Place_Tower,_Ebisu,_Tokyo,_Japan,_2024_May.jpg",
+    "w": 1800,
+    "h": 586
   },
   {
-    "file": "miyako-irabu-ohashi.jpg",
-    "caption": "Irabu Ohashi — 3,540 m, Japan&rsquo;s longest toll-free bridge",
-    "title": "Irabu ohashi 20120815.jpg",
-    "artist": "Rsa",
-    "licence": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Irabu_ohashi_20120815.jpg"
+    "file": "miyako-irabu.jpg",
+    "caption": "Irabu Ohashi — 3,540 m of it, over water that does not look real",
+    "title": "Irabu Bridge panorama (52203265122).jpg",
+    "artist": "Raita Futo from Tokyo, Japan",
+    "licence": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Irabu_Bridge_panorama_(52203265122).jpg",
+    "w": 1500,
+    "h": 782
   },
   {
-    "file": "miyako-maehama.jpg",
-    "caption": "Yonaha Maehama — seven kilometres of it, and your sunset on the 21st",
-    "title": "Yonahamaehama Miyakojima Okinawa Japan01bs3s4592.jpg",
-    "artist": "663highland",
-    "licence": "CC BY 2.5",
-    "source": "https://commons.wikimedia.org/wiki/File:Yonahamaehama_Miyakojima_Okinawa_Japan01bs3s4592.jpg"
+    "file": "miyako-higashihenna.jpg",
+    "caption": "Cape Higashi-Hennazaki, a spine of land with sea on both sides",
+    "title": "Cape Higashihenna, Miyako Island, Okinawa - 32521584067.jpg",
+    "artist": "Kzaral",
+    "licence": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cape_Higashihenna,_Miyako_Island,_Okinawa_-_32521584067.jpg",
+    "w": 1500,
+    "h": 768
   },
   {
-    "file": "kakunodate-bukeyashiki.jpg",
-    "caption": "The samurai quarter at Kakunodate, under the weeping cherries",
-    "title": "Kakunodate 488.jpg",
-    "artist": "Kmhkmh",
-    "licence": "CC BY 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Kakunodate_488.jpg"
+    "file": "kakunodate-autumn.jpg",
+    "caption": "Kakunodate in autumn — the week you arrive",
+    "title": "Autumn leaves in Kakunodate 2022.jpg",
+    "artist": "掬茶",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Autumn_leaves_in_Kakunodate_2022.jpg",
+    "w": 1300,
+    "h": 867
   },
   {
-    "file": "dakigaeri-autumn.jpg",
-    "caption": "Dakigaeri Gorge in early November — almost exactly your week",
-    "title": "秋の抱返り渓谷 (Dakigaeri Gorge in autumn) 02 Nov, 2013 - panoramio.jpg",
-    "artist": "Hiroaki Kaneko",
-    "licence": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:%E7%A7%8B%E3%81%AE%E6%8A%B1%E8%BF%94%E3%82%8A%E6%B8%93%E8%B0%B7_(Dakigaeri_Gorge_in_autumn)_02_Nov,_2013_-_panoramio.jpg"
+    "file": "tsurunoyu-autumn.jpg",
+    "caption": "Tsurunoyu in autumn — thatch, sulphur steam, and the bath you have to ring ahead for",
+    "title": "Tsurunoyu Onsen photographed in autumn 2022 (2).jpg",
+    "artist": "掬茶",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tsurunoyu_Onsen_photographed_in_autumn_2022_(2).jpg",
+    "w": 1400,
+    "h": 933
+  },
+  {
+    "file": "komagatake-summit.jpg",
+    "caption": "Akita-Komagatake from the Tazawako side — the 8th Station road stops just below",
+    "title": "Summit of Mount Akita-Komagatake from Tazawako Skiing Area.jpg",
+    "artist": "掬茶",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Summit_of_Mount_Akita-Komagatake_from_Tazawako_Skiing_Area.jpg",
+    "w": 1500,
+    "h": 1000
   },
   {
     "file": "oirase-stream.jpg",
-    "caption": "Oirase Gorge, where the stream and the path run together",
-    "title": "Oirase Gorge - OiraseGorge7015.jpg",
-    "artist": "lumoplank",
+    "caption": "Oirase, where the path and the stream run together for nine miles",
+    "title": "Oirase Mountain Stream - Towada, Aomori - DSC01304.jpg",
+    "artist": "Daderot",
     "licence": "CC0",
-    "source": "https://commons.wikimedia.org/wiki/File:Oirase_Gorge_-_OiraseGorge7015.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Oirase_Mountain_Stream_-_Towada,_Aomori_-_DSC01304.jpg",
+    "w": 1300,
+    "h": 867
   },
   {
-    "file": "hakkoda-range.jpg",
-    "caption": "The Hakkoda range from the Aomori plain",
-    "title": "Aomori rice fields with the Hakkōda Mountains.jpg",
+    "file": "hakkoda-odake.jpg",
+    "caption": "The Odake crater at Hakkoda, with Kodake beyond",
+    "title": "Mount Ōdake crater and Mount Kodake.jpg",
     "artist": "Mccunicano",
     "licence": "CC BY-SA 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Aomori_rice_fields_with_the_Hakk%C5%8Dda_Mountains.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Mount_%C5%8Cdake_crater_and_Mount_Kodake.jpg",
+    "w": 1400,
+    "h": 1050
+  },
+  {
+    "file": "towada-lake.jpg",
+    "caption": "Lake Towada, a caldera two calderas deep",
+    "title": "Towada Motomiya.jpg",
+    "artist": "らんで",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Towada_Motomiya.jpg",
+    "w": 1300,
+    "h": 867
+  },
+  {
+    "file": "juniko-aoike.jpg",
+    "caption": "Aoike in Juniko — the blue is not a filter",
+    "title": "Aoike (the Blue Lake) in Juniko, Fukaura Town, Aomori Prefecture, Japan 20200607a.jpg",
+    "artist": "掬茶",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Aoike_(the_Blue_Lake)_in_Juniko,_Fukaura_Town,_Aomori_Prefecture,_Japan_20200607a.jpg",
+    "w": 1400,
+    "h": 933
   },
   {
     "file": "nebuta-float.jpg",
-    "caption": "A Nebuta float — the ones at Warasse are these, kept indoors year-round",
-    "title": "2025 Aomori Nebuta Festival float 3.jpg",
-    "artist": "Hiart",
+    "caption": "A Nebuta float. The ones at Warasse are these, kept lit indoors all year",
+    "title": "Aomori, Nebuta-matsuri 43.jpg",
+    "artist": "Marie-Sophie Mejan",
+    "licence": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Aomori,_Nebuta-matsuri_43.jpg",
+    "w": 1500,
+    "h": 1042
+  },
+  {
+    "file": "fuji-kawaguchiko.jpg",
+    "caption": "Fuji from Kawaguchiko, which is the view the whole day is built around",
+    "title": "Kawaguchiko, Part III - Kawaguchiko6783.jpg",
+    "artist": "lumoplank",
     "licence": "CC0",
-    "source": "https://commons.wikimedia.org/wiki/File:2025_Aomori_Nebuta_Festival_float_3.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Kawaguchiko,_Part_III_-_Kawaguchiko6783.jpg",
+    "w": 1200,
+    "h": 800
+  },
+  {
+    "file": "kyoto-fushimi.jpg",
+    "caption": "Fushimi Inari before the crowds — the reason to be on the 06:00 train",
+    "title": "Torii at Fushimi Inari-taisha, Kyoto 20190416 1.jpg",
+    "artist": "DXR",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Torii_at_Fushimi_Inari-taisha,_Kyoto_20190416_1.jpg",
+    "w": 1037,
+    "h": 1500
+  },
+  {
+    "file": "nyuto-onsen.jpg",
+    "caption": "Nyuto Onsen, seven inns scattered up a wooded valley",
+    "title": "Nyuto Onsen - NyutoOnsen7043.jpg",
+    "artist": "lumoplank",
+    "licence": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Nyuto_Onsen_-_NyutoOnsen7043.jpg",
+    "w": 1400,
+    "h": 933
   }
 ]

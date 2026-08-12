@@ -234,6 +234,66 @@ summary.daysum:hover .daytoggle{opacity:.72;}
 
 
 
+
+/* ---------- motion ----------
+   A real site can move. Sparingly: things arrive, they do not perform. */
+@media (prefers-reduced-motion: no-preference){
+  .view:not([hidden]){animation:viewIn .34s cubic-bezier(.22,.68,.36,1) both;}
+  @keyframes viewIn{from{opacity:0; transform:translateY(7px);} to{opacity:1; transform:none;}}
+  .legbanner.has-photo img{animation:bannerIn .8s cubic-bezier(.2,.6,.3,1) both;}
+  @keyframes bannerIn{from{opacity:0; transform:scale(1.045);} to{opacity:1; transform:none;}}
+  .rise{opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s cubic-bezier(.22,.68,.36,1);}
+  .rise.in{opacity:1; transform:none;}
+  .legpanel:not([hidden]){animation:viewIn .26s ease both;}
+}
+
+/* Cards are doors now, so they should behave like it. */
+.card.is-tappable{cursor:pointer; transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;}
+.card.is-tappable:hover{transform:translateY(-2px); border-color:var(--rule-2); box-shadow:0 6px 22px rgba(0,0,0,.18);}
+.card.is-tappable:focus-visible{outline:2px solid var(--c, var(--ink-2)); outline-offset:3px;}
+.card.is-tappable::after{content:""; position:absolute; right:13px; bottom:12px; width:13px; height:13px;
+  border-right:2px solid var(--ink-3); border-top:2px solid var(--ink-3); transform:rotate(45deg); opacity:.28; transition:opacity .18s ease, transform .18s ease;}
+.card.is-tappable:hover::after{opacity:.75; transform:rotate(45deg) translateX(2px);}
+.card{position:relative;}
+
+/* ---------- the card sheet ---------- */
+body.sheet-open{overflow:hidden;}
+.sheet{position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:22px;}
+.sheetscrim{position:absolute; inset:0; background:rgba(0,0,0,.62); backdrop-filter:blur(5px); opacity:0; transition:opacity .2s ease;}
+.sheet.is-open .sheetscrim{opacity:1;}
+.sheetpanel{position:relative; z-index:1; width:min(680px,100%); max-height:min(88vh,940px); display:flex; flex-direction:column;
+  background:var(--raised); border:1px solid var(--rule-2); border-top:3px solid var(--c,var(--ink-2)); border-radius:10px;
+  overflow:hidden; box-shadow:0 26px 70px rgba(0,0,0,.45);
+  opacity:0; transform:translateY(14px) scale(.985); transition:opacity .2s ease, transform .24s cubic-bezier(.22,.68,.36,1);}
+.sheet.is-open .sheetpanel{opacity:1; transform:none;}
+.sheetscroll{overflow:auto; -webkit-overflow-scrolling:touch;}
+.sheetclose{position:absolute; top:10px; right:10px; z-index:3; width:38px; height:38px; border-radius:99px;
+  border:1px solid var(--rule-2); background:var(--bg); color:var(--ink-2); display:flex; align-items:center; justify-content:center; cursor:pointer;}
+.sheetclose svg{width:15px; height:15px;}
+.sheetclose:hover{color:var(--ink-1); border-color:var(--ink-3);}
+.sheetphoto{margin:0; position:relative;}
+.sheetphoto img{display:block; width:100%; height:clamp(180px,34vw,300px); object-fit:cover;}
+.sheetphoto figcaption{position:absolute; right:9px; bottom:8px;}
+.sheetphoto figcaption a{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.04em; color:var(--snow); text-decoration:none;
+  background:rgba(0,0,0,.5); padding:3px 8px; border-radius:99px; opacity:.72;}
+.sheetphoto figcaption a:hover{opacity:1;}
+.sheettext{padding:22px 24px 26px;}
+.sheettext .k{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--c,var(--ink-3)); font-weight:700;}
+.sheettext h3{font-size:clamp(23px,3.6vw,30px); letter-spacing:-.015em; margin:9px 0 0;}
+.sheettext .jp{font-size:13px; color:var(--ink-3); margin-top:5px;}
+.sheettext p{margin-top:13px; font-size:15.5px; line-height:1.62; color:var(--ink-2);}
+.sheettext .sheetfoot{margin-top:18px; padding-top:13px; border-top:1px solid var(--rule);
+  font-family:var(--f-mono); font-size:11.5px; letter-spacing:.03em; color:var(--ink-3);}
+@media (max-width:720px){
+  .sheet{padding:0; align-items:flex-end;}
+  .sheetpanel{width:100%; max-height:92vh; border-radius:12px 12px 0 0; border-bottom:0;
+    transform:translateY(26px);}
+  .sheettext{padding:20px 18px 30px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .sheetpanel,.sheetscrim{transition:none; opacity:1; transform:none;}
+}
+
 /* ---------- first screen: cut furniture, not content ----------
    Measured on a 375x812 phone: 597px of the opening screen was chrome before
    a single line of the itinerary. The banner is worth its height — it is the
@@ -1156,7 +1216,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 <!-- ===================== TOKYO ===================== -->
 <section class="view" id="v-tokyo" style="--c:var(--tokyo)" aria-label="Tokyo">
-  <div class="legbanner has-photo"><img src="./photos/tokyo-hie-torii.jpg" alt="The torii at Hie Shrine, lit after dark - five minutes from your hotel on night one" width="1200" height="1600" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Hie_Shrine_Torii_at_night.JPG" target="_blank" rel="noopener">Torsodog · CC BY 3.0</a></div>
+  <div class="legbanner has-photo"><img src="./photos/tokyo-skyline.jpg" alt="Shibuya and Shinjuku at dusk, from the Yebisu tower" width="1800" height="586" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Shibuya_and_Shinjuku_from_Yebisu_Garden_Place_Tower,_Ebisu,_Tokyo,_Japan,_2024_May.jpg" target="_blank" rel="noopener">Ximonic (Simo Räsänen) · CC BY-SA 4.0</a></div>
   <div class="wrap">
     <div class="legtitle">
       <p class="kicker">Leg 01 · 18 – 21 October <span class="kmore">· Via Inn Prime Akasaka</span></p>
@@ -1454,25 +1514,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 <!-- ===================== MT FUJI ===================== -->
 <section class="view" id="v-fuji" style="--c:var(--tokyo)" aria-label="Mount Fuji day trip">
-  <div class="legbanner">
-    <svg viewBox="0 0 1200 230" role="img" aria-label="Mount Fuji with its first snow, above Lake Kawaguchi and the Chureito pagoda" preserveAspectRatio="xMidYMax slice">
-      <defs><linearGradient id="fujiSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky-1)"/><stop offset="1" stop-color="var(--sky-2)"/></linearGradient></defs>
-      <rect width="1200" height="230" fill="url(#fujiSky)"/>
-      <circle cx="1020" cy="46" r="26" fill="var(--sun)"/>
-      <g fill="var(--snow)" opacity=".75"><ellipse cx="250" cy="44" rx="52" ry="16"/><ellipse cx="300" cy="38" rx="38" ry="19"/></g>
-      <polygon points="240,230 600,44 960,230" fill="var(--stone)"/>
-      <polygon points="600,44 520,110 680,110" fill="var(--snow)"/>
-      <polygon points="524,106 546,124 568,104 592,126 616,104 640,124 662,106 680,110 520,110" fill="var(--snow)"/>
-      <path d="M0 176 Q 300 160 600 176 T 1200 172 L1200 230 L0 230 Z" fill="var(--sea-2)" opacity=".55"/>
-      <path class="shimmer" d="M60 196 Q 320 186 580 198 T 1140 192 L1140 204 Q 580 210 320 198 T 60 208 Z" fill="var(--snow)" opacity=".4"/>
-      <g fill="var(--tokyo)">
-        <rect x="146" y="150" width="10" height="80"/>
-        <path d="M112 150 L190 150 L178 138 L124 138 Z"/><path d="M118 132 L184 132 L174 120 L128 120 Z"/><path d="M124 114 L178 114 L169 102 L133 102 Z"/>
-      </g>
-      <g fill="var(--leaf-1)"><circle cx="1080" cy="180" r="26"/><circle cx="1128" cy="196" r="20"/></g>
-      <g stroke="var(--bark)" stroke-width="5" stroke-linecap="round"><path d="M1080 230 L1080 200"/></g>
-    </svg>
-  </div>
+  <div class="legbanner has-photo"><img src="./photos/fuji-kawaguchiko.jpg" alt="Fuji from Kawaguchiko, which is the view the whole day is built around" width="1200" height="800" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Kawaguchiko,_Part_III_-_Kawaguchiko6783.jpg" target="_blank" rel="noopener">lumoplank · CC0</a></div>
   <div class="wrap">
     <div class="legtitle">
       <p class="kicker">20 October · Track A <span class="kmore">· day trip from Akasaka</span></p>
@@ -1601,31 +1643,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 <!-- ===================== KYOTO ===================== -->
 <section class="view" id="v-kyoto" style="--c:var(--kaku)" aria-label="Kyoto day trip">
-  <div class="legbanner">
-    <svg viewBox="0 0 1200 230" role="img" aria-label="A corridor of vermilion torii gates with a five-storey pagoda beyond" preserveAspectRatio="xMidYMax slice">
-      <defs><linearGradient id="kyoSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky-2)"/><stop offset="1" stop-color="var(--leaf-2)"/></linearGradient></defs>
-      <rect width="1200" height="230" fill="url(#kyoSky)"/>
-      <circle cx="1052" cy="52" r="28" fill="var(--leaf-1)" opacity=".5"/>
-      <g fill="var(--bark)" opacity=".3"><path d="M0 168 Q 200 140 400 166 Q 620 194 840 160 Q 1030 132 1200 162 L1200 230 L0 230 Z"/></g>
-      <g fill="var(--tokyo)">
-        <rect x="880" y="128" width="12" height="102"/>
-        <path d="M836 128 L936 128 L922 112 L850 112 Z"/><path d="M844 106 L928 106 L916 90 L856 90 Z"/>
-        <path d="M852 84 L920 84 L910 68 L862 68 Z"/><path d="M860 62 L912 62 L903 48 L869 48 Z"/>
-        <rect x="882" y="34" width="8" height="16"/>
-      </g>
-      <g fill="var(--tokyo)">
-        <rect x="40" y="60" width="26" height="170"/><rect x="150" y="60" width="26" height="170"/>
-        <rect x="260" y="60" width="26" height="170"/><rect x="370" y="60" width="26" height="170"/>
-        <rect x="480" y="60" width="26" height="170"/><rect x="590" y="60" width="26" height="170"/>
-        <rect x="0" y="34" width="660" height="20" rx="4"/><rect x="12" y="66" width="636" height="11"/>
-      </g>
-      <g fill="var(--night-1)" opacity=".22">
-        <rect x="66" y="60" width="84" height="170"/><rect x="176" y="60" width="84" height="170"/>
-        <rect x="286" y="60" width="84" height="170"/><rect x="396" y="60" width="84" height="170"/>
-        <rect x="506" y="60" width="84" height="170"/>
-      </g>
-    </svg>
-  </div>
+  <div class="legbanner has-photo"><img src="./photos/kyoto-fushimi.jpg" alt="Fushimi Inari before the crowds — the reason to be on the 06:00 train" width="1037" height="1500" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Torii_at_Fushimi_Inari-taisha,_Kyoto_20190416_1.jpg" target="_blank" rel="noopener">DXR · CC BY-SA 4.0</a></div>
   <div class="wrap">
     <div class="legtitle">
       <p class="kicker">20 October · Track B <span class="kmore">· day trip from Tokyo Station</span></p>
@@ -1750,7 +1768,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 <!-- ===================== MIYAKOJIMA ===================== -->
 <section class="view" id="v-miyako" style="--c:var(--miyako)" aria-label="Miyakojima">
-  <div class="legbanner has-photo"><img src="./photos/miyako-maehama.jpg" alt="Yonaha Maehama - seven kilometres of it, and your sunset on the 21st" width="1600" height="1065" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Yonahamaehama_Miyakojima_Okinawa_Japan01bs3s4592.jpg" target="_blank" rel="noopener">663highland · CC BY 2.5</a></div>
+  <div class="legbanner has-photo"><img src="./photos/miyako-irabu.jpg" alt="Irabu Ohashi — 3,540 m of it, over water that does not look real" width="1500" height="782" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Irabu_Bridge_panorama_(52203265122).jpg" target="_blank" rel="noopener">Raita Futo from Tokyo, Japan · CC BY 2.0</a></div>
   <div class="wrap">
     <div class="legtitle">
       <p class="kicker">Leg 02 · 21 – 26 October <span class="kmore">· Hotel &amp; Villa Seahorse · Two cars on the island</span></p>
@@ -1991,7 +2009,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Beaches &amp; drives" role="tabpanel" id="p-miy-do" aria-labelledby="t-miy-do" tabindex="0" hidden>
-        <figure class="photo"><img src="./photos/miyako-irabu-ohashi.jpg" alt="Irabu Ohashi bridge curving across shallow turquoise sea" width="1600" height="1067" loading="lazy" decoding="async"><figcaption><span class="pcap">Irabu Ohashi — 3,540 m, Japan&rsquo;s longest toll-free bridge</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Irabu_ohashi_20120815.jpg" target="_blank" rel="noopener">Rsa · CC BY-SA 3.0</a></figcaption></figure>
+        <figure class="photo"><img src="./photos/miyako-higashihenna.jpg" width="1500" height="768" loading="lazy" decoding="async"><figcaption><span class="pcap">Irabu Ohashi — 3,540 m, Japan&rsquo;s longest toll-free bridge</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Irabu_ohashi_20120815.jpg" target="_blank" rel="noopener">Rsa · CC BY-SA 3.0</a></figcaption></figure>
         
         <figure class="legmap"><figcaption><span class="mtag">Miyakojima</span><span class="mnote">Schematic — bridges, beaches and the Shimoji dive area. Island is ~30 km across.</span></figcaption><div class="legmapscroll"><svg viewBox="-72 -14 732 430" role="img" aria-label="Schematic map of Miyakojima and its bridge-linked islands">
 <rect x="-72" y="-14" width="732" height="430" fill="var(--sea-1)" opacity=".16"/>
@@ -2240,7 +2258,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 <!-- ===================== KAKUNODATE ===================== -->
 <section class="view" id="v-kakunodate" style="--c:var(--kaku)" aria-label="Kakunodate">
-  <div class="legbanner has-photo"><img src="./photos/kakunodate-bukeyashiki.jpg" alt="The samurai quarter at Kakunodate, under the weeping cherries" width="1600" height="1200" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Kakunodate_488.jpg" target="_blank" rel="noopener">Kmhkmh · CC BY 3.0</a></div>
+  <div class="legbanner has-photo"><img src="./photos/kakunodate-autumn.jpg" alt="Kakunodate in autumn — the week you arrive" width="1300" height="867" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Autumn_leaves_in_Kakunodate_2022.jpg" target="_blank" rel="noopener">掬茶 · CC BY-SA 4.0</a></div>
   <div class="wrap">
     <div class="legtitle">
       <p class="kicker">Leg 03 · 26 – 29 October <span class="kmore">· Katakurinohana · Cars from Morioka, 26th</span></p>
@@ -2392,7 +2410,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Walks &amp; drives" role="tabpanel" id="p-kak-do" aria-labelledby="t-kak-do" tabindex="0" hidden>
-        <figure class="photo"><img src="./photos/dakigaeri-autumn.jpg" alt="Dakigaeri Gorge in autumn, red and gold maples above turquoise water" width="1200" height="900" loading="lazy" decoding="async"><figcaption><span class="pcap">Dakigaeri Gorge in early November — almost exactly your week</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:%E7%A7%8B%E3%81%AE%E6%8A%B1%E8%BF%94%E3%82%8A%E6%B8%93%E8%B0%B7_(Dakigaeri_Gorge_in_autumn)_02_Nov,_2013_-_panoramio.jpg" target="_blank" rel="noopener">Hiroaki Kaneko · CC BY-SA 3.0</a></figcaption></figure>
+        <figure class="photo"><img src="./photos/tsurunoyu-autumn.jpg" width="1400" height="933" loading="lazy" decoding="async"><figcaption><span class="pcap">Dakigaeri Gorge in early November — almost exactly your week</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:%E7%A7%8B%E3%81%AE%E6%8A%B1%E8%BF%94%E3%82%8A%E6%B8%93%E8%B0%B7_(Dakigaeri_Gorge_in_autumn)_02_Nov,_2013_-_panoramio.jpg" target="_blank" rel="noopener">Hiroaki Kaneko · CC BY-SA 3.0</a></figcaption></figure>
         
         <figure class="legmap"><figcaption><span class="mtag">Around Kakunodate</span><span class="mnote">Drive times from the inn. Everything on your two real days is inside an hour.</span></figcaption><div class="legmapscroll"><svg viewBox="-44 -12 786 404" role="img" aria-label="Schematic driving map of the Kakunodate area, north at the top">
 <rect x="-44" y="-12" width="786" height="404" fill="var(--leaf-3)" opacity=".10"/>
@@ -2583,7 +2601,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 <!-- ===================== AOMORI ===================== -->
 <section class="view" id="v-aomori" style="--c:var(--aomori)" aria-label="Aomori">
-  <div class="legbanner has-photo"><img src="./photos/hakkoda-range.jpg" alt="The Hakkoda range from the Aomori plain" width="1600" height="1200" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Aomori_rice_fields_with_the_Hakk%C5%8Dda_Mountains.jpg" target="_blank" rel="noopener">Mccunicano · CC BY-SA 4.0</a></div>
+  <div class="legbanner has-photo"><img src="./photos/hakkoda-odake.jpg" alt="The Odake crater at Hakkoda, with Kodake beyond" width="1400" height="1050" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Mount_%C5%8Cdake_crater_and_Mount_Kodake.jpg" target="_blank" rel="noopener">Mccunicano · CC BY-SA 4.0</a></div>
   <div class="wrap">
     <div class="legtitle">
       <p class="kicker">Leg 04 · 29 October – 2 November <span class="kmore">· Art Hotel Aomori · Cars</span></p>
@@ -2798,7 +2816,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Walks &amp; drives" role="tabpanel" id="p-aom-do" aria-labelledby="t-aom-do" tabindex="0" hidden>
-        <figure class="photo"><img src="./photos/oirase-stream.jpg" alt="Oirase Gorge, a mossy stream running through dense forest" width="1600" height="1067" loading="lazy" decoding="async"><figcaption><span class="pcap">Oirase Gorge, where the stream and the path run together</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Oirase_Gorge_-_OiraseGorge7015.jpg" target="_blank" rel="noopener">lumoplank · CC0</a></figcaption></figure>
+        <figure class="photo"><img src="./photos/oirase-stream.jpg" alt="Oirase Gorge, a mossy stream running through dense forest" width="1300" height="867" loading="lazy" decoding="async"><figcaption><span class="pcap">Oirase Gorge, where the stream and the path run together</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Oirase_Gorge_-_OiraseGorge7015.jpg" target="_blank" rel="noopener">lumoplank · CC0</a></figcaption></figure>
         
         <figure class="legmap"><figcaption><span class="mtag">Around Aomori</span><span class="mnote">Route 103 is the spine. Hirosaki west, Osorezan north-east, Shirakami far south-west.</span></figcaption><div class="legmapscroll"><svg viewBox="-72 -12 734 444" role="img" aria-label="Schematic driving map of Aomori prefecture, north at the top">
 <rect x="-72" y="-12" width="734" height="444" fill="var(--pine)" opacity=".12"/>
@@ -2931,7 +2949,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Activities" role="tabpanel" id="p-aom-act" aria-labelledby="t-aom-act" tabindex="0" hidden>
-        <figure class="photo"><img src="./photos/nebuta-float.jpg" alt="An illuminated Nebuta festival float, painted warrior figures" width="1600" height="730" loading="lazy" decoding="async"><figcaption><span class="pcap">A Nebuta float — the ones at Warasse are these, kept indoors year-round</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:2025_Aomori_Nebuta_Festival_float_3.jpg" target="_blank" rel="noopener">Hiart · CC0</a></figcaption></figure>
+        <figure class="photo"><img src="./photos/nebuta-float.jpg" alt="An illuminated Nebuta festival float, painted warrior figures" width="1500" height="1042" loading="lazy" decoding="async"><figcaption><span class="pcap">A Nebuta float — the ones at Warasse are these, kept indoors year-round</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:2025_Aomori_Nebuta_Festival_float_3.jpg" target="_blank" rel="noopener">Hiart · CC0</a></figcaption></figure>
         
       <p class="lede">Four nights and only two committed days, so this leg has the most room in it. Aomori&rsquo;s good things are loud, edible or both — and one of them is only possible because of exactly when you are here.</p>
     <div class="cards">
@@ -4432,6 +4450,7 @@ var REGISTRY = [
 
 <script src="./config.js"></script>
 <script src="./sync.js"></script>
+<script src="./ui.js"></script>
 <script>
 /* Service worker: makes the whole itinerary work with no signal at all.
    Registered last so it never blocks first paint. */
