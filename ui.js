@@ -1,7 +1,7 @@
 /* Japan 2026 — the bits a real website can do that an artifact could not.
  *
  *  1. Tap any card to open it properly: its photograph, full text, room to read.
- *  2. Cards and day rows arrive as you scroll, rather than all at once.
+ *  2. Cards arrive with a short stagger when a panel opens (CSS, not JS).
  *  3. Everything defers to prefers-reduced-motion.
  *
  * No dependencies. ~7 KB. Written to fail quietly: if anything here breaks,
@@ -133,23 +133,10 @@
     });
   }
 
-  /* ---------- arrive-on-scroll ---------- */
-  function reveal() {
-    if (reduce || !('IntersectionObserver' in window)) return;
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-      });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.02 });
-    document.querySelectorAll('.card, details.day, .callout, .photo, .reggroup').forEach(function (el) {
-      if (el.dataset.rev) return;
-      el.dataset.rev = '1';
-      el.classList.add('rise');
-      io.observe(el);
-    });
-  }
+  /* Reveal is CSS-only now — see riseIn in the stylesheet. A JS observer that
+     silently fails leaves every card at opacity:0, which is exactly what it did. */
 
-  function refresh() { wire(); reveal(); }
+  function refresh() { wire(); }
 
   fetch('./photos/credits.json').then(function (r) { return r.json(); })
     .then(function (list) { list.forEach(function (c) { CREDITS[c.file] = c; }); })
