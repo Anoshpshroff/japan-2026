@@ -3295,7 +3295,15 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <h1>Book now, <em>decide later</em></h1>
       <p class="sub">Ordered by how badly it hurts to leave it late. The first group is genuinely urgent — late October is peak season for all of it.</p>
     </div>
-    <div class="checks">
+    <div data-chooser>
+      <div class="legtabs" role="tablist" aria-label="Plan sections">
+        <button type="button" class="legtab" role="tab" id="t-plan-book" aria-controls="p-plan-book" aria-selected="true">To book</button>
+        <button type="button" class="legtab" role="tab" id="t-plan-bags" aria-controls="p-plan-bags" aria-selected="false">Luggage</button>
+        <button type="button" class="legtab" role="tab" id="t-plan-prac" aria-controls="p-plan-prac" aria-selected="false">Practicalities</button>
+      </div>
+
+<div class="legpanel" data-print-title="To book" role="tabpanel" id="p-plan-book" aria-labelledby="t-plan-book" tabindex="0">
+<div class="checks">
       <div class="checkgroup">
         <h4>Do this week<span class="chkprog"></span></h4>
         <ul>
@@ -3350,7 +3358,11 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
     </div>
 
-    <div class="blockhead" style="margin-top:48px;"><h3>Luggage: two shipments, and one decision left</h3><span class="tag">Takkyubin</span></div>
+    
+      </div>
+
+      <div class="legpanel" data-print-title="Luggage" role="tabpanel" id="p-plan-bags" aria-labelledby="t-plan-bags" tabindex="0" hidden>
+<div class="blockhead" style="margin-top:48px;"><h3>Luggage: two shipments, and one decision left</h3><span class="tag">Takkyubin</span></div>
     <p class="lede">The cold-weather gear never goes to Miyakojima at all — it leaves Tokyo before you fly south and is waiting at the inn when you get off the mountain road on the 26th. The tropical and dive gear leaves the island on the 25th and waits at Narita until you fly home. Which means the 26th, the hardest day of the trip, is done with hand luggage and nothing else.</p>
 
     <div class="tablewrap">
@@ -3413,7 +3425,11 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <a class="shopbtn" href="https://www.narita-airport.jp/en/service/delivery/storage/" target="_blank" rel="noopener">Narita baggage storage ↗</a>
     </div>
 
-    <div class="blockhead" style="margin-top:48px;"><h3>Practicalities you will actually hit</h3><span class="tag">Cash, cards, data, tax</span></div>
+    
+      </div>
+
+      <div class="legpanel" data-print-title="Practicalities" role="tabpanel" id="p-plan-prac" aria-labelledby="t-plan-prac" tabindex="0" hidden>
+<div class="blockhead" style="margin-top:48px;"><h3>Practicalities you will actually hit</h3><span class="tag">Cash, cards, data, tax</span></div>
     <p class="lede">Two of your four legs are rural, and rural Japan runs on rules that Tokyo has quietly moved on from. This is the short version of what bites people.</p>
 
     <div class="cards">
@@ -3494,6 +3510,10 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
     <div class="chknote">
       <p><b>Ticks are saved on this device only.</b> They survive closing the page, but they don't travel between the six of you — a shared checklist isn't something this page can do on its own. Tell me what's booked and I'll mark it off in the file itself, which everyone sees.</p>
       <button type="button" class="chkreset" id="chkreset">Clear all ticks</button>
+    </div>
+
+    
+      </div>
     </div>
 
     <div class="viewfoot">
