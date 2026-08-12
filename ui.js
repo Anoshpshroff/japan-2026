@@ -30,8 +30,10 @@
   ];
   var CREDITS = {};   // filled from credits.json, best-effort
 
-  function photoFor(text) {
-    for (var i = 0; i < PHOTOS.length; i++) if (PHOTOS[i][0].test(text)) return PHOTOS[i][1];
+  function photoFor(title, body) {
+    var i;
+    for (i = 0; i < PHOTOS.length; i++) if (PHOTOS[i][0].test(title)) return PHOTOS[i][1];
+    for (i = 0; i < PHOTOS.length; i++) if (PHOTOS[i][0].test(body)) return PHOTOS[i][1];
     return null;
   }
 
@@ -69,7 +71,7 @@
       return !p.classList.contains('jp') && !p.classList.contains('foot');
     });
     var accent = card.getAttribute('style') || '';
-    var file = photoFor(title + ' ' + (card.textContent || ''));
+    var file = photoFor(title, card.textContent || '');
 
     var html = '';
     if (file) {
@@ -94,7 +96,10 @@
     lastFocus = document.activeElement;
     sheet.hidden = false;
     document.body.classList.add('sheet-open');
-    requestAnimationFrame(function () { sheet.classList.add('is-open'); });
+    // Force a reflow so the transition has a start state, then open. Using rAF
+    // here meant the panel stayed at opacity:0 whenever rAF did not fire.
+    void sheet.offsetWidth;
+    sheet.classList.add('is-open');
     var closeBtn = sheet.querySelector('.sheetclose');
     if (closeBtn) closeBtn.focus();
   }
