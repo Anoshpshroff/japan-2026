@@ -1,23 +1,23 @@
 [
   {
     "file": "tokyo-skyline.jpg",
-    "caption": "Shibuya and Shinjuku at dusk, from the Yebisu tower",
-    "title": "Shibuya and Shinjuku from Yebisu Garden Place Tower, Ebisu, Tokyo, Japan, 2024 May.jpg",
-    "artist": "Ximonic (Simo Räsänen)",
-    "licence": "CC BY-SA 4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Shibuya_and_Shinjuku_from_Yebisu_Garden_Place_Tower,_Ebisu,_Tokyo,_Japan,_2024_May.jpg",
-    "w": 1800,
-    "h": 586
+    "caption": "Tokyo after dark, from Minato",
+    "title": "Minato City, Tokyo, Japan (Night)-denoised",
+    "artist": "David Kernan",
+    "licence": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=195591546",
+    "w": 1500,
+    "h": 1000
   },
   {
     "file": "miyako-irabu.jpg",
-    "caption": "Irabu Ohashi — 3,540 m over water that does not look real",
+    "caption": "Irabu Ohashi, 3,540 m over impossible water",
     "title": "Irabu ohashi 20120815",
     "artist": "Rsa",
     "licence": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/w/index.php?curid=20750762",
-    "w": 1400,
-    "h": 933
+    "w": 1500,
+    "h": 1000
   },
   {
     "file": "miyako-higashihenna.jpg",
@@ -161,13 +161,13 @@
   },
   {
     "file": "p-yoshino.jpg",
-    "caption": "Yoshino Kaigan, the snorkelling one",
-    "title": "Yoshino beach - panoramio.jpg",
-    "artist": "jared goss",
-    "licence": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Yoshino_beach_-_panoramio.jpg",
-    "w": 1100,
-    "h": 619
+    "caption": "Yoshino Kaigan, the snorkelling beach",
+    "title": "Miyako yoshino beach",
+    "artist": "Paipateroma",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=97298838",
+    "w": 1500,
+    "h": 999
   },
   {
     "file": "p-kurima.jpg",
@@ -411,23 +411,23 @@
   },
   {
     "file": "p-teamlab.jpg",
-    "caption": "teamLab",
-    "title": "TeamLab Borderless, Odaiba, Tokyo, Japan (49070835722).jpg",
-    "artist": "Domenico Convertini from Zurich, Schweiz",
-    "licence": "CC BY-SA 2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:TeamLab_Borderless,_Odaiba,_Tokyo,_Japan_(49070835722).jpg",
-    "w": 1100,
-    "h": 733
+    "caption": "teamLab — you walk through it barefoot",
+    "title": "Photos at teamlab planets tokyo",
+    "artist": "Sasa0403",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=92439045",
+    "w": 1500,
+    "h": 1000
   },
   {
     "file": "p-shibuyasky.jpg",
-    "caption": "Shibuya Sky — open to the air at 229 m",
-    "title": "Yoyogi Park and Shinjuku Skyline from Shibuya Sky Observat",
-    "artist": "Stephen Kelly from San Francisco, ",
+    "caption": "Shibuya Sky, open to the air at 229 m",
+    "title": "Tokyo Tower and Skyscrapers from Shibuya Sky Observation",
+    "artist": "Stephen Kelly from San Francisco",
     "licence": "CC BY 2.0",
-    "source": "https://commons.wikimedia.org/w/index.php?curid=143774797",
-    "w": 1400,
-    "h": 933
+    "source": "https://commons.wikimedia.org/w/index.php?curid=143774795",
+    "w": 1500,
+    "h": 1000
   },
   {
     "file": "p-kabukiza.jpg",
@@ -506,7 +506,57 @@
     "artist": "ayustety from Naha, Okinawa",
     "licence": "CC BY-SA 2.0",
     "source": "https://commons.wikimedia.org/w/index.php?curid=1346964",
-    "w": 1400,
-    "h": 933
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "p-shibuyacross.jpg",
+    "caption": "Shibuya crossing, from above",
+    "title": "File:1 shibuya crossing 2012.jpg",
+    "artist": "chensiyuan",
+    "licence": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=21101086",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "p-tsukiji.jpg",
+    "caption": "Tsukiji outer market — the stalls, not the auction",
+    "title": "File:Tsukiji Outer Market -08.jpg",
+    "artist": "Aimaimyi",
+    "licence": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=19258070",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "p-miyakosea.jpg",
+    "caption": "Miyako water, which really is this colour",
+    "title": "Beach in Miyako Island, Okinawa.",
+    "artist": "Kazuto Takeshita",
+    "licence": "CC0",
+    "source": "https://wordpress.org/photos/photo/6716411cda/",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "p-omoide.jpg",
+    "caption": "Omoide Yokocho, six seats and a grill",
+    "title": "Night Eatery in Omoide Yokocho, Shinjuku 2013-09-10",
+    "artist": "Stephen Kelly",
+    "licence": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=112073179",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "p-sumo.jpg",
+    "caption": "Morning practice — the ring is swept between bouts",
+    "title": "Neatly arranging the ring soil after Sumo training Arash",
+    "artist": "amanderson2",
+    "licence": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=66331458",
+    "w": 1500,
+    "h": 1000
   }
 ]

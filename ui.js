@@ -13,34 +13,47 @@
 
   /* ---------- which photograph belongs to which card ---------- */
   var PHOTOS = [
-    /* Most specific first: a card gets its own place, not its region's. */
-    [/osorezan|osore/i,'p-osorezan.jpg'], [/sannai|maruyama/i,'p-sannai.jpg'],
-    [/toriike/i,'p-toriike.jpg'], [/a-factory|cidre/i,'p-afactory.jpg'],
-    [/senbei-jiru/i,'p-senbeijiru.jpg'], [/hinai/i,'p-hinai.jpg'], [/miyako soba/i,'p-miyakosoba.jpg'],
-    [/yabiji/i,'p-yabiji.jpg'], [/sunayama/i,'p-sunayama.jpg'], [/yoshino/i,'p-yoshino.jpg'],
-    [/kurima/i,'p-kurima.jpg'], [/ikema/i,'p-ikema.jpg'], [/maehama/i,'p-maehama.jpg'],
-    [/dakigaeri/i,'p-dakigaeri.jpg'], [/tazawa/i,'p-tazawako.jpg'],
-    [/aspite|hachimantai/i,'p-aspite.jpg'], [/oyasukyo/i,'p-oyasukyo.jpg'],
-    [/bukeyashiki/i,'p-bukeyashiki.jpg'], [/kabazaiku/i,'p-kabazaiku.jpg'], [/aoyagi/i,'p-aoyagi.jpg'],
-    [/iwaki/i,'p-iwaki.jpg'], [/anmon/i,'p-anmon.jpg'], [/sukayu/i,'p-sukayu.jpg'], [/aoni/i,'p-aoni.jpg'],
-    [/hirosaki/i,'p-hirosaki.jpg'], [/chureito/i,'p-chureito.jpg'], [/kiyomizu/i,'p-kiyomizu.jpg'],
-    [/kiritanpo/i,'p-kiritanpo.jpg'], [/inaniwa/i,'p-inaniwa.jpg'], [/nokkedon/i,'p-nokkedon.jpg'],
-    [/\u014cma|oma tuna/i,'p-omatuna.jpg'], [/awamori/i,'p-awamori.jpg'], [/apple/i,'p-apple.jpg'],
-    [/jamisen|shamisen|sanshin/i,'p-shamisen.jpg'], [/teamlab/i,'p-teamlab.jpg'],
-    [/shibuya sky/i,'p-shibuyasky.jpg'], [/kabuki/i,'p-kabukiza.jpg'],
+    /* One rule per subject. No broad regional catch-alls: a card either shows
+       its own place or shows nothing. A Tokyo skyline on "Tsukiji outer market"
+       is a placeholder, and a placeholder is worse than white space. */
 
-    /* Then the wider ones, for cards that name a region rather than a spot. */
-    [/tsurunoyu/i,'tsurunoyu-autumn.jpg'], [/komagatake/i,'komagatake-summit.jpg'],
-    [/nyuto|taenoyu|kuroyu|ganiba/i,'nyuto-onsen.jpg'], [/towada/i,'towada-lake.jpg'],
-    [/juniko|aoike|shirakami/i,'juniko-aoike.jpg'], [/oirase/i,'oirase-stream.jpg'],
-    [/nebuta|neputa|warasse/i,'nebuta-float.jpg'], [/hennazaki|cape/i,'miyako-higashihenna.jpg'],
-    [/irabu|17-?end|toguchi|painagama|snorkel|sup\b|turtle/i,'miyako-irabu.jpg'],
-    [/fushimi|gion|geiko|kyoto/i,'kyoto-fushimi.jpg'],
-    [/fuji|kawaguchiko|tenjozan|hoto/i,'fuji-kawaguchiko.jpg'],
-    [/hakkoda|odake|tsuta|gold line/i,'hakkoda-odake.jpg'],
-    [/kakunodate|samurai|ishiguro|suzuki|sake/i,'kakunodate-autumn.jpg'],
-    [/sumo|kart|baseball|akasaka|shinjuku|yokocho|tsukiji|tokyo/i,'tokyo-skyline.jpg']
+    /* Tokyo */
+    [/teamlab/i,'p-teamlab.jpg'], [/shibuya sky/i,'p-shibuyasky.jpg'],
+    [/shibuya|scramble/i,'p-shibuyacross.jpg'], [/tsukiji/i,'p-tsukiji.jpg'],
+    [/omoide|golden gai|yokocho/i,'p-omoide.jpg'], [/sumo/i,'p-sumo.jpg'],
+    [/kabuki/i,'p-kabukiza.jpg'],
+
+    /* Miyakojima */
+    [/irabu/i,'miyako-irabu.jpg'], [/maehama/i,'p-maehama.jpg'], [/sunayama/i,'p-sunayama.jpg'],
+    [/yoshino/i,'p-yoshino.jpg'], [/hennazaki/i,'miyako-higashihenna.jpg'],
+    [/kurima/i,'p-kurima.jpg'], [/ikema/i,'p-ikema.jpg'], [/toriike/i,'p-toriike.jpg'],
+    [/yabiji/i,'p-yabiji.jpg'], [/awamori/i,'p-awamori.jpg'], [/miyako soba/i,'p-miyakosoba.jpg'],
+    [/sanshin|shamisen|jamisen/i,'p-shamisen.jpg'],
+
+    /* Akita */
+    [/dakigaeri/i,'p-dakigaeri.jpg'], [/komagatake/i,'komagatake-summit.jpg'],
+    [/tazawa/i,'p-tazawako.jpg'], [/tsurunoyu/i,'tsurunoyu-autumn.jpg'],
+    [/nyuto|taenoyu|kuroyu|ganiba/i,'nyuto-onsen.jpg'],
+    [/aspite|hachimantai/i,'p-aspite.jpg'], [/oyasukyo/i,'p-oyasukyo.jpg'],
+    [/bukeyashiki|samurai street/i,'p-bukeyashiki.jpg'], [/kabazaiku/i,'p-kabazaiku.jpg'],
+    [/aoyagi/i,'p-aoyagi.jpg'], [/kakunodate/i,'kakunodate-autumn.jpg'],
+    [/kiritanpo/i,'p-kiritanpo.jpg'], [/inaniwa/i,'p-inaniwa.jpg'], [/hinai/i,'p-hinai.jpg'],
+
+    /* Aomori */
+    [/oirase/i,'oirase-stream.jpg'], [/towada/i,'towada-lake.jpg'],
+    [/hakkoda|odake|gold line/i,'hakkoda-odake.jpg'], [/sukayu/i,'p-sukayu.jpg'],
+    [/aoni/i,'p-aoni.jpg'], [/iwaki/i,'p-iwaki.jpg'], [/juniko|aoike/i,'juniko-aoike.jpg'],
+    [/anmon/i,'p-anmon.jpg'], [/osorezan|osore/i,'p-osorezan.jpg'],
+    [/nebuta|neputa|warasse/i,'nebuta-float.jpg'], [/sannai|maruyama/i,'p-sannai.jpg'],
+    [/hirosaki/i,'p-hirosaki.jpg'], [/apple/i,'p-apple.jpg'],
+    [/a-factory|cidre/i,'p-afactory.jpg'], [/nokkedon/i,'p-nokkedon.jpg'],
+    [/senbei-jiru/i,'p-senbeijiru.jpg'], [/\u014cma|oma tuna/i,'p-omatuna.jpg'],
+
+    /* Fuji & Kyoto */
+    [/chureito/i,'p-chureito.jpg'], [/kawaguchiko|mount fuji/i,'fuji-kawaguchiko.jpg'],
+    [/fushimi|inari/i,'kyoto-fushimi.jpg'], [/kiyomizu/i,'p-kiyomizu.jpg']
   ];
+
 
   var CREDITS = {};   // filled from credits.json, best-effort
 

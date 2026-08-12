@@ -8,7 +8,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v8';
+var CACHE = 'japan2026-v9';
 var PRECACHE = [
   './',
   './index.html',
@@ -71,6 +71,11 @@ var PRECACHE = [
   './photos/p-senbeijiru.jpg',
   './photos/p-hinai.jpg',
   './photos/p-miyakosoba.jpg',
+  './photos/p-shibuyacross.jpg',
+  './photos/p-tsukiji.jpg',
+  './photos/p-miyakosea.jpg',
+  './photos/p-omoide.jpg',
+  './photos/p-sumo.jpg',
   './ui.js',
   './photos/nebuta-float.jpg'
 ];
