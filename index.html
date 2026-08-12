@@ -232,6 +232,24 @@ summary.daysum:hover .daytoggle{opacity:.72;}
 .track .rejoin{margin-top:14px; padding-top:11px; border-top:1px dashed var(--rule-2); font-family:var(--f-mono); font-size:11.5px; color:var(--ink-3);}
 
 
+
+/* photo banners: the leg's own picture, not a decorative SVG on top of one */
+.legbanner.has-photo{position:relative; height:clamp(150px,26vw,260px); padding:0;}
+.legbanner.has-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+.legbanner.has-photo::after{content:""; position:absolute; inset:auto 0 0 0; height:58%;
+  background:linear-gradient(to bottom, transparent, color-mix(in srgb, var(--bg) 72%, transparent)); pointer-events:none;}
+.legbanner .bcred{position:absolute; right:9px; bottom:8px; z-index:2;
+  font-family:var(--f-mono); font-size:9.5px; letter-spacing:.04em; color:var(--snow);
+  text-decoration:none; opacity:.5; background:rgba(0,0,0,.34); padding:3px 7px; border-radius:99px; backdrop-filter:blur(3px);}
+.legbanner .bcred:hover{opacity:.95;}
+
+/* First screen: get to the content sooner. 70% of it was chrome. */
+@media (max-width:720px){
+  .legtitle{padding-top:18px;}
+  .legtitle h1{margin-top:6px;}
+  .legbanner.has-photo{height:clamp(130px,34vw,190px);}
+}
+
 /* ---------- photographs ---------- */
 .photo{margin:0 0 26px; border:1px solid var(--rule); border-radius:7px; overflow:hidden; background:var(--raised);}
 .photo img{display:block; width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; background:var(--rule);}
@@ -1109,43 +1127,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 <!-- ===================== TOKYO ===================== -->
 <section class="view" id="v-tokyo" style="--c:var(--tokyo)" aria-label="Tokyo">
-  <div class="legbanner">
-    <svg viewBox="0 0 1200 230" role="img" aria-label="Night-time Tokyo with a torii gate, Tokyo Tower and paper lanterns" preserveAspectRatio="xMidYMax slice">
-      <defs><linearGradient id="tkSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--night-1)"/><stop offset="1" stop-color="var(--night-2)"/></linearGradient></defs>
-      <rect width="1200" height="230" fill="url(#tkSky)"/>
-      <circle cx="980" cy="58" r="42" fill="var(--neon)" opacity=".55"/><circle cx="980" cy="58" r="27" fill="var(--neon)" opacity=".9"/>
-      <g fill="var(--lantern)" opacity=".55">
-        <circle cx="132" cy="40" r="2"/><circle cx="300" cy="26" r="1.7"/><circle cx="470" cy="52" r="2"/>
-        <circle cx="640" cy="30" r="1.6"/><circle cx="820" cy="46" r="2"/><circle cx="1120" cy="34" r="1.8"/>
-      </g>
-      <g fill="var(--night-1)" opacity=".62">
-        <rect x="40" y="146" width="46" height="84"/><rect x="96" y="118" width="34" height="112"/>
-        <rect x="140" y="160" width="52" height="70"/><rect x="204" y="132" width="30" height="98"/>
-        <rect x="900" y="140" width="44" height="90"/><rect x="954" y="116" width="30" height="114"/>
-        <rect x="996" y="156" width="50" height="74"/><rect x="1058" y="128" width="34" height="102"/>
-        <rect x="1102" y="152" width="46" height="78"/>
-      </g>
-      <g fill="var(--lantern)" opacity=".7">
-        <rect x="104" y="130" width="5" height="6"/><rect x="116" y="148" width="5" height="6"/>
-        <rect x="962" y="128" width="5" height="6"/><rect x="972" y="150" width="5" height="6"/>
-        <rect x="1066" y="142" width="5" height="6"/><rect x="1112" y="168" width="5" height="6"/>
-      </g>
-      <g stroke="var(--neon)" stroke-width="4.5" fill="none" opacity=".92" stroke-linecap="round">
-        <path d="M700 230 L744 78 L788 230"/><path d="M714 182 L774 182"/><path d="M722 154 L766 154"/><path d="M730 122 L758 122"/>
-        <path d="M714 182 L774 154"/><path d="M774 182 L714 154"/>
-      </g>
-      <rect x="739" y="52" width="10" height="28" rx="3" fill="var(--neon)"/><circle cx="744" cy="46" r="5" fill="var(--lantern)"/>
-      <g fill="var(--tokyo)">
-        <path d="M300 96 Q 470 76 640 96 L640 112 Q 470 94 300 112 Z"/>
-        <rect x="324" y="128" width="292" height="15" rx="4"/>
-        <rect x="356" y="104" width="20" height="126"/><rect x="564" y="104" width="20" height="126"/>
-        <rect x="462" y="116" width="16" height="22" rx="3"/>
-      </g>
-      <g class="bob"><path d="M414 143 L414 158" stroke="var(--night-1)" stroke-width="2.5"/><ellipse cx="414" cy="174" rx="15" ry="19" fill="var(--lantern)"/><rect x="399" y="170" width="30" height="4" fill="var(--tokyo)" opacity=".8"/></g>
-      <g class="bob-2"><path d="M526 143 L526 158" stroke="var(--night-1)" stroke-width="2.5"/><ellipse cx="526" cy="174" rx="15" ry="19" fill="var(--lantern)"/><rect x="511" y="170" width="30" height="4" fill="var(--tokyo)" opacity=".8"/></g>
-      <rect x="0" y="222" width="1200" height="8" fill="var(--night-1)" opacity=".5"/>
-    </svg>
-  </div>
+  <div class="legbanner has-photo"><img src="./photos/tokyo-hie-torii.jpg" alt="The torii at Hie Shrine, lit after dark - five minutes from your hotel on night one" width="1200" height="1600" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Hie_Shrine_Torii_at_night.JPG" target="_blank" rel="noopener">Torsodog · CC BY 3.0</a></div>
   <div class="wrap">
     <div class="legtitle">
       <p class="kicker">Leg 01 · 18 – 21 October · Via Inn Prime Akasaka</p>
@@ -1164,8 +1146,6 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Day by day" role="tabpanel" id="p-tok-days" aria-labelledby="t-tok-days" tabindex="0">
-        <figure class="photo"><img src="./photos/tokyo-hie-torii.jpg" alt="The vermilion torii of Hie Shrine illuminated at night" width="1200" height="1600" loading="lazy" decoding="async"><figcaption><span class="pcap">The torii at Hie Shrine, lit after dark — five minutes from your hotel on night one</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Hie_Shrine_Torii_at_night.JPG" target="_blank" rel="noopener">Torsodog · CC BY 3.0</a></figcaption></figure>
-        
         <div class="callout">
           <span class="ct">The honest framing</span>
           <p>You have <b>two full days in Tokyo</b>, not three. The 18th is gone to immigration and the train in; the 21st is gone to Haneda. Every hour of the 19th and 20th is expensive — which is why the Kyoto-versus-Fuji question matters, and why splitting the group beats compromising.</p>
@@ -1741,51 +1721,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 <!-- ===================== MIYAKOJIMA ===================== -->
 <section class="view" id="v-miyako" style="--c:var(--miyako)" aria-label="Miyakojima">
-  <div class="legbanner">
-    <svg viewBox="0 0 1200 230" role="img" aria-label="Bright tropical scene: the Irabu bridge over turquoise sea with fish, coral and palm fronds" preserveAspectRatio="xMidYMax slice">
-      <defs>
-        <linearGradient id="myS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky-1)"/><stop offset="1" stop-color="var(--sky-2)"/></linearGradient>
-        <linearGradient id="myW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sea-1)"/><stop offset="1" stop-color="var(--sea-3)"/></linearGradient>
-      </defs>
-      <rect width="1200" height="230" fill="url(#myS)"/>
-      <circle cx="1010" cy="52" r="34" fill="var(--sun)"/>
-      <g stroke="var(--sun)" stroke-width="4" stroke-linecap="round" opacity=".7">
-        <path d="M1010 2 L1010 -8"/><path d="M1062 52 L1078 52"/><path d="M958 52 L942 52"/>
-        <path d="M1047 15 L1058 4"/><path d="M973 15 L962 4"/><path d="M1047 89 L1058 100"/><path d="M973 89 L962 100"/>
-      </g>
-      <g fill="var(--snow)" opacity=".8">
-        <ellipse cx="200" cy="42" rx="46" ry="18"/><ellipse cx="240" cy="36" rx="34" ry="21"/><ellipse cx="164" cy="48" rx="30" ry="14"/>
-        <ellipse cx="640" cy="30" rx="38" ry="15"/><ellipse cx="674" cy="26" rx="28" ry="17"/>
-      </g>
-      <path d="M0 118 Q 200 100 400 116 T 800 112 T 1200 118 L1200 230 L0 230 Z" fill="url(#myW)"/>
-      <path class="shimmer" d="M0 140 Q 180 126 360 140 T 720 136 T 1200 142 L1200 158 Q 720 152 360 156 T 0 156 Z" fill="var(--snow)" opacity=".45"/>
-      <path d="M-10 122 Q 600 34 1210 118" stroke="var(--snow)" stroke-width="11" fill="none" stroke-linecap="round"/>
-      <path d="M-10 122 Q 600 34 1210 118" stroke="var(--stone)" stroke-width="3" fill="none" opacity=".45"/>
-      <g fill="var(--snow)" opacity=".95">
-        <rect x="176" y="84" width="9" height="44"/><rect x="366" y="66" width="9" height="58"/>
-        <rect x="596" y="55" width="9" height="66"/><rect x="826" y="66" width="9" height="56"/><rect x="1016" y="86" width="9" height="40"/>
-      </g>
-      <g class="bob">
-        <ellipse cx="250" cy="182" rx="30" ry="18" fill="var(--coral)"/><polygon points="220,182 194,166 194,198" fill="var(--coral)"/>
-        <circle cx="260" cy="176" r="4" fill="var(--sea-3)"/><path d="M240 170 Q 250 162 262 170" stroke="var(--sun)" stroke-width="3" fill="none"/>
-      </g>
-      <g class="bob-2"><ellipse cx="880" cy="196" rx="22" ry="13" fill="var(--sun)"/><polygon points="858,196 840,184 840,208" fill="var(--sun)"/><circle cx="888" cy="192" r="3" fill="var(--sea-3)"/></g>
-      <g class="bob"><ellipse cx="620" cy="206" rx="15" ry="9" fill="var(--snow)" opacity=".9"/><polygon points="605,206 593,199 593,213" fill="var(--snow)" opacity=".9"/></g>
-      <g fill="var(--coral)" opacity=".75">
-        <path d="M420 230 L420 200 Q 420 188 432 188 Q 444 188 444 200 L444 230 Z"/>
-        <path d="M398 230 L398 210 Q 398 200 408 200 Q 418 200 418 210 L418 230 Z"/>
-      </g>
-      <g fill="var(--palm)" opacity=".8">
-        <path d="M1120 230 L1120 206 Q 1120 194 1132 194 Q 1144 194 1144 206 L1144 230 Z"/>
-        <path d="M1152 230 L1152 212 Q 1152 202 1161 202 Q 1170 202 1170 212 L1170 230 Z"/>
-      </g>
-      <g fill="var(--palm)">
-        <ellipse cx="46" cy="24" rx="62" ry="15" transform="rotate(24 46 24)"/>
-        <ellipse cx="30" cy="58" rx="58" ry="13" transform="rotate(-14 30 58)"/>
-        <ellipse cx="62" cy="4" rx="50" ry="12" transform="rotate(58 62 4)"/>
-      </g>
-    </svg>
-  </div>
+  <div class="legbanner has-photo"><img src="./photos/miyako-maehama.jpg" alt="Yonaha Maehama - seven kilometres of it, and your sunset on the 21st" width="1600" height="1065" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Yonahamaehama_Miyakojima_Okinawa_Japan01bs3s4592.jpg" target="_blank" rel="noopener">663highland · CC BY 2.5</a></div>
   <div class="wrap">
     <div class="legtitle">
       <p class="kicker">Leg 02 · 21 – 26 October · Hotel &amp; Villa Seahorse · Two cars on the island</p>
@@ -1807,8 +1743,6 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Day by day" role="tabpanel" id="p-miy-days" aria-labelledby="t-miy-days" tabindex="0">
-        <figure class="photo"><img src="./photos/miyako-maehama.jpg" alt="Yonaha Maehama beach, white sand meeting turquoise water" width="1600" height="1065" loading="lazy" decoding="async"><figcaption><span class="pcap">Yonaha Maehama — seven kilometres of it, and your sunset on the 21st</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Yonahamaehama_Miyakojima_Okinawa_Japan01bs3s4592.jpg" target="_blank" rel="noopener">663highland · CC BY 2.5</a></figcaption></figure>
-        
         <div class="callout good"><span class="ct">You've timed this well</span>
           <p>From October the cold north wind starts up, putting the Shimoji-jima sites on the sheltered downwind side — so <b>October and November are the prime months for the topography diving Miyako is famous for</b>, and you've dodged the summer heat and the peak of typhoon season. The island is about 30 km across with effectively no public transport, so the cars aren't a convenience, they're the whole plan.</p></div>
 
@@ -2277,38 +2211,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 <!-- ===================== KAKUNODATE ===================== -->
 <section class="view" id="v-kakunodate" style="--c:var(--kaku)" aria-label="Kakunodate">
-  <div class="legbanner">
-    <svg viewBox="0 0 1200 230" role="img" aria-label="Autumn scene: samurai house roofs beneath maple trees with the blue gorge river and falling leaves" preserveAspectRatio="xMidYMax slice">
-      <defs>
-        <linearGradient id="kkS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky-2)"/><stop offset="1" stop-color="var(--leaf-3)"/></linearGradient>
-        <g id="maple"><path d="M0 -13 L4 -5 L11 -8 L8 0 L15 3 L7 5 L9 13 L0 8 L-9 13 L-7 5 L-15 3 L-8 0 L-11 -8 L-4 -5 Z"/><rect x="-1" y="8" width="2" height="8"/></g>
-      </defs>
-      <rect width="1200" height="230" fill="url(#kkS)"/>
-      <circle cx="140" cy="50" r="30" fill="var(--leaf-1)" opacity=".45"/>
-      <path d="M0 130 Q 180 82 380 122 Q 560 158 760 116 Q 950 78 1200 124 L1200 230 L0 230 Z" fill="var(--bark)" opacity=".28"/>
-      <path d="M0 196 Q 200 172 400 194 Q 620 218 820 192 Q 1010 168 1200 190 L1200 230 L0 230 Z" fill="var(--sea-2)" opacity=".75"/>
-      <path class="shimmer" d="M0 204 Q 220 184 440 204 Q 660 224 880 200 Q 1050 182 1200 200 L1200 210 Q 1050 192 880 210 Q 660 234 440 214 Q 220 194 0 214 Z" fill="var(--snow)" opacity=".4"/>
-      <g fill="var(--bark)" opacity=".85">
-        <path d="M300 168 L376 130 L452 168 L452 176 L300 176 Z"/><rect x="316" y="176" width="120" height="26"/>
-        <path d="M620 172 L690 136 L760 172 L760 180 L620 180 Z"/><rect x="634" y="180" width="112" height="22"/>
-      </g>
-      <g fill="var(--night-1)" opacity=".35">
-        <rect x="340" y="182" width="24" height="20"/><rect x="390" y="182" width="24" height="20"/>
-        <rect x="656" y="186" width="22" height="16"/><rect x="702" y="186" width="22" height="16"/>
-      </g>
-      <g>
-        <circle cx="150" cy="146" r="52" fill="var(--leaf-1)"/><circle cx="206" cy="168" r="36" fill="var(--leaf-2)"/>
-        <circle cx="102" cy="176" r="32" fill="var(--leaf-3)"/><circle cx="980" cy="140" r="50" fill="var(--leaf-2)"/>
-        <circle cx="1042" cy="164" r="36" fill="var(--leaf-1)"/><circle cx="926" cy="172" r="30" fill="var(--leaf-3)"/>
-        <circle cx="540" cy="150" r="30" fill="var(--leaf-1)" opacity=".9"/>
-      </g>
-      <g stroke="var(--bark)" stroke-width="9" stroke-linecap="round"><path d="M150 230 L150 176"/><path d="M980 230 L980 172"/><path d="M540 214 L540 172"/></g>
-      <g fill="var(--leaf-1)"><use href="#maple" x="420" y="0" class="drift"/></g>
-      <g fill="var(--leaf-2)"><use href="#maple" x="700" y="0" class="drift-2"/></g>
-      <g fill="var(--leaf-3)"><use href="#maple" x="880" y="0" class="drift-3"/></g>
-      <g fill="var(--leaf-1)" opacity=".9"><use href="#maple" x="250" y="0" class="drift-2"/></g>
-    </svg>
-  </div>
+  <div class="legbanner has-photo"><img src="./photos/kakunodate-bukeyashiki.jpg" alt="The samurai quarter at Kakunodate, under the weeping cherries" width="1600" height="1200" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Kakunodate_488.jpg" target="_blank" rel="noopener">Kmhkmh · CC BY 3.0</a></div>
   <div class="wrap">
     <div class="legtitle">
       <p class="kicker">Leg 03 · 26 – 29 October · Katakurinohana · Cars from Morioka, 26th</p>
@@ -2328,8 +2231,6 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Day by day" role="tabpanel" id="p-kak-days" aria-labelledby="t-kak-days" tabindex="0">
-        <figure class="photo"><img src="./photos/kakunodate-bukeyashiki.jpg" alt="The samurai street in Kakunodate, dark wooden walls under trees" width="1600" height="1200" loading="lazy" decoding="async"><figcaption><span class="pcap">The samurai quarter at Kakunodate, under the weeping cherries</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Kakunodate_488.jpg" target="_blank" rel="noopener">Kmhkmh · CC BY 3.0</a></figcaption></figure>
-        
         <div class="callout good"><span class="ct">The best-timed thing in your whole itinerary</span>
           <p>Dakigaeri Gorge runs ten kilometres along the Tama river and its maples peak <b>from late October into early November</b> — you are arriving almost exactly on it. The water is a startling mineral blue-green with red maples right over it, which is why it's nicknamed "the Yabakei of Tohoku". Fifteen minutes from Kakunodate station, and you're there on a Tuesday: weekday mornings are markedly quieter, and a foliage festival runs during the season.</p></div>
 
@@ -2653,37 +2554,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 <!-- ===================== AOMORI ===================== -->
 <section class="view" id="v-aomori" style="--c:var(--aomori)" aria-label="Aomori">
-  <div class="legbanner">
-    <svg viewBox="0 0 1200 230" role="img" aria-label="Northern scene: the snow-capped Hakkoda range above a still lake, pines and an apple" preserveAspectRatio="xMidYMax slice">
-      <defs>
-        <linearGradient id="aoS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky-2)"/><stop offset="1" stop-color="var(--stone)"/></linearGradient>
-        <g id="pine"><polygon points="0,0 -13,30 13,30"/><polygon points="0,14 -17,50 17,50"/><rect x="-3" y="48" width="6" height="12"/></g>
-      </defs>
-      <rect width="1200" height="230" fill="url(#aoS)"/>
-      <circle cx="200" cy="48" r="26" fill="var(--leaf-1)" opacity=".4"/>
-      <polygon points="0,166 130,86 236,142 340,72 452,148 560,96 660,166" fill="var(--stone)" opacity=".55"/>
-      <polygon points="120,230 330,66 470,150 620,52 780,146 900,96 1060,230" fill="var(--pine)" opacity=".8"/>
-      <polygon points="620,52 588,90 654,90" fill="var(--snow)"/>
-      <polygon points="330,66 302,104 360,104" fill="var(--snow)"/>
-      <polygon points="900,96 880,124 922,124" fill="var(--snow)"/>
-      <path d="M0 194 Q 300 178 600 194 T 1200 190 L1200 230 L0 230 Z" fill="var(--sea-3)" opacity=".8"/>
-      <path class="shimmer" d="M120 206 Q 400 196 680 208 T 1180 202 L1180 212 Q 680 218 400 206 T 120 216 Z" fill="var(--snow)" opacity=".35"/>
-      <g fill="var(--pine)">
-        <use href="#pine" x="90" y="164"/><use href="#pine" x="140" y="172" transform="scale(1.15) translate(-18,-24)"/>
-        <use href="#pine" x="1040" y="160"/><use href="#pine" x="1096" y="170"/><use href="#pine" x="1150" y="164"/>
-      </g>
-      <g class="bob">
-        <circle cx="1010" cy="60" r="30" fill="var(--apple)"/>
-        <path d="M1004 34 Q 1010 20 1016 34" fill="none" stroke="var(--bark)" stroke-width="5" stroke-linecap="round"/>
-        <ellipse cx="1032" cy="34" rx="17" ry="9" fill="var(--pine)" transform="rotate(-24 1032 34)"/>
-        <ellipse cx="1000" cy="50" rx="7" ry="11" fill="var(--snow)" opacity=".35" transform="rotate(-20 1000 50)"/>
-      </g>
-      <g stroke="var(--leaf-1)" stroke-width="2" opacity=".25">
-        <path d="M200 48 L200 4"/><path d="M200 48 L244 20"/><path d="M200 48 L156 20"/>
-        <path d="M200 48 L252 60"/><path d="M200 48 L148 60"/>
-      </g>
-    </svg>
-  </div>
+  <div class="legbanner has-photo"><img src="./photos/hakkoda-range.jpg" alt="The Hakkoda range from the Aomori plain" width="1600" height="1200" fetchpriority="high" decoding="async"><a class="bcred" href="https://commons.wikimedia.org/wiki/File:Aomori_rice_fields_with_the_Hakk%C5%8Dda_Mountains.jpg" target="_blank" rel="noopener">Mccunicano · CC BY-SA 4.0</a></div>
   <div class="wrap">
     <div class="legtitle">
       <p class="kicker">Leg 04 · 29 October – 2 November · Art Hotel Aomori · Cars</p>
@@ -2703,8 +2574,6 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Day by day" role="tabpanel" id="p-aom-days" aria-labelledby="t-aom-days" tabindex="0">
-        <figure class="photo"><img src="./photos/hakkoda-range.jpg" alt="The Hakkoda mountain range seen across the Aomori plain" width="1600" height="1200" loading="lazy" decoding="async"><figcaption><span class="pcap">The Hakkoda range from the Aomori plain</span><a class="pcred" href="https://commons.wikimedia.org/wiki/File:Aomori_rice_fields_with_the_Hakk%C5%8Dda_Mountains.jpg" target="_blank" rel="noopener">Mccunicano · CC BY-SA 4.0</a></figcaption></figure>
-        
         <p class="lede">Three full days and more good options than will fit, so this is a menu with a recommended order rather than a fixed plan. The hotel is walkable to the fish market, the Nebuta museum and the cider bar, so low-energy evenings are always available — use that. These days assume you drove Towada and Oirase on the 29th; if you took the train, swap Oirase into the 30th and drop Shirakami.</p>
 
         <div class="spine" style="margin-top:26px;">
