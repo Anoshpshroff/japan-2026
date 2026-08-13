@@ -270,8 +270,8 @@ summary.daysum:hover .daytoggle{opacity:.72;}
 .sheetmap{display:inline-flex; align-items:center; gap:9px; margin-top:20px; min-height:44px;
   padding:0 17px; border:1px solid var(--rule-2); border-radius:99px; text-decoration:none;
   font-family:var(--f-mono); font-size:12px; letter-spacing:.04em; color:var(--ink-2);
-  background:var(--bg); transition:border-color .18s ease, color .18s ease;}
-.sheetmap:hover{color:var(--ink-1); border-color:var(--ink-3);}
+  background:var(--ground); transition:border-color .18s ease, color .18s ease;}
+.sheetmap:hover{color:var(--ink); border-color:var(--ink-3);}
 .sheetmap svg{width:15px; height:15px; flex:0 0 auto; color:var(--c,var(--ink-3));}
 .sheetcoord{color:var(--ink-3); font-size:10.5px; letter-spacing:.03em;}
 @media (max-width:720px){ .sheetmap{width:100%; justify-content:center;} }
@@ -289,9 +289,9 @@ body.sheet-open{overflow:hidden;}
 .sheet.is-open .sheetpanel{opacity:1; transform:none;}
 .sheetscroll{overflow:auto; -webkit-overflow-scrolling:touch;}
 .sheetclose{position:absolute; top:10px; right:10px; z-index:3; width:38px; height:38px; border-radius:99px;
-  border:1px solid var(--rule-2); background:var(--bg); color:var(--ink-2); display:flex; align-items:center; justify-content:center; cursor:pointer;}
+  border:1px solid var(--rule-2); background:var(--ground); color:var(--ink-2); display:flex; align-items:center; justify-content:center; cursor:pointer;}
 .sheetclose svg{width:15px; height:15px;}
-.sheetclose:hover{color:var(--ink-1); border-color:var(--ink-3);}
+.sheetclose:hover{color:var(--ink); border-color:var(--ink-3);}
 .sheetphoto{margin:0; position:relative;}
 .sheetphoto img{display:block; width:100%; height:clamp(180px,34vw,300px); object-fit:cover;}
 .sheetphoto figcaption{position:absolute; right:9px; bottom:8px;}
@@ -347,7 +347,7 @@ body.sheet-open{overflow:hidden;}
 .legbanner.has-photo{position:relative; height:clamp(150px,26vw,260px); padding:0;}
 .legbanner.has-photo img{width:100%; height:100%; object-fit:cover; display:block;}
 .legbanner.has-photo::after{content:""; position:absolute; inset:auto 0 0 0; height:58%;
-  background:linear-gradient(to bottom, transparent, color-mix(in srgb, var(--bg) 72%, transparent)); pointer-events:none;}
+  background:linear-gradient(to bottom, transparent, color-mix(in srgb, var(--ground) 72%, transparent)); pointer-events:none;}
 .legbanner .bcred{position:absolute; right:9px; bottom:8px; z-index:2;
   font-family:var(--f-mono); font-size:9.5px; letter-spacing:.04em; color:var(--snow);
   text-decoration:none; opacity:.5; background:rgba(0,0,0,.34); padding:3px 7px; border-radius:99px; backdrop-filter:blur(3px);}
@@ -375,11 +375,11 @@ body.sheet-open{overflow:hidden;}
    themes, prints and works offline like everything else. */
 .realmap svg{display:block; width:100%; height:auto; border-radius:6px;}
 .realmap .mlab{font-family:var(--f-mono); font-size:13px; letter-spacing:.02em; fill:var(--ink-2); paint-order:stroke;
-  stroke:var(--bg); stroke-width:3.5px; stroke-linejoin:round;}
+  stroke:var(--ground); stroke-width:3.5px; stroke-linejoin:round;}
 .realmap .mpin{cursor:pointer;}
 .realmap .mpin circle:first-child{transition:fill-opacity .18s ease;}
 .realmap .mpin:hover circle:first-child{fill-opacity:.9;}
-.realmap .mpin:hover .mlab{fill:var(--ink-1);}
+.realmap .mpin:hover .mlab{fill:var(--ink);}
 .realmap .mrose text{font-size:12px;}
 @media (max-width:720px){ .realmap .mlab{font-size:17px;} }
 
@@ -397,13 +397,13 @@ p, .rnote, .daygist { text-wrap: pretty; }
        than blocking it, which is what makes it feel current. --- */
 @supports (backdrop-filter: blur(10px)) {
   .topbar{
-    background: color-mix(in srgb, var(--bg) 68%, transparent);
+    background: color-mix(in srgb, var(--ground) 68%, transparent);
     backdrop-filter: blur(16px) saturate(1.5);
     -webkit-backdrop-filter: blur(16px) saturate(1.5);
     border-bottom-color: color-mix(in srgb, var(--rule) 70%, transparent);
   }
   .journey{
-    background: color-mix(in srgb, var(--bg) 76%, transparent);
+    background: color-mix(in srgb, var(--ground) 76%, transparent);
     backdrop-filter: blur(12px) saturate(1.3);
     -webkit-backdrop-filter: blur(12px) saturate(1.3);
   }
@@ -471,7 +471,7 @@ p, .rnote, .daygist { text-wrap: pretty; }
 .legtab{ transition: color .2s ease; }
 .legtab::after{
   content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px;
-  background: var(--c, var(--ink-1)); border-radius:2px;
+  background: var(--c, var(--ink)); border-radius:2px;
   transform: scaleX(0); transform-origin:50% 50%;
   transition: transform .28s cubic-bezier(.16,.84,.36,1);
 }
@@ -782,7 +782,7 @@ tr.total td{background:var(--sunken); border-top:2px solid var(--rule-2);}
 .chip[aria-pressed="true"]{background:var(--sunken); color:var(--ink); border-color:var(--ink-3);}
 .regsearch{display:flex; align-items:center; gap:8px; border:1px solid var(--rule-2); border-radius:99px; padding:0 14px; min-height:46px; flex:1 1 220px; max-width:340px; background:var(--raised);}
 .regsearch svg{width:15px; height:15px; flex:0 0 auto; color:var(--ink-3);}
-.regsearch input{border:0; background:none; outline:none; font:inherit; font-size:14px; color:var(--ink-1); width:100%; min-height:44px;}
+.regsearch input{border:0; background:none; outline:none; font:inherit; font-size:14px; color:var(--ink); width:100%; min-height:44px;}
 .regsearch input::placeholder{color:var(--ink-3);}
 .regsearch:focus-within{border-color:var(--ink-3);}
 .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
