@@ -38,13 +38,15 @@ no reference numbers, no PINs, no names — so it is safe to share freely.
 
 ---
 
-## 3. Shared checkboxes (3 minutes, free, optional)
+## 3. Shared checkboxes (3 minutes, free)
 
-Right now ticks are saved per device. To make them shared — whoever ticks something,
-it updates for everyone:
+Right now ticks are saved per device. To make them shared — whoever ticks
+something, it updates for everyone:
 
-1. Go to **https://supabase.com**, sign up, **New project** (free tier, no card).
-2. Open **SQL Editor** and run this:
+1. Go to **https://supabase.com**, sign up, **New project**. Free tier, no card.
+   Pick any region near Japan or Europe; it makes no practical difference here.
+
+2. Open **SQL Editor → New query**, paste this, and run it:
 
    ```sql
    create table checks (
@@ -55,34 +57,35 @@ it updates for everyone:
 
    alter table checks enable row level security;
 
-   create policy "trip party can read"  on checks for select using (true);
-   create policy "trip party can write" on checks for insert with check (true);
+   create policy "trip party can read"   on checks for select using (true);
+   create policy "trip party can insert" on checks for insert with check (true);
    create policy "trip party can update" on checks for update using (true) with check (true);
    ```
 
-3. Go to **Project Settings → API** and copy the **Project URL** and the **anon public** key.
-4. Paste both into `config.js`:
+3. Go to **Project Settings → API**. Copy the **Project URL** and the
+   **anon public** key (the long one, *not* `service_role`).
+
+4. Open `config.js` and paste them in:
 
    ```js
    window.TRIP_SYNC = {
      url: 'https://yourproject.supabase.co',
-     key: 'eyJhbGciOi...'
+     key: 'eyJhbGciOi…'
    };
    ```
 
-5. Drag the folder onto Netlify again.
+5. `git add -A && git commit -m "shared checklist" && git push`
 
-The note under the checklist will change from *"saved on this device"* to
-*"shared across all six of you"*.
+The note under the checklist changes from *"saved on this device"* to
+**"Shared across all six of you"**. Test it by ticking something on one phone
+and watching it appear on another within thirty seconds.
 
-**Is the key safe in a public file?** Yes — the anon key is designed to be public and is
-what every Supabase web app ships. It only grants what the policies above allow, which is
-this one table of tick-boxes. Worst case, someone who finds your URL could tick a box.
-Nothing else in your project is reachable with it.
+**Is the anon key safe in a public file?** Yes — it is designed to be public
+and ships in every Supabase web app. It grants only what the policies above
+allow, which is this one table of tick-boxes. Never paste the `service_role`
+key anywhere; that one is not safe to publish.
 
-**Offline:** ticks made with no signal are queued and sent the moment you're back.
-
----
+**Offline:** ticks made with no signal queue up and send when you are back.
 
 ## 4. Real photos (optional)
 
