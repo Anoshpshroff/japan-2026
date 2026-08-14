@@ -13,6 +13,20 @@
 
   /* ---------- which photograph belongs to which card ---------- */
   var PHOTOS = [
+    /* Supplied photographs first — these were picked for the specific card. */
+    [/street go-?karting|go-?kart/i,'u-street-go-karting.jpg'], [/baseball/i,'u-baseball-japan-series.jpg'],
+    [/akasaka backstreet/i,'u-akasaka-backstreets.jpg'], [/depachika|ekiben/i,'u-depachika-ekiben.jpg'],
+    [/fujizakura/i,'u-fujizakura-beer.jpg'],
+    [/nakanoshima/i,'u-nakanoshima-channel.jpg'], [/wonderful cave|mini grotto/i,'u-wonderful-cave.jpg'],
+    [/17-?end/i,'u-17-end-beach.jpg'], [/toguchi/i,'u-toguchi-no-hama.jpg'], [/painagama/i,'u-painagama-beach.jpg'],
+    [/pumpkin rock & the mangroves|mangrove/i,'u-pumpkin-rock.jpg'],
+    [/stargazing|^stars,/i,'u-stargazing-miyako.jpg'],
+    [/sea turtle|turtle snorkel/i,'u-sea-turtle-snorkel.jpg'], [/clear sup/i,'u-clear-sup.jpg'],
+    [/yukishio|salt museum/i,'u-yukishio-salt-museum.jpg'], [/umibudo/i,'u-umibudo.jpg'],
+    [/loop the lake/i,'u-lake-tazawa-loop.jpg'], [/route 341/i,'u-route-341-akita.jpg'],
+    [/sake at the source/i,'u-sake-akita.jpg'], [/yamai/i,'u-yamai-ryori.jpg'],
+    [/hakka pass/i,'u-hakka-pass.jpg'], [/jogakura/i,'u-jogakura-ohashi.jpg'],
+    [/tsuta-?numa|tsuta/i,'u-tsuta-numa.jpg'], [/hotate|kaiyaki/i,'u-hotate-kaiyaki-miso.jpg'],
     /* One rule per subject. No broad regional catch-alls: a card either shows
        its own place or shows nothing. A Tokyo skyline on "Tsukiji outer market"
        is a placeholder, and a placeholder is worse than white space. */

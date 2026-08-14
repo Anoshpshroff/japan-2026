@@ -8,7 +8,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v16';
+var CACHE = 'japan2026-v17';
 var PRECACHE = [
   './',
   './index.html',
@@ -73,9 +73,32 @@ var PRECACHE = [
   './photos/p-miyakosoba.jpg',
   './photos/p-shibuyacross.jpg',
   './photos/p-tsukiji.jpg',
-  './photos/p-miyakosea.jpg',
   './photos/p-omoide.jpg',
   './photos/p-sumo.jpg',
+  './photos/u-hakka-pass.jpg',
+  './photos/u-hotate-kaiyaki-miso.jpg',
+  './photos/u-jogakura-ohashi.jpg',
+  './photos/u-tsuta-numa.jpg',
+  './photos/u-fujizakura-beer.jpg',
+  './photos/u-lake-tazawa-loop.jpg',
+  './photos/u-route-341-akita.jpg',
+  './photos/u-sake-akita.jpg',
+  './photos/u-yamai-ryori.jpg',
+  './photos/u-clear-sup.jpg',
+  './photos/u-sea-turtle-snorkel.jpg',
+  './photos/u-yukishio-salt-museum.jpg',
+  './photos/u-17-end-beach.jpg',
+  './photos/u-painagama-beach.jpg',
+  './photos/u-pumpkin-rock.jpg',
+  './photos/u-stargazing-miyako.jpg',
+  './photos/u-toguchi-no-hama.jpg',
+  './photos/u-nakanoshima-channel.jpg',
+  './photos/u-wonderful-cave.jpg',
+  './photos/u-umibudo.jpg',
+  './photos/u-akasaka-backstreets.jpg',
+  './photos/u-baseball-japan-series.jpg',
+  './photos/u-depachika-ekiben.jpg',
+  './photos/u-street-go-karting.jpg',
   './ui.js',
   './photos/nebuta-float.jpg'
 ];

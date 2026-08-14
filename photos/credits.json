@@ -530,16 +530,6 @@
     "h": 1000
   },
   {
-    "file": "p-miyakosea.jpg",
-    "caption": "Miyako water, which really is this colour",
-    "title": "Beach in Miyako Island, Okinawa.",
-    "artist": "Kazuto Takeshita",
-    "licence": "CC0",
-    "source": "https://wordpress.org/photos/photo/6716411cda/",
-    "w": 1500,
-    "h": 1000
-  },
-  {
     "file": "p-omoide.jpg",
     "caption": "Omoide Yokocho, six seats and a grill",
     "title": "Night Eatery in Omoide Yokocho, Shinjuku 2013-09-10",
@@ -556,6 +546,246 @@
     "artist": "amanderson2",
     "licence": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/w/index.php?curid=66331458",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "u-hakka-pass.jpg",
+    "caption": "Hakka Pass",
+    "title": "Hakka Pass",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 964,
+    "h": 642
+  },
+  {
+    "file": "u-hotate-kaiyaki-miso.jpg",
+    "caption": "Hotate & kaiyaki-miso",
+    "title": "Hotate & kaiyaki-miso",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "u-jogakura-ohashi.jpg",
+    "caption": "Jogakura Ohashi",
+    "title": "Jogakura Ohashi",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 799,
+    "h": 533
+  },
+  {
+    "file": "u-tsuta-numa.jpg",
+    "caption": "Tsuta-numa pond loop",
+    "title": "Tsuta-numa pond loop",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1280,
+    "h": 853
+  },
+  {
+    "file": "u-fujizakura-beer.jpg",
+    "caption": "Hoto, and Fujizakura beer",
+    "title": "Hoto, and Fujizakura beer",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1417,
+    "h": 944
+  },
+  {
+    "file": "u-lake-tazawa-loop.jpg",
+    "caption": "Loop the lake",
+    "title": "Loop the lake",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 799,
+    "h": 533
+  },
+  {
+    "file": "u-route-341-akita.jpg",
+    "caption": "Route 341",
+    "title": "Route 341",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1280,
+    "h": 853
+  },
+  {
+    "file": "u-sake-akita.jpg",
+    "caption": "Sake at the source",
+    "title": "Sake at the source",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 909,
+    "h": 606
+  },
+  {
+    "file": "u-yamai-ryori.jpg",
+    "caption": "Yamai ryori",
+    "title": "Yamai ryori",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1200,
+    "h": 800
+  },
+  {
+    "file": "u-clear-sup.jpg",
+    "caption": "Clear SUP to the Pumpkin Rock",
+    "title": "Clear SUP to the Pumpkin Rock",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1200,
+    "h": 800
+  },
+  {
+    "file": "u-sea-turtle-snorkel.jpg",
+    "caption": "Sea turtle snorkelling",
+    "title": "Sea turtle snorkelling",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1109,
+    "h": 739
+  },
+  {
+    "file": "u-yukishio-salt-museum.jpg",
+    "caption": "Yukishio Salt Museum",
+    "title": "Yukishio Salt Museum",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1372,
+    "h": 914
+  },
+  {
+    "file": "u-17-end-beach.jpg",
+    "caption": "17-END",
+    "title": "17-END",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "u-painagama-beach.jpg",
+    "caption": "Painagama",
+    "title": "Painagama",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "u-pumpkin-rock.jpg",
+    "caption": "Pumpkin Rock & the mangroves",
+    "title": "Pumpkin Rock & the mangroves",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1478,
+    "h": 985
+  },
+  {
+    "file": "u-stargazing-miyako.jpg",
+    "caption": "Stargazing",
+    "title": "Stargazing",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "u-toguchi-no-hama.jpg",
+    "caption": "Toguchi-no-hama",
+    "title": "Toguchi-no-hama",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "u-nakanoshima-channel.jpg",
+    "caption": "Nakanoshima Channel",
+    "title": "Nakanoshima Channel",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 960,
+    "h": 640
+  },
+  {
+    "file": "u-wonderful-cave.jpg",
+    "caption": "Wonderful Cave & Mini Grotto",
+    "title": "Wonderful Cave & Mini Grotto",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1125,
+    "h": 750
+  },
+  {
+    "file": "u-umibudo.jpg",
+    "caption": "Umibudo & the island plate",
+    "title": "Umibudo & the island plate",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1272,
+    "h": 848
+  },
+  {
+    "file": "u-akasaka-backstreets.jpg",
+    "caption": "Akasaka backstreets",
+    "title": "Akasaka backstreets",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "u-baseball-japan-series.jpg",
+    "caption": "Baseball, if the Series is on",
+    "title": "Baseball, if the Series is on",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1500,
+    "h": 1000
+  },
+  {
+    "file": "u-depachika-ekiben.jpg",
+    "caption": "Depachika & ekiben",
+    "title": "Depachika & ekiben",
+    "artist": "",
+    "licence": "",
+    "source": "",
+    "w": 1024,
+    "h": 682
+  },
+  {
+    "file": "u-street-go-karting.jpg",
+    "caption": "Street go-karting",
+    "title": "Street go-karting",
+    "artist": "",
+    "licence": "",
+    "source": "",
     "w": 1500,
     "h": 1000
   }
