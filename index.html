@@ -108,7 +108,7 @@ svg{display:block;}
 /* ---------- journey rail ---------- */
 .journey{position:sticky; top:47px; z-index:55; background:var(--ground); border-bottom:1px solid var(--rule); padding:12px 0 14px;}
 .railscroll{overflow-x:auto;}
-.rail{display:grid; grid-template-columns:repeat(16,minmax(44px,1fr)); min-width:640px; gap:0;}
+.rail{display:grid; grid-template-columns:repeat(16,minmax(52px,1fr)); min-width:780px; gap:0;}
 .raillabel{
   grid-row:1; font-family:var(--f-mono); font-size:9.5px; letter-spacing:.13em; text-transform:uppercase;
   color:var(--rc); font-weight:700; padding:0 0 7px 2px; border-bottom:3px solid var(--rc); white-space:nowrap; overflow:hidden;
@@ -125,7 +125,48 @@ svg{display:block;}
 .railday .dw{font-size:9px; letter-spacing:.08em; text-transform:uppercase;}
 .railday .dm{font-size:8.5px; letter-spacing:.07em; color:var(--rc); font-weight:700; min-height:11px;}
 .railday.is-leg .dn{color:var(--rc);}
+
+/* High/low and daylight, straight in the rail. Tabular figures so the columns
+   line up vertically down the strip rather than jittering per day. */
+.railday .rwx{
+  display:flex; align-items:baseline; gap:3px; margin-top:3px;
+  font-size:9.5px; font-variant-numeric:tabular-nums; line-height:1;
+}
+.railday .rwx b{color:var(--ink-2); font-weight:700;}
+.railday .rwx i{color:var(--ink-3); font-style:normal; opacity:.8;}
+.railday .rlt{
+  font-size:7.5px; letter-spacing:-.01em; color:var(--ink-3); opacity:.7;
+  font-variant-numeric:tabular-nums; line-height:1; margin-top:2px; white-space:nowrap;
+}
+
+/* The island tide strip: its own grid row under the days, spanning only the
+   Miyakojima columns. Hidden unless that leg is showing, or it would add a row
+   of empty height to every other page. */
+.railtide{display:none;}
+.journey[data-tide="on"] .railtide{
+  grid-row:3; display:flex; flex-direction:column; align-items:center; gap:1px;
+  padding:5px 2px 0; margin-top:4px; border-top:1px solid var(--rule);
+  border-right:1px solid var(--rule);
+  font-family:var(--f-mono); font-size:7.5px; line-height:1.25;
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.journey[data-tide="on"] .railtide i{font-style:normal;}
+.journey[data-tide="on"] .railtide i.h{color:var(--miyako); font-weight:700;}
+.journey[data-tide="on"] .railtide i.l{color:var(--ink-3);}
+.journey[data-tide="on"] .railtidelabel{
+  align-items:flex-start; justify-content:flex-end; border-right:none;
+  letter-spacing:.12em; color:var(--miyako); font-weight:700; font-size:8px; opacity:.75;
+}
+/* The rail scrolls horizontally, and on phones the scrollbar is drawn inside
+   that box — directly over the bottom row of tide times. Reserve room for it. */
+.journey[data-tide="on"] .rail{padding-bottom:9px;}
+
 @media(max-width:640px){ .journey{top:45px;} }
+/* The daylight range is the first thing to go: at 44px a column cannot hold
+   "06:39–18:08" without shrinking it past reading size. Temps stay. */
+@media(max-width:820px){
+  .railday .rlt{display:none;}
+}
 
 /* ---------- views ---------- */
 .view{display:block;}
@@ -4699,6 +4740,10 @@ var REGISTRY = [
       b.style.background = on ? 'var(--sunken)' : '';
       if(on && !firstOfLeg) firstOfLeg = b;
     });
+    /* The tide strip is only meaningful on the island, and costs a row of
+       height everywhere else, so it is shown per-leg rather than always. */
+    var journey = document.querySelector('.journey');
+    if(journey) journey.setAttribute('data-tide', key === 'miyako' ? 'on' : 'off');
     /* keep the active leg visible in the rail — it overflows on phones */
     var scroller = document.querySelector('.railscroll');
     if(firstOfLeg && scroller && scroller.scrollWidth > scroller.clientWidth){

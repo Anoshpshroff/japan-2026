@@ -409,8 +409,107 @@
       '<p style="color:var(--ink-3);padding:24px 0">Weather data unavailable.</p>';
   }
 
+  /* ---------- the journey rail ---------- */
+  /* The rail has one cell per calendar day, but weather.json has two records for
+     each travel day — one for the place you leave, one for the place you arrive.
+     Resolve by matching the cell's own leg, so 21 Oct under MIYAKOJIMA reads the
+     island record and not the Tokyo one. */
+  var LEG_TO_LOC = { tokyo:'tokyo', miyako:'miyako', kakunodate:'tazawa', aomori:'aomori' };
+
+  function railDate(day) {
+    var n = parseInt(day, 10);
+    return n >= 18 ? '2026-10-' + n : '2026-11-0' + n;
+  }
+
+  function recordFor(leg, day) {
+    var want = LEG_TO_LOC[leg], date = railDate(day);
+    var keys = Object.keys(WX.days);
+    for (var i = 0; i < keys.length; i++) {
+      var r = WX.days[keys[i]];
+      if (r.date === date && r.loc === want) return r;
+    }
+    return null;
+  }
+
+  function paintRail() {
+    var cells = document.querySelectorAll('.railday');
+    if (!cells.length) return;
+
+    Array.prototype.forEach.call(cells, function (btn) {
+      var rec = recordFor(btn.getAttribute('data-leg'), btn.getAttribute('data-day'));
+      if (!rec) return;
+      var d = readDay(null, rec);
+      if (!d) return;
+
+      var wx = btn.querySelector('.rwx');
+      if (!wx) {
+        wx = document.createElement('span');
+        wx.className = 'rwx';
+        btn.appendChild(wx);
+      }
+      wx.innerHTML = '<b>' + t(d.tmax) + '</b><i>' + t(d.tmin) + '</i>';
+
+      if (rec.sunrise && rec.sunset) {
+        var lt = btn.querySelector('.rlt');
+        if (!lt) {
+          lt = document.createElement('span');
+          lt.className = 'rlt';
+          btn.appendChild(lt);
+        }
+        lt.textContent = rec.sunrise + '–' + rec.sunset;
+      }
+    });
+
+    paintRailTides();
+  }
+
+  /* A tide strip that sits under the rail and spans only the island days, so it
+     reads as a property of those five columns rather than a global bar. */
+  function paintRailTides() {
+    var rail = document.querySelector('.rail');
+    if (!rail || !TIDES) return;
+
+    var miyako = [].slice.call(rail.querySelectorAll('.railday[data-leg="miyako"]'));
+    if (!miyako.length) return;
+
+    var all = [].slice.call(rail.querySelectorAll('.railday'));
+    var old = rail.querySelectorAll('.railtide');
+    Array.prototype.forEach.call(old, function (n) { n.remove(); });
+
+    miyako.forEach(function (btn) {
+      var iso = railDate(btn.getAttribute('data-day'));
+      var d = TIDES.days[iso];
+      if (!d) return;
+
+      var cell = document.createElement('span');
+      cell.className = 'railtide';
+      cell.style.gridColumn = (all.indexOf(btn) + 1);
+
+      /* The day's extremes only — the single highest high and lowest low. Listing
+         all four events made this strip four lines tall, which is most of a phone
+         viewport once it is stuck to the top. Every event is on the Weather page. */
+      var hi = d.highs.reduce(function (a, b) { return b.cm > a.cm ? b : a; });
+      var lo = d.lows.reduce(function (a, b) { return b.cm < a.cm ? b : a; });
+
+      cell.innerHTML =
+        '<i class="h">▲' + hi.t + '</i>' +
+        '<i class="l">▼' + lo.t + '</i>';
+      cell.title = 'Hirara · highest ' + hi.t + ' (' + hi.cm + ' cm) · lowest ' +
+                   lo.t + ' (' + lo.cm + ' cm)';
+      rail.appendChild(cell);
+    });
+
+    /* Label the strip, in the first column so it lines up with the leg labels. */
+    var lab = document.createElement('span');
+    lab.className = 'railtide railtidelabel';
+    lab.style.gridColumn = '1 / ' + (all.indexOf(miyako[0]) + 1);
+    lab.textContent = 'TIDE · HIRARA';
+    rail.appendChild(lab);
+  }
+
   /* ---------- render ---------- */
   function render() {
+    paintRail();
     Object.keys(WX.days).forEach(function (id) {
       var card = document.getElementById(id);
       if (!card) return;
