@@ -243,6 +243,18 @@
   /* Reveal is CSS-only now — see riseIn in the stylesheet. A JS observer that
      silently fails leaves every card at opacity:0, which is exactly what it did. */
 
+  /* The Maps chip sits inside the day's <summary>, so a plain tap would open the
+     route AND toggle the day shut behind it. Opening the day is the <summary>'s
+     default action rather than a listener, so stopPropagation alone will not do
+     it — the click has to be cancelled and the navigation done by hand. */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.daychip.maps');
+    if (!a) return;
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(a.href, '_blank', 'noopener');
+  });
+
   function refresh() { wire(); }
 
   Promise.all([
