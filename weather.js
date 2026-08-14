@@ -448,19 +448,57 @@
         btn.appendChild(wx);
       }
       wx.innerHTML = '<b>' + t(d.tmax) + '</b><i>' + t(d.tmin) + '</i>';
-
-      if (rec.sunrise && rec.sunset) {
-        var lt = btn.querySelector('.rlt');
-        if (!lt) {
-          lt = document.createElement('span');
-          lt.className = 'rlt';
-          btn.appendChild(lt);
-        }
-        lt.textContent = rec.sunrise + '–' + rec.sunset;
-      }
     });
 
+    paintRailSun();
     paintRailTides();
+  }
+
+  /* Sunrise and sunset go on the leg label, not on every cell. Across any one
+     leg they move by three to five minutes — putting a distinct time on each of
+     sixteen columns implied a precision that isn't there, and at column width it
+     was unreadable anyway. One honest figure per region instead. */
+  function hhmmToMin(s) { return parseInt(s.slice(0, 2), 10) * 60 + parseInt(s.slice(3), 10); }
+  function minToHhmm(m) {
+    m = Math.round(m);
+    return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+  }
+
+  function paintRailSun() {
+    var labels = document.querySelectorAll('.raillabel[data-leg]');
+    if (!labels.length) return;
+
+    Array.prototype.forEach.call(labels, function (lab) {
+      var loc = lab.getAttribute('data-leg');
+      var rise = [], set = [];
+      Object.keys(WX.days).forEach(function (k) {
+        var r = WX.days[k];
+        if (r.loc === loc && r.sunrise && r.sunset) {
+          rise.push(hhmmToMin(r.sunrise));
+          set.push(hhmmToMin(r.sunset));
+        }
+      });
+      if (!rise.length) return;
+
+      /* Midpoint of the leg rather than the mean: the leg's middle day is a real
+         day someone will actually be standing in, and it is never more than a
+         couple of minutes off any other day in the same leg. */
+      var mid = function (a) { a.sort(function (x, y) { return x - y; }); return a[Math.floor(a.length / 2)]; };
+
+      var old = lab.querySelector('.rlsun');
+      if (old) old.remove();
+
+      var s = document.createElement('span');
+      s.className = 'rlsun';
+      s.innerHTML =
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/>' +
+        '<g stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
+        '<path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2' +
+        'M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M18.5 5.5l-1.6 1.6M7.1 16.9l-1.6 1.6"/></g></svg>' +
+        '<span>' + minToHhmm(mid(rise)) + '–' + minToHhmm(mid(set)) + '</span>';
+      s.title = 'Typical sunrise and sunset for this leg';
+      lab.appendChild(s);
+    });
   }
 
   /* A tide strip that sits under the rail and spans only the island days, so it
