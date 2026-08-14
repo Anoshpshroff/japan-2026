@@ -47,9 +47,9 @@
  "d-26": [
   {
    "label": "Morioka Station → Route 46 → the inn",
-   "note": "Route 46 over the pass via Shizukuishi — 80 km in the dark, take it gently",
-   "url": "https://www.google.com/maps/dir/?api=1&origin=39.70059%2C141.13669&destination=39.73452%2C140.69750&waypoints=%E9%9B%AB%E7%9F%B3%E9%A7%85&travelmode=driving",
-   "stops": 1,
+   "note": "≈50 km over the pass. Maps says an hour; allow 1h20 in the dark",
+   "url": "https://www.google.com/maps/dir/?api=1&origin=39.70059%2C141.13669&destination=39.73452%2C140.69750&travelmode=driving",
+   "stops": 0,
    "short": "Route"
   }
  ],

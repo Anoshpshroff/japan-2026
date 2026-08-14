@@ -70,9 +70,12 @@ ROUTES = {
                  '沖縄県宮古島市平良字久貝', [], 'Miyako Airport'),
 
     # ---------- KAKUNODATE ----------
+    # No waypoint here on purpose. Pinning Shizukuishi Station pulled the route
+    # off Route 46 and onto prefectural 1; left alone, Maps offers 国道46号 as a
+    # near-identical option and picks the right road by itself.
     'd-26': ("Morioka Station → Route 46 → the inn",
-             "Route 46 over the pass via Shizukuishi — 80 km in the dark, take it gently",
-             'Morioka Station', ['雫石駅'], 'Katakurinohana'),
+             "≈50 km over the pass. Maps says an hour; allow 1h20 in the dark",
+             'Morioka Station', [], 'Katakurinohana'),
 
     'd-27': ("Inn → Dakigaeri Gorge → Bukeyashiki-dori → inn",
              "Gorge first, before the coaches; the samurai street after lunch",
