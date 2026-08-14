@@ -31,7 +31,16 @@ at Nyuto, and on the Hakkoda road.
 - **Android:** open in Chrome → menu → **Install app** / **Add to Home screen**
 
 It gets a maple-leaf icon, opens without browser chrome, and **the whole itinerary
-works offline** from then on. The first visit caches everything; after that signal is optional.
+works offline** from then on.
+
+The install is small — about **3 MB**: all the words, plus the photographs you see
+straight away. Every other photograph is kept the first time you actually look at it,
+so the more you browse before you fly, the more you have with no signal. The itinerary
+itself — every day, every booking, the luggage plan, the checklists — is complete
+offline from the first visit either way.
+
+**Worth doing on wifi the night before:** open each leg and swipe through the tabs
+once. That banks the rest of the photographs, roughly 16 MB in total.
 
 Send the URL to all six of you. Nothing on the page can be used against a booking —
 no reference numbers, no PINs, no names — so it is safe to share freely.

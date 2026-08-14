@@ -2,13 +2,19 @@
    The itinerary has to work in Nyuto, on the Hakkoda road and on Miyakojima,
    where signal quietly dies. Everything is precached on first visit.
 
+   Photographs: only the ones you see immediately - leg banners, the day-trip
+   chooser thumbnails and the inline figures - are precached. Every other
+   photograph is cached the first time it is actually viewed, by the
+   cache-first branch below, so the install stays small and the site still
+   ends up fully offline once you have browsed it.
+
    Strategy:
      - navigations / index.html : network-first, fall back to cache
        (so a redeploy lands next time you have signal, but no signal still works)
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v17';
+var CACHE = 'japan2026-v18';
 var PRECACHE = [
   './',
   './index.html',
@@ -21,86 +27,20 @@ var PRECACHE = [
   './icons/icon-512-maskable.png',
   './icons/apple-touch-icon.png',
   './photos/tokyo-skyline.jpg',
-  './photos/miyako-irabu.jpg',
-  './photos/miyako-higashihenna.jpg',
-  './photos/kakunodate-autumn.jpg',
-  './photos/tsurunoyu-autumn.jpg',
-  './photos/komagatake-summit.jpg',
-  './photos/oirase-stream.jpg',
-  './photos/hakkoda-odake.jpg',
-  './photos/towada-lake.jpg',
-  './photos/juniko-aoike.jpg',
-  './photos/nebuta-float.jpg',
   './photos/fuji-kawaguchiko.jpg',
   './photos/kyoto-fushimi.jpg',
-  './photos/nyuto-onsen.jpg',
-  './photos/p-yabiji.jpg',
-  './photos/p-sunayama.jpg',
-  './photos/p-yoshino.jpg',
-  './photos/p-kurima.jpg',
-  './photos/p-ikema.jpg',
-  './photos/p-maehama.jpg',
-  './photos/p-dakigaeri.jpg',
-  './photos/p-tazawako.jpg',
-  './photos/p-aspite.jpg',
-  './photos/p-oyasukyo.jpg',
-  './photos/p-bukeyashiki.jpg',
-  './photos/p-kabazaiku.jpg',
-  './photos/p-aoyagi.jpg',
-  './photos/p-iwaki.jpg',
-  './photos/p-anmon.jpg',
-  './photos/p-sukayu.jpg',
-  './photos/p-aoni.jpg',
-  './photos/p-hirosaki.jpg',
+  './photos/miyako-irabu.jpg',
+  './photos/kakunodate-autumn.jpg',
+  './photos/hakkoda-odake.jpg',
   './photos/p-chureito.jpg',
-  './photos/p-kiyomizu.jpg',
-  './photos/p-kiritanpo.jpg',
-  './photos/p-inaniwa.jpg',
-  './photos/p-nokkedon.jpg',
-  './photos/p-omatuna.jpg',
-  './photos/p-awamori.jpg',
-  './photos/p-apple.jpg',
-  './photos/p-shamisen.jpg',
-  './photos/p-teamlab.jpg',
-  './photos/p-shibuyasky.jpg',
-  './photos/p-kabukiza.jpg',
+  './photos/p-hirosaki.jpg',
+  './photos/juniko-aoike.jpg',
   './photos/p-osorezan.jpg',
-  './photos/p-sannai.jpg',
-  './photos/p-toriike.jpg',
-  './photos/p-afactory.jpg',
-  './photos/p-senbeijiru.jpg',
-  './photos/p-hinai.jpg',
-  './photos/p-miyakosoba.jpg',
-  './photos/p-shibuyacross.jpg',
-  './photos/p-tsukiji.jpg',
-  './photos/p-omoide.jpg',
-  './photos/p-sumo.jpg',
-  './photos/u-hakka-pass.jpg',
-  './photos/u-hotate-kaiyaki-miso.jpg',
-  './photos/u-jogakura-ohashi.jpg',
-  './photos/u-tsuta-numa.jpg',
-  './photos/u-fujizakura-beer.jpg',
-  './photos/u-lake-tazawa-loop.jpg',
-  './photos/u-route-341-akita.jpg',
-  './photos/u-sake-akita.jpg',
-  './photos/u-yamai-ryori.jpg',
-  './photos/u-clear-sup.jpg',
-  './photos/u-sea-turtle-snorkel.jpg',
-  './photos/u-yukishio-salt-museum.jpg',
-  './photos/u-17-end-beach.jpg',
-  './photos/u-painagama-beach.jpg',
-  './photos/u-pumpkin-rock.jpg',
-  './photos/u-stargazing-miyako.jpg',
-  './photos/u-toguchi-no-hama.jpg',
-  './photos/u-nakanoshima-channel.jpg',
-  './photos/u-wonderful-cave.jpg',
-  './photos/u-umibudo.jpg',
-  './photos/u-akasaka-backstreets.jpg',
-  './photos/u-baseball-japan-series.jpg',
-  './photos/u-depachika-ekiben.jpg',
-  './photos/u-street-go-karting.jpg',
-  './ui.js',
-  './photos/nebuta-float.jpg'
+  './photos/miyako-higashihenna.jpg',
+  './photos/tsurunoyu-autumn.jpg',
+  './photos/oirase-stream.jpg',
+  './photos/nebuta-float.jpg',
+  './ui.js'
 ];
 
 self.addEventListener('install', function (e) {
@@ -155,10 +95,15 @@ self.addEventListener('fetch', function (e) {
   e.respondWith(
     caches.match(req).then(function (hit) {
       if (hit) {
-        // refresh quietly for next time, but serve the cached copy now
-        fetch(req).then(function (res) {
-          if (res && res.ok) caches.open(CACHE).then(function (c) { c.put(req, res); });
-        }).catch(function () {});
+        // A cached photograph is final — the file behind a given name never
+        // changes, so re-fetching it would burn roaming data for nothing.
+        // Code and everything else does get refreshed quietly in the
+        // background while the cached copy is served now.
+        if (url.pathname.indexOf('/photos/') === -1) {
+          fetch(req).then(function (res) {
+            if (res && res.ok) caches.open(CACHE).then(function (c) { c.put(req, res); });
+          }).catch(function () {});
+        }
         return hit;
       }
       return fetch(req).then(function (res) {
