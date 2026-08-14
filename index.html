@@ -692,15 +692,36 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 
 /* ---------- callouts ---------- */
-.callout{border:1px solid var(--warn-rule); background:var(--warn-bg); border-radius:5px; padding:16px 18px; margin-top:18px;}
-.callout .ct{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--warn); font-weight:700;}
-.callout p{margin-top:7px; font-size:14.8px; color:var(--ink-2);}
-.callout.good{border-color:var(--go-rule); background:var(--go-bg);}
+/* There were fifty-one filled boxes on this site, which meant none of them read
+   as urgent — a page where everything is highlighted has nothing highlighted.
+   The default is now a quiet marginal note: a hairline rule and smaller type,
+   no fill, no border, sitting beside the itinerary instead of interrupting it.
+   Only .stop keeps a real box, and that is what makes a stop mean something. */
+.callout{
+  border:0; border-left:2px solid var(--rule-2); background:transparent; border-radius:0;
+  padding:1px 0 1px 14px; margin-top:15px;
+}
+.callout .ct{
+  font-family:var(--f-mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-3); font-weight:700;
+}
+.callout p{margin-top:3px; font-size:14.2px; line-height:1.55; color:var(--ink-3); max-width:74ch;}
+.callout p b{color:var(--ink-2); font-weight:600;}
+.callout.good{border-left-color:var(--go);}
 .callout.good .ct{color:var(--go);}
-.callout.stop{border-color:var(--tokyo); background:var(--warn-bg); border-left-width:4px;}
-.callout.stop .ct{color:var(--tokyo);}
-.callout ul{margin:8px 0 0; padding-left:17px; font-size:14.8px; color:var(--ink-2);}
-.callout li{margin-bottom:5px;}
+
+/* The one treatment that still shouts. Reserved for things that break the trip
+   if they are missed — a desk that shuts, a booking that is not actually valid. */
+.callout.stop{
+  border:1px solid var(--warn-rule); border-left:4px solid var(--tokyo);
+  background:var(--warn-bg); border-radius:5px; padding:15px 17px; margin-top:18px;
+}
+.callout.stop .ct{color:var(--tokyo); font-size:10.5px;}
+.callout.stop p{color:var(--ink-2); font-size:14.8px;}
+
+.callout ul{margin:6px 0 0; padding-left:16px; font-size:14.2px; color:var(--ink-3);}
+.callout li{margin-bottom:4px;}
+.callout.stop ul{font-size:14.8px; color:var(--ink-2);}
 
 /* ---------- critical grid ---------- */
 .crit{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); margin-top:24px; border-top:1px solid var(--rule); border-left:1px solid var(--rule);}
@@ -1847,11 +1868,6 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
     </div>
 
-    <div class="callout good">
-      <span class="ct">Why late October is the right time</span>
-      <p>Fuji is famously shy — it hides behind cloud most of the summer. Visibility climbs steeply through autumn as the humid air clears, and <b>late October into winter is the most reliable window of the year</b>. The summit usually takes its first snow in early October, so you get the postcard version. Mornings are markedly better than afternoons: cloud builds around the peak as the day warms.</p>
-    </div>
-
     <figure class="legmap"><figcaption><span class="mtag">Lake Kawaguchi</span><span class="mnote">Everything is within 25 minutes of the station. Fuji sits to the south of the lake.</span></figcaption>
     <div class="legmapscroll">
     <svg viewBox="-64 -14 764 452" role="img" aria-label="Schematic map of the Lake Kawaguchi area with Mount Fuji to the south, north at the top">
@@ -2112,9 +2128,6 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Day by day" role="tabpanel" id="p-miy-days" aria-labelledby="t-miy-days" tabindex="0">
-        <div class="callout good"><span class="ct">You've timed this well</span>
-          <p>From October the cold north wind starts up, putting the Shimoji-jima sites on the sheltered downwind side — so <b>October and November are the prime months for the topography diving Miyako is famous for</b>, and you've dodged the summer heat and the peak of typhoon season. The island is about 30 km across with effectively no public transport, so the cars aren't a convenience, they're the whole plan.</p></div>
-
         <div class="spine" style="margin-top:26px;">
           <details class="day" id="d-21">
   <summary class="daysum">
@@ -2184,8 +2197,6 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
     <span class="daytoggle"><span class="lbl-shut">Hour by hour</span><span class="lbl-open">Hide detail</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </summary>
 <div class="daybody">
-              <div class="callout good"><span class="ct">Why this is not the consolation day</span>
-                <p>Everything Miyako's deep sites have that you cannot reach, the shallows give back in light. <b>Turtle encounter rates here are quoted at or near 100%</b> and the reviews bear it out, the water is 28°C, and the whole group is in it together rather than split across a harbour wall. Two days of this is the trip most people actually remember.</p></div>
               <dl class="tl">
                 <dt>09:00</dt><dd><b>Sea turtle snorkelling.</b> Green turtles sit in shallow sheltered water off the north coast — half a day, ¥6,000–8,000, wetsuits and usually hotel pickup included. No experience needed, which is the point when all six of you are going.</dd>
                 <dt>12:30</dt><dd><b>Lunch in Hirara</b>, then regroup.</dd>
@@ -2216,9 +2227,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
                 <dt>Sunset</dt><dd><b>Irabu Ohashi at golden hour</b>, then Painagama for a beer.</dd>
                 <dt>Night</dt><dd><b>Stars.</b> Almost no light pollution once you leave Hirara — drive five minutes out and look up.</dd>
               </dl>
-              <div class="callout"><span class="ct">Two things not to expect</span>
-                <p>Mango season finishes in late summer, so farm stands sell processed products rather than fruit. And while typhoon season is essentially over, Okinawa can still catch a late one — keep dive days flexible and don't book anything unrefundable on a single fixed date.</p></div>
-            </div>
+              </div>
 </details>
 
           <details class="day" id="d-26-out">
@@ -2240,11 +2249,6 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
               <dt>20:15</dt><dd><b>Drive to the inn</b> — about <b>1h 20m</b> on Route 46, over the pass via Shizukuishi and Lake Tazawa.</dd>
               <dt>~21:35</dt><dd><b>Katakurinohana.</b> Well past the 18:00 check-in window — see the warning above. Tell them half past nine and get the door arrangement confirmed.</dd>
             </dl>
-
-            <div class="callout good">
-              <span class="ct">This change fixes the worst day of the trip</span>
-              <p>Getting off at Morioka rather than riding through does three good things at once. You <b>collect both cars tonight instead of losing the 27th morning to a rental desk</b> — the booking is 20:00 at the station shop, so dinner happens first rather than being skipped. You get <b>more trains to choose from</b>, because Morioka is served by Hayabusa as well as Komachi. And you get <b>a real dinner instead of a station bento</b>. The cost is a 1h20 night drive — the one part to take seriously.</p>
-            </div>
 
             <div class="callout">
               <span class="ct">The 20:00 rental desk is now the hard deadline</span>
@@ -2268,20 +2272,11 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
         <div class="blockhead"><h3>The dive briefing</h3><span class="tag">All Open Water · 22–23 Oct</span></div>
         <p class="lede">Miyako isn't a coral-garden destination — it's a limestone maze of arches, tunnels and grottoes cut through the rock off Shimoji-jima, and that terrain is what people fly in for. The catch is depth: <b>all six of you are Open Water, which caps you at 18 m</b>, and the three sites Miyako is famous for all sit below that line. <b>You have decided against the Advanced course</b>, so this section is built around diving well inside 18 m — which, on this island, is a much better hand than it sounds.</p>
 
-        <div class="callout">
-          <span class="ct">Where 18 metres leaves you</span>
-          <p>Devil's Palace bottoms out around <b>25 m</b>. Antonio Gaud&iacute; is <b>30 m+</b>. Toriike runs past <b>40 m</b> with cave ceilings at 23 m. None of the three is an Open Water dive, and no honest shop will take you to them on an OW card. Toriike in particular is a genuine overhead cave that operators gate behind 50 logged dives — off the table this trip whatever you do. <b>Treat all three as scenery you will read about, not sites you will miss</b>, and spend the energy on getting the best shallow sites instead.</p>
-        </div>
+        <div class="callout"><span class="ct">Where 18 metres leaves you</span>
+          <p>Devil&rsquo;s Palace is ~25 m, Antonio Gaud&iacute; 30 m+, Toriike past 40 m and gated behind 50 logged dives. No honest shop will run them on an OW card. Treat all three as scenery you read about, and spend the effort on getting the best shallow sites instead.</p></div>
 
-        <div class="callout good">
-          <span class="ct">Two dive days, not three — and that is the better trip</span>
-          <p>The plan is <b>two boat days (22nd and 23rd)</b> and then <b>two dry days in the water with everyone (24th and 25th)</b>. That does three good things. It puts <b>nearly three days between your last tank and the flight</b>, so the no-fly rule stops being something to calculate. It keeps the group together for half the leg rather than splitting it across a harbour wall every morning. And it swaps a third day of the same shallow sites for turtles and the Pumpkin Rock, which is the trade most people would take if you asked them on the way home.</p>
-        </div>
-
-        <div class="callout">
-          <span class="ct">What you actually get inside 18 m</span>
-          <p>Miyako still delivers, and this is not a consolation prize. The shallow, sunlit end of the cave menu is the same limestone landscape with light coming in and an exit in sight: <b>Nakanoshima Channel, Twin Caves, Mini Toriike and the Wonderful Cave grottoes</b>. BIGHOLIDAY's own difficulty guide rates these "elementary to intermediate — shallow and lets in plenty of light". Add <b>Yabiji reef</b> if the tides offer it and two days is plenty to see the best of what is open to you.</p>
-        </div>
+        <div class="callout"><span class="ct">What you actually get inside 18 m</span>
+          <p>The sunlit end of the cave menu is the same limestone with light coming in and an exit in sight — <b>Nakanoshima Channel, Twin Caves, Mini Toriike, the Wonderful Cave grottoes</b>, rated elementary to intermediate. Two days covers the best of it, plus <b>Yabiji reef</b> if the tides offer it.</p></div>
         <div class="cards">
           <div class="card" style="--c:var(--miyako)">
             <svg class="motif" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 36 L4 14 Q4 4 14 4 L26 4 Q36 4 36 14 L36 36 Z" fill="var(--night-1)"/><circle cx="20" cy="22" r="7" fill="var(--sun)"/></svg>
@@ -2548,9 +2543,6 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Day by day" role="tabpanel" id="p-kak-days" aria-labelledby="t-kak-days" tabindex="0">
-        <div class="callout good"><span class="ct">The best-timed thing in your whole itinerary</span>
-          <p>Dakigaeri Gorge runs ten kilometres along the Tama river and its maples peak <b>from late October into early November</b> — you are arriving almost exactly on it. The water is a startling mineral blue-green with red maples right over it, which is why it's nicknamed "the Yabakei of Tohoku". Fifteen minutes from Kakunodate station, and you're there on a Tuesday: weekday mornings are markedly quieter, and a foliage festival runs during the season.</p></div>
-
         <div class="spine" style="margin-top:26px;">
           <details class="day" id="d-26">
   <summary class="daysum">
@@ -2562,25 +2554,12 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
   </summary>
 <div class="daybody"><p style="font-size:15.5px; color:var(--ink-2);">Off the Shinkansen at <b>Morioka</b> around 18:35, dinner first, then the cars at 20:00 as booked, a proper dinner in the city that invented three kinds of noodle, then <b>1h 20m</b> on Route 46 to the inn. In around nine.</p>
 
-              <div class="callout stop">
-                <span class="ct">Call the inn before you fly — this does not currently work</span>
-                <p><b>Katakurinohana takes check-in between 15:00 and 18:00. You arrive at about 21:30.</b> That is not a near miss, and no rearranging of today fixes it: NH1080 lands at Haneda 14:25, so even skipping dinner and driving straight through puts you at the door around 20:20. The booking also still carries the special request you made when you reserved — <i>&ldquo;approximate time of arrival: between 16:00 and 17:00&rdquo;</i> — which is now nearly four hours wrong.</p>
-                <p>A three-unit inn on a lake will almost certainly accommodate a late arrival if asked. It will not accommodate one it does not know about, and at 21:30 in rural Akita there may be nobody awake to let you in. <b>Ring +81 187-43-1200 now</b>, give them the real time, and get the door arrangement in writing.</p>
-              </div>
+              <div class="callout stop"><span class="ct">Call the inn before you fly — this does not currently work</span>
+          <p>Check-in is <b>15:00–18:00</b>. You arrive about <b>21:30</b>, and nothing about today fixes that — even skipping dinner puts you at the door at 20:20. The booking still says you will arrive <b>16:00–17:00</b>. A three-unit inn will almost certainly accommodate a late arrival it knows about, and cannot accommodate one it does not. <b>Ring before you fly and get the door arrangement confirmed.</b></p></div>
 
               <div class="callout good">
                 <span class="ct">You are doing all of this with a backpack</span>
                 <p>Your island cases went to Narita yesterday; your cold-weather cases have been waiting at the inn since this morning. Today&rsquo;s connection — off a plane at Haneda, across town to Tokyo Station, onto a Hayabusa, into two cars at Morioka in the dark — is the tightest sequence of the trip, and you are doing it <b>carrying nothing but a daypack each</b>. It also means NH1080&rsquo;s one-checked-bag limit never comes up.</p>
-              </div>
-
-              <div class="callout good">
-                <span class="ct">Two cars changes how the split days work</span>
-                <p>Every "go long / take it easy" day in this itinerary assumed the group had to move as one. With <b>two cars</b> it does not. The four who want the summit take one; the two who want the lake take the other; nobody waits, and nobody cuts a walk short to keep the group together. It also makes the <b>Oirase drop-and-collect</b> trivial — one car leaves walkers at Nenokuchi, the other meets them at Ishigedo, and everyone gets the gorge without doubling back.</p>
-              </div>
-
-              <div class="callout good">
-                <span class="ct">What this buys you</span>
-                <p>Both cars are yours from tonight, so <b>the 27th no longer starts at a rental desk</b>. You can be at Dakigaeri Gorge at first light rather than 09:15 — and on a peak-foliage Tuesday, that hour ahead of the coaches is worth more than the hour it costs you tonight.</p>
               </div>
 
               <div class="callout">
@@ -2631,10 +2610,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
     <span class="daytoggle"><span class="lbl-shut">Hour by hour</span><span class="lbl-open">Hide detail</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </summary>
 <div class="daybody">
-              <div class="callout good">
-                <span class="ct">Recommended shape · the Aspite Line, then Nyuto</span>
-                <p><b>You cannot do both mountains today, and the reason is the bath.</b> Tsurunoyu takes day visitors only until about <b>15:00</b>, and everything has to be back for that. Hachimantai is <b>1h 40m</b> from the inn each way; Komagatake plus its crater rim is a four-hour commitment. Either fills the morning — not both.</p>
-                <p><b>Take the Aspite Line.</b> Three reasons. It is the famous one and it is <b>on a deadline</b>: shut for winter around <b>4 November</b>, and closed nightly from <b>17:00</b> since mid-October. It <b>suits six people of different appetites</b> — the spectacle is from the car, and the walking at the top is a flat boardwalk anyone can do, where Komagatake&rsquo;s rim is exposed alpine walking at 1,637 m. And it is <b>weather-proof in a way a summit is not</b>: a mountain road in cloud is still a mountain road, but a crater rim in cloud is a car park.</p>
+              <div class="callout good"><span class="ct">Recommended shape · the Aspite Line, then Nyuto</span>
+                <p><b>The bath sets the shape of the day.</b> Tsurunoyu takes day visitors only until about <b>15:00</b>, and Hachimantai is 1h 40m each way — so one mountain, not two. <b>Take the Aspite Line:</b> it shuts for winter around <b>4 November</b>, the spectacle is from the car, and a mountain road in cloud is still a mountain road where a crater rim in cloud is a car park.</p>
                 <dl class="tl" style="margin-top:14px;">
                   <dt>07:00</dt><dd>Away from the inn, north on <b>Route 341</b>.</dd>
                   <dt>~08:40</dt><dd><b>Hachimantai summit car park.</b> Roughly 1h 40m from Tazawako.</dd>
@@ -2644,11 +2621,10 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
                   <dt>13:00</dt><dd><b>Tsurunoyu</b>, comfortably inside the window rather than sprinting for it.</dd>
                   <dt>Evening</dt><dd>Kiritanpo at the inn, if you booked it.</dd>
                 </dl>
-                <p class="foot" style="margin-top:12px;">Swap to Komagatake only if the forecast is genuinely clear — that hike is worth it on a good day and pointless on a bad one.</p>
-              </div>
+                <p class="foot" style="margin-top:12px;">Swap to Komagatake only if the forecast is genuinely clear — that hike is worth it on a good day and pointless on a bad one.</p></div>
 
               <div class="callout good"><span class="ct">Komagatake, if you swap to it</span>
-                <p>Semboku City's page states it plainly: <b>the prefectural Komagatake Line is closed for winter from 1 November to 31 May</b>, so the 28th sits inside the open season. And the private-vehicle restriction applies on <b>Saturdays, Sundays and public holidays</b> through late October — <b>the 28th is a Wednesday</b>, so it does not apply and you <b>drive yourselves to the 8th Station</b> at roughly 1,300 m rather than waiting on the shuttle, which stops mid-October anyway. Starting at 1,300 m for a 1,637 m summit is why this is a two-hour hike and not a mountaineering day.</p></div>
+                <p>Open until 1 November, and the private-vehicle ban is weekends only — <b>the 28th is a Wednesday</b>, so you drive to the 8th Station at 1,300 m. That is what makes a 1,637 m summit a two-hour hike rather than a mountaineering day.</p></div>
               <div class="callout"><span class="ct">The one variable: snow</span>
                 <p>Thin snow on the summit is common by late October and can arrive any time. Decide on the morning: check the forecast the night before, call in at the <b>Akita-Komagatake information centre at Alpa Komakusa</b> on the way up, and check the Akita prefectural road-conditions site for emergency closures. If it's white up there, roll straight into the easy track — you lose nothing, because Tazawa and Nyuto were always the afternoon.</p></div>
               <div class="tracks">
@@ -2691,12 +2667,9 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
               <div class="callout"><span class="ct">Check this when you book the cars</span>
                 <p><b>Settled.</b> Both cars are booked out of Morioka and back to Morioka on the 2nd, so they stay with you the whole week and no prefecture boundary costs you anything. Today is simply a drive — the long way round through Towada and Oirase, with the luggage in the boots rather than on a train.</p></div>
 
-              <div class="callout good">
-                <span class="ct">Take Route 341, not the expressway</span>
-                <p>Left to itself a satnav will send you down the Akita expressway and you will see almost nothing. The drive worth doing runs <b>north on Route 341 from Tazawako</b> — a mountain road with very little traffic, past <b>Akisen-ko</b> and then <b>Hosen-ko</b>, whose water is a startling lapis blue because the Tamagawa hot spring feeding it is acidic enough to colour the lake. <b>Tamagawa Onsen</b> is on the way if you want to stop.</p>
-                <p>At Kazuno pick up <b>Route 103</b> and climb to <b>Hakka Pass</b> (631 m), where Lake Towada opens up below with the Hakkoda range behind it. Then the lake shore, <b>Oirase on Route 102</b>, and finally <b>Route 103 over Hakkoda</b> — topping out at <b>Kasamatsu Pass, 1,040 m</b>, with Suiren-numa five minutes off the road and the whole ridge reflected in it.</p>
-                <p class="foot" style="margin-top:12px;">Set the waypoints in Maps rather than just the destination, or it will quietly reroute you.</p>
-              </div>
+              <div class="callout good"><span class="ct">Take Route 341, not the expressway</span>
+                <p>A satnav will route you down the Akita expressway, where you will see nothing. Go <b>north on Route 341</b> past the lapis-blue dam lakes, pick up <b>Route 103</b> at Kazuno for <b>Hakka Pass</b> and Towada, then Oirase on <b>102</b> and back over Hakkoda via <b>Kasamatsu Pass</b>.</p>
+                <p class="foot" style="margin-top:12px;">Set the waypoints in Maps rather than just the destination, or it will quietly reroute you.</p></div>
 
               <div class="callout good">
                 <span class="ct">You have dodged the road closure by a year</span>
@@ -3155,12 +3128,10 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 <text x="306" y="72" text-anchor="end" class="mtitle">BASE · ART HOTEL</text>
 <g transform="translate(614,392)"><circle r="15" fill="none" stroke="var(--ink-3)" stroke-width="1.2" opacity=".45"/><polygon points="0,-11 4.5,3 0,0.5 -4.5,3" fill="var(--ink-2)"/><text y="-20" text-anchor="middle" class="mtitle">N</text></g></svg></div></figure>
         <div class="blockhead"><h3>Walks around Aomori</h3><span class="tag">Sunset ~16:35 — mornings only</span></div>
-        <div class="callout good">
-          <span class="ct">The famous drives — what you get, and what you do not</span>
-          <p><b>You have the inland ones comprehensively.</b> The Hakkoda–Towada Gold Line, Oirase, Lake Towada from Hakka Pass, Jogakura Ohashi, Kasamatsu Pass, Route 341 past the blue dam lakes, Dakigaeri, Nyuto and the Komagatake road are between them the core of what Tohoku is known for on four wheels.</p>
-          <p><b>Two more are in reach but only just.</b> The <b>Hachimantai Aspite Line</b> — twenty-seven kilometres over the top — shuts for winter around <b>4 November</b> and closes nightly from <b>17:00 from mid-October</b>, so it is a daylight-only proposition on your dates. The <b>Tsugaru Iwaki Skyline</b>, sixty-nine numbered hairpins, also shuts in early November, runs <b>09:00–16:30 with the last ascent at 16:00</b>, and the 31st is close to its final day of the year.</p>
-          <p><b>Three famous ones are genuinely out of range, and it is worth knowing why rather than wondering.</b> <b>Hotokegaura</b>, Shimokita&rsquo;s green-tuff sea cliffs, is <b>three and a half hours each way from Aomori</b> on Route 338 — seven hours of driving, plus a fifteen-minute descent and a thirty-minute climb back — so it cannot share a day with Osorezan or anything else. <b>Cape Tappi</b> on the Tsugaru peninsula and the <b>Oga peninsula</b> in western Akita are each a full day in the wrong direction. Fitting any of them would mean giving up a day you have already spent well.</p>
-        </div>
+        <div class="callout good"><span class="ct">The famous drives — what you get, and what you do not</span>
+                <p><b>You have the inland ones comprehensively</b> — Gold Line, Oirase, Towada from Hakka Pass, Jogakura, Kasamatsu, Route 341, Dakigaeri, Nyuto, Komagatake.</p>
+                <p>Two are daylight-only on your dates: the <b>Aspite Line</b> (shuts ~4 Nov, closed nightly from 17:00) and the <b>Iwaki Skyline</b> (last ascent 16:00, near its final day on the 31st).</p>
+                <p><b>Out of range:</b> Hotokegaura is 3½ hours each way, and Cape Tappi and the Oga peninsula are each a full day in the wrong direction.</p></div>
 
         <div class="cards">
           <div class="card" style="--c:var(--aomori)">
@@ -3503,10 +3474,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <p class="sub">Each day header carries its own high, low and daylight hours; Miyakojima days also carry the tide times. This page is the long version — wind, rain odds, sea temperature, swell, and the full tide curve for every day on the island.</p>
     </div>
 
-    <div class="callout">
-      <span class="ct">Where these numbers come from</span>
-      <p>No forecast exists more than about sixteen days ahead, so until late September 2026 every figure here is a <b>climate normal</b> — fifteen years of ERA5 reanalysis pooled over a week-wide window around that calendar date, labelled <b>Typical</b>. Once the trip enters the forecast window each day quietly switches to a <b>live Open-Meteo forecast</b> and the label changes to <b>Forecast</b>, so you always know which you are reading. Tides are different: 2026 predictions for Hirara are already final, so they are baked in from the Japan Meteorological Agency and work with no signal at all — which matters on a dive boat.</p>
-    </div>
+    <div class="callout"><span class="ct">Where these numbers come from</span>
+                <p>Beyond about sixteen days no forecast exists, so every figure is currently a <b>climate normal</b> — fifteen years of ERA5 pooled around that date, labelled <b>Typical</b>. Each day switches to a live Open-Meteo <b>Forecast</b> as the trip comes into range. Tides are already final for 2026, so they are baked in and work with no signal.</p></div>
 
     <div class="wx-tab-body"></div>
 
@@ -3558,11 +3527,6 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
         </tbody>
       </table>
     </div>
-    <div class="callout good">
-      <span class="ct">What dropping the course saved</span>
-      <p>The earlier plan was the <b>NAUI Advanced course (¥49,500) plus a third fun-dive day</b> — about <b>¥129,000</b> each for the leg. Diving two days on your existing cards and spending the other two snorkelling brings that to roughly <b>¥104,600</b>, a saving of about <b>¥24,400 each — ¥146,000 across the six of you</b>. Miyakojima is still the most expensive leg of the trip, but it is no longer half the entire budget.</p>
-    </div>
-
     <div class="blockhead"><h3>Kakunodate &amp; Aomori</h3><span class="tag">26 Oct – 2 Nov · cheap, and it shows nowhere</span></div>
     <div class="tablewrap">
       <table>
@@ -3766,11 +3730,9 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </table>
     </div>
 
-    <div class="callout">
-      <span class="ct">The one thing still to decide — 2 November</span>
-      <p>The two shipments above leave you holding <b>the Tohoku cases</b> on departure day. They ride to Morioka in the cars easily enough, but from there it is six suitcases onto the Hayabusa and across Tokyo to Narita — the thing you said you wanted to avoid.</p>
-      <p><b>A third shipment fixes it:</b> Yamato from Art Hotel Aomori on <b>31 October</b> to the same Narita counter, so you collect everything in one go on the 2nd and the whole trip is done without a suitcase on a train. It costs roughly <b>¥17,000</b> more, about ¥2,800 each, and it means living out of a daypack for the last two days in Aomori. Worth it or not is your call — nothing else in the plan changes either way.</p>
-    </div>
+    <div class="callout"><span class="ct">The one thing still to decide — 2 November</span>
+                <p>The two shipments leave you holding <b>the Tohoku cases</b> on departure day — six suitcases onto the Hayabusa and across Tokyo, which is what you wanted to avoid.</p>
+                <p><b>A third shipment fixes it:</b> Aomori to the Narita counter on 31 October, about <b>¥2,800 each</b>, at the cost of living from a daypack for the last two days. Nothing else changes either way.</p></div>
       <div class="card" style="--c:var(--warn)">
         <svg class="motif" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="15" fill="none" stroke="var(--warn)" stroke-width="3"/><path d="M20 11v10l7 4" stroke="var(--warn)" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
         <span class="k">The constraint</span><h4>Seven days, and not one more</h4>
