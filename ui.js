@@ -27,38 +27,48 @@
     [/sake at the source/i,'u-sake-akita.jpg'], [/yamai/i,'u-yamai-ryori.jpg'],
     [/hakka pass/i,'u-hakka-pass.jpg'], [/jogakura/i,'u-jogakura-ohashi.jpg'],
     [/tsuta-?numa|tsuta/i,'u-tsuta-numa.jpg'], [/hotate|kaiyaki/i,'u-hotate-kaiyaki-miso.jpg'],
+    /* Second batch of supplied photographs. These sit before the rules below
+       because they are narrower: "Nonbei Yokocho" must not fall through to the
+       Omoide photograph, and "Kabazaiku cherry-bark craft" must not fall
+       through to "Kabazaiku cherry bark". Specific first, general after. */
+    [/nonbei/i,'u-nonbei-yokocho.jpg'],
+    [/awamori distillery/i,'u-awamori-cellar.jpg'],
+    [/kabazaiku cherry-?bark craft/i,'u-kabazaiku-craft.jpg'],
+    [/gold line/i,'u-hakkoda-gold-line.jpg'],
+    [/tazawa cruise/i,'u-tazawa-cruise.jpg'],
+    [/nyuto kogen|kogen trails/i,'u-nyuto-trails.jpg'],
     /* One rule per subject. No broad regional catch-alls: a card either shows
        its own place or shows nothing. A Tokyo skyline on "Tsukiji outer market"
        is a placeholder, and a placeholder is worse than white space. */
 
     /* Tokyo */
-    [/teamlab/i,'p-teamlab.jpg'], [/shibuya sky/i,'p-shibuyasky.jpg'],
+    [/teamlab/i,'u-teamlab.jpg'], [/shibuya sky/i,'u-shibuya-sky.jpg'],
     [/shibuya|scramble/i,'p-shibuyacross.jpg'], [/tsukiji/i,'p-tsukiji.jpg'],
     [/omoide|golden gai|yokocho/i,'p-omoide.jpg'], [/sumo/i,'p-sumo.jpg'],
     [/kabuki/i,'p-kabukiza.jpg'],
 
     /* Miyakojima */
-    [/irabu/i,'miyako-irabu.jpg'], [/maehama/i,'p-maehama.jpg'], [/sunayama/i,'p-sunayama.jpg'],
-    [/yoshino/i,'p-yoshino.jpg'], [/hennazaki/i,'miyako-higashihenna.jpg'],
-    [/kurima/i,'p-kurima.jpg'], [/ikema/i,'p-ikema.jpg'], [/toriike/i,'p-toriike.jpg'],
-    [/yabiji/i,'p-yabiji.jpg'], [/awamori/i,'p-awamori.jpg'], [/miyako soba/i,'p-miyakosoba.jpg'],
-    [/sanshin|shamisen|jamisen/i,'p-shamisen.jpg'],
+    [/irabu/i,'u-irabu-ohashi.jpg'], [/maehama/i,'u-yonaha-maehama.jpg'], [/sunayama/i,'p-sunayama.jpg'],
+    [/yoshino/i,'p-yoshino.jpg'], [/hennazaki/i,'u-cape-hennazaki.jpg'],
+    [/kurima/i,'p-kurima.jpg'], [/ikema/i,'p-ikema.jpg'], [/toriike/i,'u-toriike-dive.jpg'],
+    [/yabiji/i,'p-yabiji.jpg'], [/awamori/i,'p-awamori.jpg'], [/miyako soba/i,'u-miyako-soba.jpg'],
+    [/sanshin|shamisen|jamisen/i,'u-izakaya-sanshin.jpg'],
 
     /* Akita */
-    [/dakigaeri/i,'p-dakigaeri.jpg'], [/komagatake/i,'komagatake-summit.jpg'],
-    [/tazawa/i,'p-tazawako.jpg'], [/tsurunoyu/i,'tsurunoyu-autumn.jpg'],
+    [/dakigaeri/i,'u-dakigaeri.jpg'], [/komagatake/i,'komagatake-summit.jpg'],
+    [/tazawa/i,'u-tazawa-shore.jpg'], [/tsurunoyu/i,'u-tsurunoyu-bath.jpg'],
     [/nyuto|taenoyu|kuroyu|ganiba/i,'nyuto-onsen.jpg'],
-    [/aspite|hachimantai/i,'p-aspite.jpg'], [/oyasukyo/i,'p-oyasukyo.jpg'],
-    [/bukeyashiki|samurai street/i,'p-bukeyashiki.jpg'], [/kabazaiku/i,'p-kabazaiku.jpg'],
-    [/aoyagi/i,'p-aoyagi.jpg'], [/kakunodate/i,'kakunodate-autumn.jpg'],
-    [/kiritanpo/i,'p-kiritanpo.jpg'], [/inaniwa/i,'p-inaniwa.jpg'], [/hinai/i,'p-hinai.jpg'],
+    [/aspite|hachimantai/i,'p-aspite.jpg'], [/oyasukyo/i,'u-oyasukyo.jpg'],
+    [/bukeyashiki|samurai street/i,'u-bukeyashiki.jpg'], [/kabazaiku/i,'u-kabazaiku-bark.jpg'],
+    [/aoyagi/i,'u-aoyagi.jpg'], [/kakunodate/i,'kakunodate-autumn.jpg'],
+    [/kiritanpo/i,'u-kiritanpo.jpg'], [/inaniwa/i,'u-inaniwa-udon.jpg'], [/hinai/i,'p-hinai.jpg'],
 
     /* Aomori */
     [/oirase/i,'oirase-stream.jpg'], [/towada/i,'towada-lake.jpg'],
     [/hakkoda|odake|gold line/i,'hakkoda-odake.jpg'], [/sukayu/i,'p-sukayu.jpg'],
-    [/aoni/i,'p-aoni.jpg'], [/iwaki/i,'p-iwaki.jpg'], [/juniko|aoike/i,'juniko-aoike.jpg'],
-    [/anmon/i,'p-anmon.jpg'], [/osorezan|osore/i,'p-osorezan.jpg'],
-    [/nebuta|neputa|warasse/i,'nebuta-float.jpg'], [/sannai|maruyama/i,'p-sannai.jpg'],
+    [/aoni/i,'p-aoni.jpg'], [/iwaki/i,'u-iwaki-skyline.jpg'], [/juniko|aoike/i,'u-juniko-aoike.jpg'],
+    [/anmon/i,'p-anmon.jpg'], [/osorezan|osore/i,'u-osorezan.jpg'],
+    [/nebuta|neputa|warasse/i,'nebuta-float.jpg'], [/sannai|maruyama/i,'u-sannai.jpg'],
     [/hirosaki/i,'p-hirosaki.jpg'], [/apple/i,'p-apple.jpg'],
     [/a-factory|cidre/i,'p-afactory.jpg'], [/nokkedon/i,'p-nokkedon.jpg'],
     [/senbei-jiru/i,'p-senbeijiru.jpg'], [/\u014cma|oma tuna/i,'p-omatuna.jpg'],

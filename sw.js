@@ -14,7 +14,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v19';
+var CACHE = 'japan2026-v20';
 var PRECACHE = [
   // Not './' as well — it is byte-for-byte the same document as index.html, so
   // listing both stored the whole itinerary twice. Navigations fall back to
@@ -28,21 +28,14 @@ var PRECACHE = [
   './icons/icon-512.png',
   './icons/icon-512-maskable.png',
   './icons/apple-touch-icon.png',
-  './photos/tokyo-skyline.jpg',
-  './photos/fuji-kawaguchiko.jpg',
-  './photos/kyoto-fushimi.jpg',
-  './photos/miyako-irabu.jpg',
-  './photos/kakunodate-autumn.jpg',
-  './photos/hakkoda-odake.jpg',
-  './photos/p-chureito.jpg',
-  './photos/p-hirosaki.jpg',
-  './photos/juniko-aoike.jpg',
-  './photos/p-osorezan.jpg',
-  './photos/miyako-higashihenna.jpg',
-  './photos/tsurunoyu-autumn.jpg',
-  './photos/oirase-stream.jpg',
-  './photos/nebuta-float.jpg',
-  './ui.js'
+  './ui.js',
+  // Weather normals and the JMA tide table. Both are small, and both are the
+  // half that has to survive with no signal: the live forecast is a bonus on
+  // top, but "what does late October do here" and "when is low water" must
+  // still answer on a dive boat or the Hakkoda road.
+  './weather.js',
+  './weather.json',
+  './tides.json'
 ];
 
 self.addEventListener('install', function (e) {
