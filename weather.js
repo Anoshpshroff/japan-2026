@@ -69,10 +69,12 @@
     return ['cloud', ''];
   }
 
-  /* A normal has no weather code — it is an average, not a day. Derive the
-     nearest honest picture from how cloudy and how wet the date usually is. */
+  /* Snow deliberately does NOT lead here. Aomori city carries a 3-5% chance of
+     a flake in late October on a 14 degree day; letting that win made every
+     northern card read "Snow possible", which is how you get someone packing
+     for the wrong trip. It surfaces as its own metric below instead, and only
+     when it is high enough to plan around. */
   function normalInfo(n) {
-    if (n.snow) return ['snow', 'Snow possible'];
     if (n.wet >= 55) return ['rain', 'Often wet'];
     if (n.wet >= 42) return ['drizzle', 'Showery'];
     if (n.cloud >= 68) return ['cloud', 'Usually cloudy'];
@@ -122,15 +124,46 @@
     if (!d) return null;
     var s = document.createElement('span');
     s.className = 'daychip wx' + (d.live ? ' is-live' : '');
-    s.innerHTML = svg(d.icon, 'wxi sm') +
+    var inner = svg(d.icon, 'wxi sm') +
       '<span class="wxt">' + t(d.tmax) + '</span>' +
       '<span class="wxlo">' + t(d.tmin) + '</span>';
+    if (rec.sunrise && rec.sunset) {
+      inner += '<span class="wxdaylight">' + rec.sunrise + '–' + rec.sunset + '</span>';
+    }
+    s.innerHTML = inner;
     s.title = (d.live ? 'Forecast' : 'Typical for the date') +
               (d.word ? ' · ' + d.word : '');
     return s;
   }
 
-  /* ---------- the full strip inside an opened card ---------- */
+  /* ---------- compact tide chip for Miyakojima day headers ---------- */
+  function tideChip(iso) {
+    var d = TIDES && TIDES.days[iso];
+    if (!d) return null;
+    // Pick daytime events (06:00–20:00) first, then any if none found
+    function bestDaytime(events) {
+      var day = events.filter(function(e) {
+        var h = parseInt(e.t.slice(0, 2), 10);
+        return h >= 6 && h <= 20;
+      });
+      return day.length ? day : events;
+    }
+    var highs = bestDaytime(d.highs);
+    var lows  = bestDaytime(d.lows);
+    if (!highs.length && !lows.length) return null;
+
+    var s = document.createElement('span');
+    s.className = 'daychip tide-mini';
+    var parts = [];
+    highs.forEach(function(e) { parts.push({ t: e.t, label: '↑ ' + e.t, sort: e.t }); });
+    lows.forEach(function(e)  { parts.push({ t: e.t, label: '↓ ' + e.t, sort: e.t }); });
+    parts.sort(function(a, b) { return a.sort < b.sort ? -1 : 1; });
+    s.textContent = parts.map(function(p) { return p.label; }).join(' · ');
+    s.title = 'Tide times · Hirara · ↑ high · ↓ low';
+    return s;
+  }
+
+  /* ---------- the full strip inside the weather tab ---------- */
   function metric(label, value) {
     return '<div class="wxm"><dt>' + label + '</dt><dd>' + value + '</dd></div>';
   }
@@ -160,6 +193,8 @@
     } else {
       h += metric('Wet days', d.wet + '%');
       h += metric('Usual range', t(d.cool) + '–' + t(d.warm));
+      // Only once it is worth planning around — roughly one year in ten.
+      if (d.snow >= 8) h += metric('Snow risk', d.snow + '%');
     }
     if (d.wind != null) h += metric('Wind', Math.round(d.wind) + ' km/h');
     if (rec.sunrise) h += metric('Light', rec.sunrise + '–' + rec.sunset);
@@ -169,8 +204,6 @@
     }
     h += '</dl>';
 
-    /* A second place that matters on this particular day: the mountain you
-       might drive over, or the two other cities the group splits towards. */
     if (rec.alts) {
       h += '<div class="wxalts">';
       rec.alts.forEach(function (a) {
@@ -181,6 +214,9 @@
              '<span class="an">' + esc(al.name) +
              (al.elev >= 600 ? ' <i>' + al.elev.toLocaleString() + ' m</i>' : '') + '</span>' +
              '<span class="at">' + t(ad.tmax) + '<span class="lo">' + t(ad.tmin) + '</span></span>' +
+             /* This is where snow actually earns a mention: the Aspite Line and
+                the Hakkoda road are the things that shut, not Aomori station. */
+             (ad.snow >= 8 ? '<span class="asnow">snow ' + ad.snow + '%</span>' : '') +
              '</div>';
       });
       h += '</div>';
@@ -207,8 +243,6 @@
     if (!d) return '';
     var W = 620, H = 132, PADL = 8, PADR = 8, TOP = 16, BOT = 40;
     var lo = d.hmin, hi = d.hmax, span = Math.max(1, hi - lo);
-    // 25 points: the 24 hourly samples plus midnight repeated, so the curve
-    // reaches the right-hand edge instead of stopping an hour short.
     var pts = d.hourly.concat([d.hourly[23]]);
     function X(i) { return PADL + i * (W - PADL - PADR) / 24; }
     function Y(v) { return TOP + (1 - (v - lo) / span) * (H - TOP - BOT); }
@@ -217,7 +251,6 @@
     for (var i = 0; i < pts.length; i++) {
       var x = X(i), y = Y(pts[i]);
       if (!i) { line += 'M' + x.toFixed(1) + ' ' + y.toFixed(1); continue; }
-      // Catmull-Rom-ish smoothing: tides are a sine, not a sawtooth
       var px = X(i - 1), py = Y(pts[i - 1]), cx = (px + x) / 2;
       line += ' C' + cx.toFixed(1) + ' ' + py.toFixed(1) + ',' + cx.toFixed(1) + ' ' + y.toFixed(1) +
               ',' + x.toFixed(1) + ' ' + y.toFixed(1);
@@ -282,9 +315,6 @@
       d.lows.map(function (e) { return 'Low ' + e.t + ' ' + e.cm + ' cm'; }).join(', ') + '.';
   }
 
-  /* What the tide actually means for what is planned that day. The sandbar at
-     17-END, the reef walk at Yoshino and the mangrove kayak all want the water
-     low; everything else on Miyakojima is indifferent to it. */
   var TIDE_PLANS = {
     '2026-10-22': ['17-END', 'the sandbar is a low-tide feature — it drowns at high water'],
     '2026-10-23': ['Yoshino Kaigan', 'the reef shallows snorkel best either side of low water'],
@@ -310,6 +340,75 @@
     return out.join(' ');
   }
 
+  /* ---------- weather tab ---------- */
+  /* Legs are keyed by the `loc` in weather.json, not by the nav slug — the two
+     differ for Kakunodate, whose weather station is Lake Tazawa. Keying this by
+     the nav slug matched zero days and dropped the leg from the page entirely. */
+  var LEGS = [
+    { key: 'tokyo',  label: 'Tokyo' },
+    { key: 'miyako', label: 'Miyakojima' },
+    { key: 'tazawa', label: 'Kakunodate & Lake Tazawa' },
+    { key: 'aomori', label: 'Aomori' }
+  ];
+
+  var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  /* Derive the label from the date rather than a hand-kept table: the table
+     silently missed the four travel-day records (d-21-out, d-26, d-29-out, d-2)
+     and rendered their raw ids as headings. */
+  function dayLabel(rec, id) {
+    var d = new Date(rec.date + 'T00:00');
+    var s = DOW[d.getDay()] + ' ' + d.getDate() + ' ' + MON[d.getMonth()];
+    /* Two records share a date on each travel day — one for the place you leave,
+       one for the place you arrive. Say which is which. */
+    if (/-out$/.test(id)) s += ' · leaving';
+    return s;
+  }
+
+  function legDates(days) {
+    if (!days.length) return '';
+    var a = new Date(days[0].date + 'T00:00');
+    var b = new Date(days[days.length - 1].date + 'T00:00');
+    var left = a.getDate() + (a.getMonth() === b.getMonth() ? '' : ' ' + MON[a.getMonth()]);
+    return left + '–' + b.getDate() + ' ' + MON[b.getMonth()];
+  }
+
+  function renderWeatherTab() {
+    var tab = document.getElementById('v-weather');
+    if (!tab || !WX) return;
+    var body = tab.querySelector('.wx-tab-body');
+    if (!body) return;
+
+    var html = '';
+    LEGS.forEach(function (leg) {
+      var legDays = Object.keys(WX.days)
+        .filter(function (id) { return WX.days[id].loc === leg.key; })
+        .map(function (id) { return { id: id, rec: WX.days[id] }; })
+        .sort(function (x, y) { return x.rec.date < y.rec.date ? -1 : 1; });
+
+      if (!legDays.length) return;
+      html += '<div class="wx-leg">';
+      html += '<div class="wx-leg-head"><h3>' + esc(leg.label) + '</h3>' +
+              '<span class="wx-leg-dates">' +
+              esc(legDates(legDays.map(function (o) { return o.rec; }))) + '</span></div>';
+
+      legDays.forEach(function (o) {
+        html += '<div class="wx-day-row">';
+        html += '<div class="wx-day-label">' + esc(dayLabel(o.rec, o.id)) + '</div>';
+        html += strip(o.id, o.rec);
+        if (o.rec.loc === 'miyako') html += tidePanel(o.rec.date);
+        html += '</div>';
+      });
+
+      html += '</div>';
+    });
+
+    body.innerHTML = html ||
+      '<p style="color:var(--ink-3);padding:24px 0">Weather data unavailable.</p>';
+  }
+
   /* ---------- render ---------- */
   function render() {
     Object.keys(WX.days).forEach(function (id) {
@@ -317,27 +416,26 @@
       if (!card) return;
       var rec = WX.days[id];
 
+      // Weather chip (temp + daylight hours) in the day header
       var chips = card.querySelector('.daychips');
       if (chips) {
         var old = chips.querySelector('.daychip.wx');
         if (old) old.remove();
         var c = chip(rec);
         if (c) chips.insertBefore(c, chips.firstChild);
-      }
 
-      var body = card.querySelector('.daybody');
-      if (!body) return;
-      var prev = body.querySelector('.wxstrip');
-      if (prev) {
-        var host = prev.parentNode;
-        host.innerHTML = strip(id, rec) + (rec.loc === 'miyako' ? tidePanel(rec.date) : '');
-      } else {
-        var wrap = document.createElement('div');
-        wrap.className = 'wxwrap';
-        wrap.innerHTML = strip(id, rec) + (rec.loc === 'miyako' ? tidePanel(rec.date) : '');
-        if (wrap.firstChild) body.insertBefore(wrap, body.firstChild);
+        // Tide mini-chip for Miyakojima days
+        if (rec.loc === 'miyako') {
+          var oldTide = chips.querySelector('.daychip.tide-mini');
+          if (oldTide) oldTide.remove();
+          var tc = tideChip(rec.date);
+          if (tc) chips.appendChild(tc);
+        }
       }
     });
+
+    // Populate the weather tab
+    renderWeatherTab();
   }
 
   /* ---------- the live forecast ---------- */
@@ -352,8 +450,6 @@
     var start = new Date(w[0] + 'T00:00'), end = new Date(w[1] + 'T00:00');
     var daysToStart = Math.round((start - today) / 86400000);
     var daysPastEnd = Math.round((today - end) / 86400000);
-    // Nothing to ask for until the forecast horizon actually reaches day one,
-    // and nothing to ask for once the trip is over.
     return daysToStart <= HORIZON && daysPastEnd <= 0;
   }
 
@@ -410,10 +506,10 @@
   function maybeLive() {
     if (!worthFetching()) return;
     var c = cachedLive();
-    if (c) { live = c; render(); }                       // show it instantly, offline included
-    if (c && Date.now() - c.__at < FRESH) return;        // still fresh, leave the network alone
+    if (c) { live = c; render(); }
+    if (c && Date.now() - c.__at < FRESH) return;
     fetchLive().then(function (l) { live = l; render(); })
-               .catch(function () { /* keep whatever we already showed */ });
+               .catch(function () {});
   }
 
   /* ---------- go ---------- */
@@ -427,5 +523,9 @@
     render();
     maybeLive();
     window.addEventListener('online', maybeLive);
+    // Re-render weather tab when user navigates to it
+    window.addEventListener('hashchange', function () {
+      if ((location.hash || '').indexOf('weather') !== -1) renderWeatherTab();
+    });
   });
 })();

@@ -219,6 +219,20 @@ summary.daysum:hover .daytoggle{opacity:.72;}
 .daychip.wx .wxt{font-weight:700; color:var(--ink);}
 .daychip.wx .wxlo{opacity:.6;}
 .daychip.wx.is-live{border-color:var(--c);}
+/* Daylight rides in the same chip as the temperature — it is the other thing
+   you check before deciding what a day can hold, and in late-October Tohoku it
+   is the more surprising of the two. Divided off so it reads as a second fact. */
+.daychip.wx .wxdaylight{
+  padding-left:7px; margin-left:2px; border-left:1px solid var(--rule-2);
+  opacity:.75; font-variant-numeric:tabular-nums;
+}
+
+/* Tide times on Miyakojima day headers. Arrows rather than words: at chip size
+   "High 16:46 · Low 10:02" does not fit, and ↑↓ is unambiguous once seen. */
+.daychip.tide-mini{
+  color:var(--miyako); border-color:var(--miyako);
+  font-variant-numeric:tabular-nums; letter-spacing:.02em;
+}
 
 .wxwrap{margin-bottom:16px;}
 .wxstrip{background:var(--sunken); border:1px solid var(--rule); border-radius:14px; padding:14px 16px;}
@@ -245,8 +259,15 @@ summary.daysum:hover .daytoggle{opacity:.72;}
 .wxalt .an i{font-style:normal; font-family:var(--f-mono); font-size:10px; color:var(--ink-3);}
 .wxalt .at{font-variant-numeric:tabular-nums; color:var(--ink); font-weight:600;}
 .wxalt .at .lo{color:var(--ink-3); font-weight:400; margin-left:4px;}
+.wxalt .asnow{
+  font-family:var(--f-mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--warn); background:var(--warn-bg); border:1px solid var(--warn-rule);
+  border-radius:99px; padding:2px 7px; white-space:nowrap;
+}
 
-.wxsrc{margin:10px 0 0; font-size:11.5px; line-height:1.5; color:var(--ink-3); max-width:70ch;}
+/* --ink-3 only reaches 3.6:1 on --sunken, which is too thin for 11.5px type.
+   --ink-2 gets it to 7.4:1 and the smaller size keeps it subordinate anyway. */
+.wxsrc{margin:10px 0 0; font-size:11.5px; line-height:1.5; color:var(--ink-2); max-width:70ch;}
 
 .tide{margin-top:12px; background:var(--sunken); border:1px solid var(--rule); border-radius:14px; padding:14px 16px;}
 .tidehead{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;}
@@ -255,6 +276,15 @@ summary.daysum:hover .daytoggle{opacity:.72;}
 .tidechart{width:100%; height:auto; margin-top:6px; display:block; overflow:visible;}
 .tarea{fill:var(--sea-1); opacity:.2;}
 .tline{fill:none; stroke:var(--sea-2); stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round;}
+/* In the dark palette --sea-2 falls to 2.2:1 against --sunken — too faint for
+   the one line the panel exists to show. --sea-1 lifts it to 3.9:1. Both dark
+   triggers are covered: the system preference, and an explicit theme choice. */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .tline{stroke:var(--sea-1);}
+  :root:not([data-theme="light"]) .tarea{opacity:.26;}
+}
+:root[data-theme="dark"] .tline{stroke:var(--sea-1);}
+:root[data-theme="dark"] .tarea{opacity:.26;}
 .tidechart circle.th{fill:var(--sea-2);}
 .tidechart circle.tlo{fill:var(--sun); stroke:var(--sea-3); stroke-width:1.4;}
 .tidechart text{font-family:var(--f-mono); font-size:13px; fill:var(--ink-3);}
@@ -271,6 +301,40 @@ summary.daysum:hover .daytoggle{opacity:.72;}
 .tidenote{margin:10px 0 0; font-size:13px; line-height:1.55; color:var(--ink-2); max-width:70ch;}
 .tidenote b{color:var(--ink);}
 
+/* ---------- the Weather page ---------- */
+/* One block per leg, one row per day. The day label is a sticky-ish left rail on
+   desktop and a heading on phones, so a long scroll never loses which day you
+   are looking at. */
+.wx-tab-body{margin-top:30px;}
+.wx-leg{margin-bottom:44px;}
+.wx-leg-head{
+  display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+  flex-wrap:wrap; padding-bottom:9px; margin-bottom:18px; border-bottom:2px solid var(--rule-2);
+}
+.wx-leg-head h3{font-size:23px;}
+.wx-leg-dates{
+  font-family:var(--f-mono); font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); font-weight:600;
+}
+.wx-day-row{
+  display:grid; grid-template-columns:132px 1fr; gap:0 22px;
+  padding:16px 0; border-top:1px solid var(--rule);
+}
+.wx-day-row:first-of-type{border-top:none; padding-top:2px;}
+.wx-day-label{
+  font-family:var(--f-mono); font-size:12px; letter-spacing:.05em; font-weight:700;
+  color:var(--ink-2); padding-top:15px; text-transform:uppercase;
+}
+/* A day with a tide panel has two stacked children, so the grid needs them to
+   share the second column rather than spilling into a third. */
+.wx-day-row > .wxstrip, .wx-day-row > .tide{grid-column:2;}
+
+@media(max-width:760px){
+  .wx-day-row{grid-template-columns:1fr; gap:8px;}
+  .wx-day-row > .wxstrip, .wx-day-row > .tide{grid-column:1;}
+  .wx-day-label{padding-top:0;}
+}
+
 @media(max-width:560px){
   .wxgrid{gap:10px 18px;}
   .wxtemps .hi{font-size:26px;}
@@ -278,6 +342,8 @@ summary.daysum:hover .daytoggle{opacity:.72;}
      carry every high and low anyway, with heights */
   .tidechart text.tl-th,.tidechart text.tl-tlo{display:none;}
   .tidechart text{font-size:19px;}
+  /* the daylight range is the first thing to go when the chip row gets tight */
+  .daychip.wx .wxdaylight{font-size:10.5px;}
 }
 .tl{display:grid; grid-template-columns:78px 1fr; gap:0 16px; margin-top:6px;}
 .tl dt{font-family:var(--f-mono); font-size:12.5px; font-variant-numeric:tabular-nums; color:var(--ink-3); padding:7px 0; border-top:1px solid var(--rule); white-space:nowrap;}
@@ -1203,6 +1269,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <a class="navlink" href="#/aomori" data-nav="aomori" style="--nc:var(--aomori)">Aomori</a>
       <a class="navlink" href="#/registry" data-nav="registry">Registry</a>
       <a class="navlink" href="#/index" data-nav="index">Reference</a>
+      <a class="navlink" href="#/weather" data-nav="weather">Weather</a>
       <a class="navlink" href="#/money" data-nav="money">Money</a>
       <a class="navlink" href="#/plan" data-nav="plan">Plan</a>
       <button type="button" class="navlink dltrigger" hidden>↓ Offline</button>
@@ -1225,8 +1292,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
         <button type="button" class="railday is-leg" style="--rc:var(--miyako)" data-leg="miyako" data-day="21"><span class="dn">21</span><span class="dw">Wed</span><span class="dm">Fly</span></button>
         <button type="button" class="railday" style="--rc:var(--miyako)" data-leg="miyako" data-day="22"><span class="dn">22</span><span class="dw">Thu</span><span class="dm">Dive</span></button>
         <button type="button" class="railday" style="--rc:var(--miyako)" data-leg="miyako" data-day="23"><span class="dn">23</span><span class="dw">Fri</span><span class="dm">Dive</span></button>
-        <button type="button" class="railday" style="--rc:var(--miyako)" data-leg="miyako" data-day="24"><span class="dn">24</span><span class="dw">Sat</span><span class="dm">Dive</span></button>
-        <button type="button" class="railday" style="--rc:var(--miyako)" data-leg="miyako" data-day="25"><span class="dn">25</span><span class="dw">Sun</span><span class="dm">No-fly</span></button>
+        <button type="button" class="railday" style="--rc:var(--miyako)" data-leg="miyako" data-day="24"><span class="dn">24</span><span class="dw">Sat</span><span class="dm">Turtles</span></button>
+        <button type="button" class="railday" style="--rc:var(--miyako)" data-leg="miyako" data-day="25"><span class="dn">25</span><span class="dw">Sun</span><span class="dm">Island</span></button>
         <button type="button" class="railday is-leg" style="--rc:var(--kaku)" data-leg="kakunodate" data-day="26"><span class="dn">26</span><span class="dw">Mon</span><span class="dm">Transit</span></button>
         <button type="button" class="railday" style="--rc:var(--kaku)" data-leg="kakunodate" data-day="27"><span class="dn">27</span><span class="dw">Tue</span><span class="dm">Gorge</span></button>
         <button type="button" class="railday" style="--rc:var(--kaku)" data-leg="kakunodate" data-day="28"><span class="dn">28</span><span class="dw">Wed</span><span class="dm">Peak</span></button>
@@ -1410,8 +1477,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
         <p>You are driving the cars back to <b>Morioka</b> and taking the Shinkansen from there — no one-way drop fee, and ¥2,660 cheaper each. That means <b>keeping the cars overnight on the 1st</b> and being on the road by 07:00, at Morioka by 09:15, and Narita by about 13:55. The <b>Seattle flight at 17:25</b> is the one that sets the clock, not the 18:25.</p></div>
       <div class="item green"><span class="sev">Good news · 28 Oct</span><h4>Akita-Komagatake is open — and you can drive up</h4>
         <p>Semboku City's page is unambiguous: the prefectural Komagatake Line closes for winter <b>from 1 November to 31 May</b>, so the 28th is inside the season. The private-vehicle restriction only runs to <b>20 October</b>, so you drive yourselves up to the 8th Station at ~1,300 m. Summit snow is the one variable.</p></div>
-      <div class="item amber"><span class="sev">Safety · 24–26 Oct</span><h4>No-fly window after diving</h4>
-        <p>You fly at 11:50 on the 26th, and the standard surface interval after several days of repetitive diving is 18 hours minimum. <b>Finish diving on the 24th</b> and keep the 25th snorkel-and-beach only.</p></div>
+      <div class="item green"><span class="sev">Resolved · 23–26 Oct</span><h4>The no-fly window is no longer a constraint</h4>
+        <p>You fly at 11:50 on the 26th, and the standard surface interval after repetitive diving is 18 hours minimum. Because <b>diving now finishes on the 23rd</b>, there are nearly three days between the last tank and the cabin — so the rule stops being something you have to calculate. The 24th and 25th are snorkel-and-beach by design, not as a buffer.</p></div>
       <div class="item amber"><span class="sev">Timing · 31 Oct</span><h4>Osorezan closes for the season on 31 October</h4>
         <p>If the sulphur-and-ash netherworld on Shimokita appeals, <b>30 or 31 October is your only window</b> — shut from 1 November until May. A 2h+ drive each way, so it's a whole day, and it competes with Hirosaki.</p></div>
       <div class="item amber"><span class="sev">Logistics · 21 Oct</span><h4>You land at Narita but leave from Haneda</h4>
@@ -1982,7 +2049,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <h1>Miyakojima<span>Japan's best cave diving, in its best month</span></h1>
       <div class="meta">
         <span><b>Air</b> ~28 °C</span><span><b>Sea</b> ~27 °C</span><span><b>Sunset</b> ~18:05</span>
-        <span><b>Dive days</b> 22 · 23 · 24</span><span><b>All</b> Open Water</span><span><b>No-fly</b> 25 Oct</span>
+        <span><b>Dive days</b> 22 · 23</span><span><b>All</b> Open Water</span><span><b>In the water</b> 24 · 25</span>
       </div>
     </div>
 
@@ -2006,7 +2073,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
     <svg class="dayicon" viewBox="0 0 60 60" aria-hidden="true"><path d="M2 42 Q30 14 58 40" stroke="var(--miyako)" stroke-width="5" fill="none" stroke-linecap="round"/><g fill="var(--miyako)"><rect x="14" y="36" width="4" height="18"/><rect x="29" y="28" width="4" height="26"/><rect x="44" y="36" width="4" height="18"/></g></svg>
     <div class="dayhead"><span class="daynum">Wed 21 Oct</span><h3>Arrive, collect the cars, do nothing much</h3><span class="daytag move">HND → MMY</span></div>
     <p class="daygist">Land 13:35, cars at 14:00, then fill the gap to the 16:00 check-in with the Irabu bridge. Sunset at Maehama, sanshin izakaya in Hirara.</p>
-    <div class="daychips"><span class="daychip">Lands 13:35</span><span class="daychip">Car pickup</span><span class="daychip">Irabu Ohashi</span><span class="daychip">Door code 16:00</span><span class="daychip">Sunset 18:05</span></div>
+    <div class="daychips"><span class="daychip">Lands 13:35</span><span class="daychip">Car pickup</span><span class="daychip">Irabu Ohashi</span><span class="daychip">Door code 16:00</span></div>
     <span class="daytoggle"><span class="lbl-shut">Hour by hour</span><span class="lbl-open">Hide detail</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </summary>
 <div class="daybody"><dl class="tl">
@@ -2022,93 +2089,75 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
           <details class="day" id="d-22">
   <summary class="daysum">
     <svg class="dayicon" viewBox="0 0 60 60" aria-hidden="true"><ellipse cx="34" cy="30" rx="20" ry="13" fill="var(--miyako)"/><polygon points="14,30 2,18 2,42" fill="var(--miyako)"/><circle cx="41" cy="26" r="3" fill="var(--snow)"/></svg>
-    <div class="dayhead"><span class="daynum">Thu 22 Oct</span><h3>Dive day one</h3><span class="daytag">Split tracks</span></div>
-    <p class="daygist">Shakedown dives off Shimoji for the divers; Irabu, 17-END and Makiyama Observatory by car for everyone else.</p>
-    <div class="daychips"><span class="daychip">2–3 tanks</span><span class="daychip">Devil's Palace?</span><span class="daychip">17-END tide</span><span class="daychip">Maehama sunset</span></div>
+    <div class="dayhead"><span class="daynum">Thu 22 Oct</span><h3>Dive day one</h3><span class="daytag">Boat day</span></div>
+    <p class="daygist">The shakedown. Two tanks off Shimoji at Open Water depth, back at the harbour mid-afternoon, then Maehama for sunset.</p>
+    <div class="daychips"><span class="daychip">2 tanks</span><span class="daychip">Shimoji</span><span class="daychip">Within 18 m</span><span class="daychip">Maehama sunset</span></div>
     <span class="daytoggle"><span class="lbl-shut">Hour by hour</span><span class="lbl-open">Hide detail</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </summary>
 <div class="daybody">
-              <div class="tracks">
-                <div class="track hard"><span class="label">Divers</span><h4>Shimoji, two or three tanks</h4>
-                  <p>Day one is the shakedown — expect the shop to start somewhere forgiving and read the group before committing to Devil's Palace.</p>
-                  <ul><li>Doing the course: Advanced dives 1 and 2</li><li>Not doing it: Nakanoshima Channel, Mini Grotto</li><li>Back at the harbour by mid-afternoon</li></ul>
-                  <div class="rejoin">Rejoin · Maehama for sunset</div></div>
-                <div class="track easy"><span class="label">Non-divers</span><h4>Irabu &amp; Shimoji by car</h4>
-                  <p>The two islands across the bridge are a half-day of pure driving pleasure with almost no effort.</p>
-                  <ul><li><b>Makiyama Observatory</b> — the classic view back along the bridge</li><li><b>17-END</b> — only fully appears at low tide, so check the table</li><li><b>Toguchi-no-hama</b> for a long, empty beach</li></ul>
-                  <div class="rejoin">Rejoin · Maehama for sunset</div></div>
-              </div>
+              <dl class="tl">
+                <dt>08:00</dt><dd><b>Shop pickup or drive to the harbour</b> — confirm which when you book. Bring your own computers and cards; everything else the shop provides.</dd>
+                <dt>Morning</dt><dd><b>Two tanks off Shimoji-jima.</b> Day one is the shakedown, so expect somewhere forgiving while the guide reads the group. <b>Nakanoshima Channel</b> is the one to ask for — a bright sand channel between reef walls, comfortably inside 18 m, and the best of the shallow sites rather than a consolation for them.</dd>
+                <dt>Mid-afternoon</dt><dd><b>Back at the harbour.</b> Rinse and hang the gear so it is dry for tomorrow.</dd>
+                <dt>17:30</dt><dd><b>Maehama for sunset</b>, as ever. Sunset 18:07.</dd>
+              </dl>
+              <div class="callout good"><span class="ct">Ask for the shallow-site list by name</span>
+                <p>Miyako's famous three all sit below your limit, so the day is won or lost on which <i>shallow</i> sites you get. <b>Nakanoshima Channel</b>, <b>Mini Grotto</b> and the <b>Wonderful Cave</b> surrounds are the good ones — ask for them by name rather than leaving it to the guide's default.</p></div>
             </div>
 </details>
 
           <details class="day" id="d-23">
   <summary class="daysum">
     <svg class="dayicon" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="18" fill="none" stroke="var(--miyako)" stroke-width="4"/><circle cx="30" cy="30" r="7" fill="var(--miyako)"/></svg>
-    <div class="dayhead"><span class="daynum">Fri 23 Oct</span><h3>Dive day two</h3><span class="daytag">Split tracks</span></div>
-    <p class="daygist">The headline sites if the sea allows. Non-divers take the east coast, snorkel Yoshino, and finish in the big onsen.</p>
-    <div class="daychips"><span class="daychip">Antonio Gaudí</span><span class="daychip">Higashi-Hennazaki</span><span class="daychip">Yoshino Kaigan</span><span class="daychip">Shigira onsen</span></div>
+    <div class="dayhead"><span class="daynum">Fri 23 Oct</span><h3>Dive day two — last tanks of the trip</h3><span class="daytag move">Final dive day</span></div>
+    <p class="daygist">The better of the two, with a day's read on the group behind it. Twin Caves and the Wonderful Cave surrounds, then the big onsen at Shigira.</p>
+    <div class="daychips"><span class="daychip">Last dive day</span><span class="daychip">Twin Caves</span><span class="daychip">Wonderful Cave</span><span class="daychip">Shigira onsen</span></div>
     <span class="daytoggle"><span class="lbl-shut">Hour by hour</span><span class="lbl-open">Hide detail</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </summary>
 <div class="daybody">
-              <div class="tracks">
-                <div class="track hard"><span class="label">Divers</span><h4>The big one</h4>
-                  <p>With a day's read on the group, this is when the shop should commit to the headline sites.</p>
-                  <ul><li>Doing the course: Advanced dives 3 and 4 — deep and navigation</li><li>Not doing it: Twin Caves, Mini Toriike, Wonderful Cave</li></ul>
-                  <div class="rejoin">Rejoin · Shigira onsen, then dinner</div></div>
-                <div class="track easy"><span class="label">Non-divers</span><h4>East coast &amp; a hot spring</h4>
-                  <ul><li><b>Cape Higashi-Hennazaki</b> — 2 km of land with ocean both sides, lighthouse at the tip</li><li><b>Yoshino Kaigan</b> — best snorkelling on the island; reef shoes, mind the current</li><li><b>Aragusuku</b> next door if Yoshino is choppy</li><li><b>Shigira Ougon Onsen</b>, the largest hot spring in Okinawa</li></ul>
-                  <div class="rejoin">Rejoin · Shigira onsen, then dinner</div></div>
-              </div>
+              <div class="callout"><span class="ct">Hard stop</span>
+                <p>The last day anyone gets in a tank. You fly at 11:50 on the 26th, and finishing today puts <b>nearly three days</b> between your last dive and the cabin — far past the 18-hour minimum, and the reason the 24th and 25th are dry by design rather than by accident.</p></div>
+              <dl class="tl">
+                <dt>08:00</dt><dd><b>Out again.</b> Same shop, same boat, and by now they know what the group can do.</dd>
+                <dt>Morning</dt><dd><b>Two tanks, the good ones.</b> This is the day to push for <b>Twin Caves</b> and the <b>Wonderful Cave</b> surrounds — swim-throughs and cathedral light, all inside Open Water depth. If the north wind is up, Shimoji is the sheltered side and the shop will already know it.</dd>
+                <dt>Mid-afternoon</dt><dd><b>Back in, gear rinsed and hung for the last time.</b> It needs to be properly dry before it goes in a case on the 25th.</dd>
+                <dt>16:00</dt><dd><b>Shigira Ougon Onsen</b> — the largest hot spring in Okinawa, and exactly what two days on a boat asks for.</dd>
+                <dt>19:30</dt><dd><b>Dinner in Hirara.</b></dd>
+              </dl>
             </div>
 </details>
 
           <details class="day" id="d-24">
   <summary class="daysum">
     
-    <div class="dayhead"><span class="daynum">Sat 24 Oct</span><h3>Dive day three — last tanks of the trip</h3><span class="daytag move">Final dive day</span></div>
-    <p class="daygist">Last tanks of the trip, which leaves a clear day and a half before Monday&rsquo;s flight. Kayak to the Pumpkin Rock for the others, then the big group dinner.</p>
-    <div class="daychips"><span class="daychip">Last dive day</span><span class="daychip">Pumpkin Rock</span><span class="daychip">Miyako beef</span><span class="daychip">Book dinner</span></div>
+    <div class="dayhead"><span class="daynum">Sat 24 Oct</span><h3>Turtles, and the Pumpkin Rock</h3><span class="daytag">Whole group</span></div>
+    <p class="daygist">First of two dry days, everyone together. Sea turtles in the morning, clear SUP to the Pumpkin Rock after lunch, then the big group dinner.</p>
+    <div class="daychips"><span class="daychip">No tanks</span><span class="daychip">Sea turtles</span><span class="daychip">Pumpkin Rock</span><span class="daychip">Miyako beef</span><span class="daychip">Book dinner</span></div>
     <span class="daytoggle"><span class="lbl-shut">Hour by hour</span><span class="lbl-open">Hide detail</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </summary>
 <div class="daybody">
-              <div class="callout"><span class="ct">Hard stop</span>
-                <p>The last day anyone gets in a tank. You fly at 11:50 on the 26th and need an 18-hour minimum surface interval after several days of repetitive diving — finishing today gives a comfortable margin instead of a nervous one.</p></div>
-              <div class="tracks">
-                <div class="track hard"><span class="label">Divers</span><h4>Mop up the wish list</h4>
-                  <p>If you took the course you are certified by now — this is the day for <b>Devil's Palace</b>. If you didn't, ask for Yabiji reef or a second run at whichever shallow site the group loved most.</p>
-                  <div class="rejoin">Rejoin · Maehama, then Hirara</div></div>
-                <div class="track easy"><span class="label">Non-divers</span><h4>Kayak to the Pumpkin Rock</h4>
-                  <p>The standout non-diving activity: paddle to a limestone sea cave holding a huge pumpkin-shaped formation, usually bundled with SUP and reef snorkelling. Half a day, low effort, and the divers will wish they'd come.</p>
-                  <ul><li>Or the <b>Shimajiri mangrove</b> kayak, calmer water still</li></ul>
-                  <div class="rejoin">Rejoin · Maehama, then Hirara</div></div>
-              </div>
-              <div class="callout good">
-                <span class="ct">Take Route 341, not the expressway</span>
-                <p>Left to itself a satnav will send you down the Akita expressway and you will see almost nothing. The drive worth doing runs <b>north on Route 341 from Tazawako</b> — a mountain road with very little traffic, past <b>Akisen-ko</b> and then <b>Hosen-ko</b>, whose water is a startling lapis blue because the Tamagawa hot spring feeding it is acidic enough to colour the lake. <b>Tamagawa Onsen</b> is on the way if you want to stop.</p>
-                <p>At Kazuno pick up <b>Route 103</b> and climb to <b>Hakka Pass</b> (631 m), where Lake Towada opens up below with the Hakkoda range behind it. Then the lake shore, <b>Oirase on Route 102</b>, and finally <b>Route 103 over Hakkoda</b> — topping out at <b>Kasamatsu Pass, 1,040 m</b>, with Suiren-numa five minutes off the road and the whole ridge reflected in it.</p>
-                <p class="foot" style="margin-top:12px;">Set the waypoints in Maps rather than just the destination, or it will quietly reroute you.</p>
-              </div>
-
-              <div class="callout good">
-                <span class="ct">You have dodged the road closure by a year</span>
-                <p>Oirase closes Route 102 to private cars for a week each autumn, with shuttle buses instead. <b>In 2025 that ran 27 October to 2 November</b> — which would have caught you squarely on the 29th. <b>For 2026 it has moved to 7–13 September</b>, so the gorge road is open to you. Worth re-checking nearer the time, since the dates move each year, but as published you can drive it.</p>
-              </div>
-
-              <div class="callout good"><span class="ct">Tonight</span>
-                <p>Make this the big group dinner. <b>Miyako beef</b> — yakiniku, nigiri, or the beef yakisoba the island izakayas do — plus umibudo, goya champuru and gurukun. Find one with live sanshin and book it.</p></div>
+              <div class="callout good"><span class="ct">Why this is not the consolation day</span>
+                <p>Everything Miyako's deep sites have that you cannot reach, the shallows give back in light. <b>Turtle encounter rates here are quoted at or near 100%</b> and the reviews bear it out, the water is 28°C, and the whole group is in it together rather than split across a harbour wall. Two days of this is the trip most people actually remember.</p></div>
+              <dl class="tl">
+                <dt>09:00</dt><dd><b>Sea turtle snorkelling.</b> Green turtles sit in shallow sheltered water off the north coast — half a day, ¥6,000–8,000, wetsuits and usually hotel pickup included. No experience needed, which is the point when all six of you are going.</dd>
+                <dt>12:30</dt><dd><b>Lunch in Hirara</b>, then regroup.</dd>
+                <dt>14:00</dt><dd><b>Clear SUP to the Pumpkin Rock.</b> A transparent-hulled board over this water is faintly absurd, and the rock — a limestone dome inside a sea cave — is only reachable at the right tide. <b>The operator picks the hour, not you</b>; check today's low water on the tide bar above. The <b>Shimajiri mangrove</b> paddle is the calmer swap.</dd>
+                <dt>17:30</dt><dd><b>Maehama</b>, or Painagama for a beer closer to town.</dd>
+                <dt>19:30</dt><dd><b>The big group dinner.</b> <b>Miyako beef</b> — yakiniku, nigiri, or the beef yakisoba the island izakayas do — plus umibudo, goya champuru and gurukun. Find one with live sanshin and book it ahead.</dd>
+              </dl>
             </div>
 </details>
 
           <details class="day" id="d-25">
   <summary class="daysum">
     <svg class="dayicon" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="26" r="14" fill="var(--sun)"/><g stroke="var(--sun)" stroke-width="3.5" stroke-linecap="round"><path d="M30 2 L30 8"/><path d="M52 26 L58 26"/><path d="M8 26 L2 26"/><path d="M46 10 L50 6"/><path d="M14 10 L10 6"/></g><path d="M2 50 Q 16 44 30 50 T 58 48" stroke="var(--miyako)" stroke-width="4" fill="none"/></svg>
-    <div class="dayhead"><span class="daynum">Sun 25 Oct</span><h3>Surface interval — the island day</h3><span class="daytag">No diving</span></div>
-    <p class="daygist">No diving. The island cases go to Narita in the morning, then the whole group out in the cars: Ikema, Miyako soba by 11:00, Sunayama, a distillery, golden-hour bridge, then stars.</p>
-    <div class="daychips"><span class="daychip">No diving</span><span class="daychip">Island cases to Narita</span><span class="daychip">Ikema Island</span><span class="daychip">Miyako soba</span><span class="daychip">Stargazing</span></div>
+    <div class="dayhead"><span class="daynum">Sun 25 Oct</span><h3>The island day — Ikema, Sunayama, stars</h3><span class="daytag">Whole group</span></div>
+    <p class="daygist">Second dry day. The island cases go to Narita in the morning, then the whole group out in the cars: Ikema, Miyako soba by 11:00, Sunayama, a distillery, golden-hour bridge, then stars.</p>
+    <div class="daychips"><span class="daychip">Island cases to Narita</span><span class="daychip">Ikema Island</span><span class="daychip">Miyako soba</span><span class="daychip">Sunayama</span><span class="daychip">Stargazing</span></div>
     <span class="daytoggle"><span class="lbl-shut">Hour by hour</span><span class="lbl-open">Hide detail</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </summary>
 <div class="daybody">
-              <p style="font-size:15.5px; color:var(--ink-2); margin-bottom:6px;">Kept dry by choice rather than by rule — an 11:50 flight on the 26th would clear a morning dive today on an 18-hour interval, and only just on a 24-hour one. After three days of repetitive diving, 24 hours is the standard worth keeping. It is also the day you'd want anyway: whole group, two cars, at whatever pace suits. Pick four or five:</p>
+              <p style="font-size:15.5px; color:var(--ink-2); margin-bottom:6px;">Your last dive was Friday, so there is no surface-interval arithmetic to do today — the flight is more than two days clear. This is simply the day the island is best seen: whole group, two cars, at whatever pace suits. Pick four or five:</p>
               <dl class="tl">
                 <dt>Before you go out</dt><dd><b>Yamato collects the island cases.</b> Tropical and dive gear, addressed to the Yamato counter at Narita, delivery designated <b>1 November</b>. Your cold-weather cases are already in Akita. Book the pickup ahead of the day. Everything you need for the next week goes into a backpack before they leave — passports, cash, cards, medication, dive computers. Wetsuits should have dried overnight; pack them last.</dd>
                 <dt>Morning</dt><dd><b>Ikema Island</b> over the 1,425 m Ikema Ohashi. Wetlands, sea cliffs, Nishihennazaki at the northern tip.</dd>
@@ -2168,35 +2217,35 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       </div>
 
       <div class="legpanel" data-print-title="Diving" role="tabpanel" id="p-miy-dive" aria-labelledby="t-miy-dive" tabindex="0" hidden>
-        <div class="blockhead"><h3>The dive briefing</h3><span class="tag">All Open Water · 22–24 Oct</span></div>
-        <p class="lede">Miyako isn't a coral-garden destination — it's a limestone maze of arches, tunnels and grottoes cut through the rock off Shimoji-jima, and that terrain is what people fly in for. The catch is depth: <b>all six of you are Open Water, which caps you at 18 m</b>, and the three sites Miyako is famous for all sit below that line. This section is built around that rather than around pretending otherwise.</p>
+        <div class="blockhead"><h3>The dive briefing</h3><span class="tag">All Open Water · 22–23 Oct</span></div>
+        <p class="lede">Miyako isn't a coral-garden destination — it's a limestone maze of arches, tunnels and grottoes cut through the rock off Shimoji-jima, and that terrain is what people fly in for. The catch is depth: <b>all six of you are Open Water, which caps you at 18 m</b>, and the three sites Miyako is famous for all sit below that line. <b>You have decided against the Advanced course</b>, so this section is built around diving well inside 18 m — which, on this island, is a much better hand than it sounds.</p>
 
         <div class="callout">
           <span class="ct">Where 18 metres leaves you</span>
-          <p>Devil's Palace bottoms out around <b>25 m</b>. Antonio Gaud&iacute; is <b>30 m+</b>. Toriike runs past <b>40 m</b> with cave ceilings at 23 m. None of the three is an Open Water dive, and no honest shop will take you to them on an OW card. Toriike in particular is a genuine overhead cave that operators gate behind 50 logged dives — that one is off the table this trip whatever you do.</p>
+          <p>Devil's Palace bottoms out around <b>25 m</b>. Antonio Gaud&iacute; is <b>30 m+</b>. Toriike runs past <b>40 m</b> with cave ceilings at 23 m. None of the three is an Open Water dive, and no honest shop will take you to them on an OW card. Toriike in particular is a genuine overhead cave that operators gate behind 50 logged dives — off the table this trip whatever you do. <b>Treat all three as scenery you will read about, not sites you will miss</b>, and spend the energy on getting the best shallow sites instead.</p>
         </div>
 
         <div class="callout good">
-          <span class="ct">The fix, and it fits your week exactly</span>
-          <p>You said you don't mind going a little deeper. <b>Aquatic Adventure teaches the NAUI Advanced course themselves — &yen;49,500, four dives over two days, certifying you to 30 m.</b> Run it on the <b>22nd and 23rd</b> and the <b>24th</b> becomes a fun-dive day with Devil's Palace within reach. Your three dive days were already blocked out; this only changes what they contain. Other agencies' Open Water cards are accepted as the prerequisite, so your existing cards work.</p>
+          <span class="ct">Two dive days, not three — and that is the better trip</span>
+          <p>The plan is <b>two boat days (22nd and 23rd)</b> and then <b>two dry days in the water with everyone (24th and 25th)</b>. That does three good things. It puts <b>nearly three days between your last tank and the flight</b>, so the no-fly rule stops being something to calculate. It keeps the group together for half the leg rather than splitting it across a harbour wall every morning. And it swaps a third day of the same shallow sites for turtles and the Pumpkin Rock, which is the trade most people would take if you asked them on the way home.</p>
         </div>
 
         <div class="callout">
-          <span class="ct">If nobody fancies a course</span>
-          <p>Entirely reasonable, and Miyako still delivers. The shallow, sunlit end of the cave menu is the same landscape with light coming in and an exit in sight: <b>Nakanoshima Channel, Twin Caves, Mini Toriike and the Wonderful Cave grottoes</b>. BIGHOLIDAY's own difficulty guide rates these "elementary to intermediate — shallow and lets in plenty of light". Add <b>Yabiji reef</b> for a colour-and-fish day and you have three strong days inside 18 m.</p>
+          <span class="ct">What you actually get inside 18 m</span>
+          <p>Miyako still delivers, and this is not a consolation prize. The shallow, sunlit end of the cave menu is the same limestone landscape with light coming in and an exit in sight: <b>Nakanoshima Channel, Twin Caves, Mini Toriike and the Wonderful Cave grottoes</b>. BIGHOLIDAY's own difficulty guide rates these "elementary to intermediate — shallow and lets in plenty of light". Add <b>Yabiji reef</b> if the tides offer it and two days is plenty to see the best of what is open to you.</p>
         </div>
         <div class="cards">
           <div class="card" style="--c:var(--miyako)">
             <svg class="motif" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 36 L4 14 Q4 4 14 4 L26 4 Q36 4 36 14 L36 36 Z" fill="var(--night-1)"/><circle cx="20" cy="22" r="7" fill="var(--sun)"/></svg>
-            <span class="k">Needs the Advanced card</span><h4>Devil's Palace</h4><p class="jp">魔王の宮殿</p>
-            <p>Three chambers including the "altar" and the "bedroom", entered through a hole that admits one diver at a time, then a pitch-black passage that opens into shafts of blue light. The signature Miyako dive, ~30 min by boat beside Shimoji airport.</p>
-            <p class="foot">~25 m · only after the Advanced course</p>
+            <span class="k">Out of reach this trip</span><h4>Devil's Palace</h4><p class="jp">魔王の宮殿</p>
+            <p>Three chambers including the "altar" and the "bedroom", entered through a hole that admits one diver at a time, then a pitch-black passage that opens into shafts of blue light. The signature Miyako dive, ~30 min by boat beside Shimoji airport — and the reason people come back with an Advanced card.</p>
+            <p class="foot">~25 m · below your 18 m limit</p>
           </div>
           <div class="card" style="--c:var(--miyako)">
             <svg class="motif" viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke="var(--sea-2)" stroke-width="4"><path d="M4 36 L4 20 Q4 8 14 8 Q24 8 24 20 L24 36"/><path d="M22 36 L22 24 Q22 14 30 14 Q38 14 38 24 L38 36"/></g></svg>
             <span class="k">Out of reach this trip</span><h4>Antonio Gaudí</h4><p class="jp">アントニオガウディ</p>
             <p>West side of Shimoji. A collapsed reef structure of intricate arches and towers that genuinely looks architected — hence the name. Deeper and more exposed than Devil's Palace, and the most condition-dependent of the three.</p>
-            <p class="foot">30 m+ · beyond even a fresh Advanced card</p>
+            <p class="foot">30 m+ · well below your limit</p>
           </div>
           <div class="card" style="--c:var(--miyako)">
             <svg class="motif" viewBox="0 0 40 40" aria-hidden="true"><circle cx="13" cy="14" r="9" fill="var(--sea-1)"/><circle cx="27" cy="26" r="11" fill="var(--sea-3)"/></svg>
@@ -2207,7 +2256,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
           <div class="card" style="--c:var(--miyako)">
             <svg class="motif" viewBox="0 0 40 40" aria-hidden="true"><path d="M0 8 L40 8 L40 14 L10 20 L40 26 L40 32 L0 32 Z" fill="var(--sea-1)" opacity=".85"/></svg>
             <span class="k">Your headline dive</span><h4>Nakanoshima Channel</h4><p class="jp">中の島チャネル</p>
-            <p>Shallow, bright and forgiving — a sand channel between reef walls with excellent light. Comfortably inside your 18 m limit, and good enough that it earns its place whether or not anyone takes the Advanced course.</p>
+            <p>Shallow, bright and forgiving — a sand channel between reef walls with excellent light. Comfortably inside your 18 m limit, and the site to ask for by name on the 22nd. Good enough that shops run it for experienced divers too, which is the point.</p>
             <p class="foot">5–18 m · inside your limit · also snorkellable</p>
           </div>
           <div class="card" style="--c:var(--miyako)">
@@ -2224,7 +2273,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
           </div>
         </div>
         <div class="callout"><span class="ct">Book the diving now, not in Japan</span>
-          <p>Late October is high season for exactly this. Tell the shop plainly: <b>six divers, all Open Water, three consecutive days 22–24 October, flying at 11:50 on the 26th.</b> Then ask the question that decides the week — <b>can you run the Advanced course on the 22nd–23rd so we can dive Devil's Palace on the 24th?</b> If yes, book it.</p></div>
+          <p>Late October is high season for exactly this. Tell the shop plainly: <b>six divers, all Open Water, two consecutive days 22–23 October, no course, flying at 11:50 on the 26th.</b> Then ask the question that decides the quality of those two days — <b>which shallow sites will you actually run us to?</b> You want <b>Nakanoshima Channel, Twin Caves, Mini Toriike and the Wonderful Cave grottoes</b> named back to you. A shop that answers "we'll see on the day" is a shop that will default to the easiest mooring.</p></div>
       </div>
 
       <div class="legpanel" data-print-title="Beaches &amp; drives" role="tabpanel" id="p-miy-do" aria-labelledby="t-miy-do" tabindex="0" hidden>
@@ -2318,12 +2367,12 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
             <p class="foot">Any clear night · free</p>
           </div>
         </div>
-        <div class="wet"><span class="wt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 15a4.5 4.5 0 0 1 .3-8.99A5.5 5.5 0 0 1 18 6.5a3.75 3.75 0 0 1-.25 8.5Z" fill="currentColor" opacity=".55"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8.5 18l-1 3"/><path d="M12.5 18l-1 3"/><path d="M16.5 18l-1 3"/></g></svg>If the sea turns</span><p>Late October is past the peak but Okinawa can still catch a tail-end typhoon, and dive boats are cancelled on sea state rather than rain. If a day goes, the shop will usually shuffle it — which is exactly why the 25th is kept clear as slack.</p><ul><li><b>Shigira Ougon Onsen</b> — the largest hot spring in Okinawa, and better in bad weather than good</li><li><b>Yukishio Salt Museum</b> — short, indoors, genuinely interesting</li><li><b>Taragawa or Ikema distillery</b> — awamori tasting, nominate a driver</li><li><b>Miyakojima City Museum</b> — island history and the old Ryukyu tax stone</li><li><b>Drive the three bridges anyway</b> — heavy sky over that water is its own thing</li><li><b>Miyako soba crawl</b> — the one day a queue at 11:00 is no hardship</li><li><b>Move dive days.</b> Tell the shop early; do not lose the 24th, since the 25th is your no-fly buffer</li></ul></div>
+        <div class="wet"><span class="wt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 15a4.5 4.5 0 0 1 .3-8.99A5.5 5.5 0 0 1 18 6.5a3.75 3.75 0 0 1-.25 8.5Z" fill="currentColor" opacity=".55"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8.5 18l-1 3"/><path d="M12.5 18l-1 3"/><path d="M16.5 18l-1 3"/></g></svg>If the sea turns</span><p>Late October is past the peak but Okinawa can still catch a tail-end typhoon, and dive boats are cancelled on sea state rather than rain. Two dive days rather than three means <b>less exposure and more slack</b>: if the 22nd blows out, the 23rd absorbs it, and if both do, the 24th is still three clear days from the flight.</p><ul><li><b>Shigira Ougon Onsen</b> — the largest hot spring in Okinawa, and better in bad weather than good</li><li><b>Yukishio Salt Museum</b> — short, indoors, genuinely interesting</li><li><b>Taragawa or Ikema distillery</b> — awamori tasting, nominate a driver</li><li><b>Miyakojima City Museum</b> — island history and the old Ryukyu tax stone</li><li><b>Drive the three bridges anyway</b> — heavy sky over that water is its own thing</li><li><b>Miyako soba crawl</b> — the one day a queue at 11:00 is no hardship</li><li><b>Move dive days.</b> Tell the shop early. You can slide a lost day onto the 24th and still be well clear of the flight — swap the turtles to the 25th if you do</li></ul></div>
         <a class="seeall" href="#/index">See every drive and walk across the trip →</a>
       </div>
 
       <div class="legpanel" data-print-title="Activities" role="tabpanel" id="p-miy-act" aria-labelledby="t-miy-act" tabindex="0" hidden>
-      <p class="lede">Three of your five days are dive days, which means the non-divers need their own plan and the whole group needs the 25th filled. Everything here takes half a day or less, and most of it will collect you from the hotel.</p>
+      <p class="lede">Two of your five days are dive days, which leaves the <b>24th and 25th for the whole group together</b> — and this is what fills them. Everything here takes half a day or less, and most of it will collect you from the hotel, so two of them back to back is a comfortable day rather than a forced march.</p>
     <div class="cards">
       <div class="card" style="--c:var(--miyako)">
         <svg class="motif" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 24q8-9 16 0t16 0" fill="none" stroke="var(--c)" stroke-width="3" stroke-linecap="round"/><path d="M4 31q8-9 16 0t16 0" fill="none" stroke="var(--c)" stroke-width="3" stroke-linecap="round"/><circle cx="27" cy="13" r="5" fill="var(--c)" opacity=".8"/></svg>
@@ -2360,18 +2409,18 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
       <div class="legpanel" data-print-title="Dive shops" role="tabpanel" id="p-miy-shops" aria-labelledby="t-miy-shops" tabindex="0" hidden>
         <div class="blockhead"><h3>Who to call</h3><span class="tag">Four shortlisted · book now, not in Japan</span></div>
-        <p class="lede">Researched against what actually matters for six <b>Open Water</b> divers: whether they will take you at your level, whether they can get you deeper if you want it, how good the English is, and what they demand of you. Tap a number to call. Japan is <b>+3h 30m from India</b> — their afternoon is your late morning.</p>
+        <p class="lede">Researched against what actually matters for six <b>Open Water</b> divers doing <b>two days, no course</b>: whether they will take you at your level, which shallow sites they actually run, how good the English is, and what they demand of you. Tap a number to call. Japan is <b>+3h 30m from India</b> — their afternoon is your late morning.</p>
 
         <div class="callout">
           <span class="ct">Say this when you enquire</span>
-          <p>Six divers, <b>all Open Water</b>, <b>22–24 October, three consecutive days</b>. Give rough log counts for each person. Then ask the one question that shapes the week: <b>can you run the NAUI Advanced course on the 22nd–23rd so we can dive Devil’s Palace on the 24th?</b> And confirm we finish diving on the 24th because <b>we fly at 11:50 on the 26th</b>.</p>
+          <p>Six divers, <b>all Open Water</b>, <b>22–23 October, two consecutive days</b>, <b>no certification course</b> — you are diving inside 18 m and are happy to. Give rough log counts for each person. Then ask the one question that decides how good those two days are: <b>which sites will you run us to?</b> Name <b>Nakanoshima Channel, Twin Caves, Mini Toriike and the Wonderful Cave grottoes</b> and see whether they agree. Confirm the last dive is on the 23rd because <b>we fly at 11:50 on the 26th</b>.</p>
         </div>
 
-        <div class="shopgrid"><article class="shopcard" style="--sc:var(--miyako)"><span class="shoprank">Call this one · solves your problem</span><h4>Aquatic Adventure</h4><p class="shopjp">宮古島ダイビング アクアティックアドベンチャー</p><p class="shopwhy">The shop that fits an all-Open-Water group: it takes OW divers, it runs the deeper sites, and <b>it teaches the Advanced course itself</b> — so one shop can take you from an 18 m limit to 30 m and then dive you at Devil’s Palace on the same booking.</p><dl class="shopfacts"><dt>Course</dt><dd>NAUI Advanced, ¥49,500</dd><dt>Format</dt><dd>4 dives / 2 days → 30 m</dd><dt>Takes</dt><dd>intro → advanced</dd><dt>Boat</dt><dd>Estrella de Agua, 2023</dd></dl><div class="shopwatch"><b>Watch:</b> Reviews call the instructor’s English functional rather than fluent. Put the plan in writing: six Open Water divers, Advanced course 22–23 Oct, fun dive 24 Oct.</div><div class="shopactions"><a class="shopbtn call" href="tel:+81980795009"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1z"/></svg>0980-79-5009</a><a class="shopbtn" href="mailto:info@miyako-aquaticadventure.com"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M3 6l9 7 9-7"/></svg>Email</a><a class="shopbtn" href="https://miyako-aquaticadventure.com/en/index.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.7 2.6 15.7 0 18.4M12 2.8c-2.6 2.7-2.6 15.7 0 18.4"/></svg>Website</a></div></article><article class="shopcard" style="--sc:var(--coral)"><span class="shoprank">Ruled out · noted for completeness</span><h4>BIGHOLIDAY</h4><p class="shopjp">宮古島ファンダイビング専門店</p><p class="shopwhy">A superb fun-diving-only specialist, and the source of the difficulty tiering used on this page — but <b>not available to you</b>. Kept here so you know it was considered and why it was dropped, rather than wondering later.</p><dl class="shopfacts"><dt>Minimum</dt><dd>30 logged dives</dd><dt>Your group</dt><dd>Open Water</dd><dt>Verdict</dt><dd>not this trip</dd></dl><div class="shopwatch"><b>Why it is out:</b> their words — “Participants must have 30 or more dives under their belt and be able to maintain neutral buoyancy and stable air management.” Unless all six of you are well past thirty dives, this shop cannot take the booking.</div><div class="shopactions"><a class="shopbtn call" href="tel:+81980725422"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1z"/></svg>0980-72-5422</a><a class="shopbtn" href="https://bigholiday-miyakojima.com/en/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.7 2.6 15.7 0 18.4M12 2.8c-2.6 2.7-2.6 15.7 0 18.4"/></svg>Website</a></div></article><article class="shopcard" style="--sc:var(--go)"><span class="shoprank">Strong second call</span><h4>Guide-Ya-San</h4><p class="shopjp">ガイド屋さん</p><p class="shopwhy">Built for exactly where you are. Caps at <b>four guests per guide</b>, so six of you means two guides, and runs a named <b>“Dive Together Tour for Certified Divers and Beginners”</b>. Eighteen years accident-free. If you decide against the course, this is probably the better room.</p><dl class="shopfacts"><dt>Ratio</dt><dd>4 guests per guide</dd><dt>Mixed levels</dt><dd>explicitly offered</dd><dt>Record</dt><dd>18 yrs accident-free</dd><dt>Booking</dt><dd>English, 24/7 online</dd></dl><div class="shopwatch"><b>Watch:</b> They list Devil’s Palace, Nakanoshima Channel and the Blue Cave — no Antonio Gaudí or Toriike, and no Advanced course advertised. Ask what depth they will actually run six Open Water divers to.</div><div class="shopactions"><a class="shopbtn call" href="tel:+81980755880"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1z"/></svg>0980-75-5880</a><a class="shopbtn" href="https://guide-ya-san.com/en/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.7 2.6 15.7 0 18.4M12 2.8c-2.6 2.7-2.6 15.7 0 18.4"/></svg>Website</a></div></article><article class="shopcard" style="--sc:var(--sun)"><span class="shoprank">If English clarity matters most</span><h4>Penguin Divers</h4><p class="shopjp">ペンギンダイバーズ</p><p class="shopwhy">Owner Yumiko runs it with her husband Joe, who is Fijian and a native English speaker — the only shop of the four where English is a first language rather than a service. Small-group and personal, and the one to pick if any of the six wants a briefing with no ambiguity in it.</p><dl class="shopfacts"><dt>English</dt><dd>native speaker</dd><dt>Size</dt><dd>small groups</dd><dt>Style</dt><dd>personal, guided</dd><dt>Base</dt><dd>Shimozato, Hirara</dd></dl><div class="shopwatch"><b>Watch:</b> The smallest operation of the four, so availability for six across three consecutive days is the thing to check first.</div><span class="unverified">Phone unverified — directory listings disagree on the number, so email is the reliable route.</span><div class="shopactions"><a class="shopbtn" href="mailto:penguindivers@hotmail.com"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M3 6l9 7 9-7"/></svg>Email</a><a class="shopbtn" href="http://diving-penguin.com/english.htm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.7 2.6 15.7 0 18.4M12 2.8c-2.6 2.7-2.6 15.7 0 18.4"/></svg>Website</a></div></article></div>
+        <div class="shopgrid"><article class="shopcard" style="--sc:var(--miyako)"><span class="shoprank">Strong second call</span><h4>Aquatic Adventure</h4><p class="shopjp">宮古島ダイビング アクアティックアドベンチャー</p><p class="shopwhy">Takes Open Water divers happily and runs a good modern boat. It also teaches the Advanced course — <b>which you have decided against</b>, so that advantage no longer applies and this drops behind Guide-Ya-San. Still a perfectly good booking for two shallow days if the other is full.</p><dl class="shopfacts"><dt>Takes</dt><dd>intro → advanced</dd><dt>Boat</dt><dd>Estrella de Agua, 2023</dd><dt>Your plan</dt><dd>2 days, no course</dd></dl><div class="shopwatch"><b>Watch:</b> Reviews call the instructor’s English functional rather than fluent. Put the plan in writing so there is no ambiguity: six Open Water divers, two days 22–23 Oct, no course, shallow sites named.</div><div class="shopactions"><a class="shopbtn call" href="tel:+81980795009"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1z"/></svg>0980-79-5009</a><a class="shopbtn" href="mailto:info@miyako-aquaticadventure.com"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M3 6l9 7 9-7"/></svg>Email</a><a class="shopbtn" href="https://miyako-aquaticadventure.com/en/index.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.7 2.6 15.7 0 18.4M12 2.8c-2.6 2.7-2.6 15.7 0 18.4"/></svg>Website</a></div></article><article class="shopcard" style="--sc:var(--coral)"><span class="shoprank">Ruled out · noted for completeness</span><h4>BIGHOLIDAY</h4><p class="shopjp">宮古島ファンダイビング専門店</p><p class="shopwhy">A superb fun-diving-only specialist, and the source of the difficulty tiering used on this page — but <b>not available to you</b>. Kept here so you know it was considered and why it was dropped, rather than wondering later.</p><dl class="shopfacts"><dt>Minimum</dt><dd>30 logged dives</dd><dt>Your group</dt><dd>Open Water</dd><dt>Verdict</dt><dd>not this trip</dd></dl><div class="shopwatch"><b>Why it is out:</b> their words — “Participants must have 30 or more dives under their belt and be able to maintain neutral buoyancy and stable air management.” Unless all six of you are well past thirty dives, this shop cannot take the booking.</div><div class="shopactions"><a class="shopbtn call" href="tel:+81980725422"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1z"/></svg>0980-72-5422</a><a class="shopbtn" href="https://bigholiday-miyakojima.com/en/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.7 2.6 15.7 0 18.4M12 2.8c-2.6 2.7-2.6 15.7 0 18.4"/></svg>Website</a></div></article><article class="shopcard" style="--sc:var(--go)"><span class="shoprank">Call this one first</span><h4>Guide-Ya-San</h4><p class="shopjp">ガイド屋さん</p><p class="shopwhy">Built for exactly where you now are. Caps at <b>four guests per guide</b>, so six of you means two guides, and runs a named <b>“Dive Together Tour for Certified Divers and Beginners”</b>. Eighteen years accident-free. <b>With the course off the table this is the better room</b> — it is designed around diving Open Water divers well rather than around upgrading them.</p><dl class="shopfacts"><dt>Ratio</dt><dd>4 guests per guide</dd><dt>Mixed levels</dt><dd>explicitly offered</dd><dt>Record</dt><dd>18 yrs accident-free</dd><dt>Booking</dt><dd>English, 24/7 online</dd></dl><div class="shopwatch"><b>Watch:</b> They list Nakanoshima Channel and the Blue Cave, which is what you want. They also list Devil’s Palace — <b>not for you at 25 m</b>, so make sure the booking is explicitly for shallow sites and nobody is expecting otherwise on the boat.</div><div class="shopactions"><a class="shopbtn call" href="tel:+81980755880"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1z"/></svg>0980-75-5880</a><a class="shopbtn" href="https://guide-ya-san.com/en/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.7 2.6 15.7 0 18.4M12 2.8c-2.6 2.7-2.6 15.7 0 18.4"/></svg>Website</a></div></article><article class="shopcard" style="--sc:var(--sun)"><span class="shoprank">If English clarity matters most</span><h4>Penguin Divers</h4><p class="shopjp">ペンギンダイバーズ</p><p class="shopwhy">Owner Yumiko runs it with her husband Joe, who is Fijian and a native English speaker — the only shop of the four where English is a first language rather than a service. Small-group and personal, and the one to pick if any of the six wants a briefing with no ambiguity in it.</p><dl class="shopfacts"><dt>English</dt><dd>native speaker</dd><dt>Size</dt><dd>small groups</dd><dt>Style</dt><dd>personal, guided</dd><dt>Base</dt><dd>Shimozato, Hirara</dd></dl><div class="shopwatch"><b>Watch:</b> The smallest operation of the four, so availability for six across two consecutive days is the thing to check first.</div><span class="unverified">Phone unverified — directory listings disagree on the number, so email is the reliable route.</span><div class="shopactions"><a class="shopbtn" href="mailto:penguindivers@hotmail.com"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M3 6l9 7 9-7"/></svg>Email</a><a class="shopbtn" href="http://diving-penguin.com/english.htm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.7 2.6 15.7 0 18.4M12 2.8c-2.6 2.7-2.6 15.7 0 18.4"/></svg>Website</a></div></article></div>
 
         <div class="callout good">
           <span class="ct">How I would play it</span>
-          <p>Email <b>Aquatic Adventure</b> today — they are the only one of the four that can take you as you are <i>and</i> get you deeper within the week, and the Advanced course they teach is what turns your three dive days into something more than shallow swim-throughs. Email <b>Guide-Ya-San</b> in the same hour as the fallback, especially if the group would rather dive than study. <b>BIGHOLIDAY is out</b> on the 30-dive rule. <b>Penguin</b> is the call if English becomes the sticking point.</p>
+          <p>Email <b>Guide-Ya-San</b> today. With the course ruled out, the thing you are buying is <i>two well-guided shallow days</i>, and they are the shop built around that — mixed levels by design, four guests per guide, and the sites you want already on their list. Email <b>Aquatic Adventure</b> in the same hour as the fallback; they take Open Water divers happily and the boat is newer. <b>BIGHOLIDAY is out</b> on the 30-dive rule. <b>Penguin</b> is the call if English becomes the sticking point.</p>
         </div>
 
         <p class="lede" style="margin-top:22px; font-size:14px;">Details gathered from each shop’s own website and Japanese business directories. Phone numbers and requirements change — <b>confirm on the call</b>, and treat prices as unquoted since none of the four publishes them for fun diving.</p>
@@ -2593,6 +2642,18 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
               </div>
               <div class="callout"><span class="ct">Check this when you book the cars</span>
                 <p><b>Settled.</b> Both cars are booked out of Morioka and back to Morioka on the 2nd, so they stay with you the whole week and no prefecture boundary costs you anything. Today is simply a drive — the long way round through Towada and Oirase, with the luggage in the boots rather than on a train.</p></div>
+
+              <div class="callout good">
+                <span class="ct">Take Route 341, not the expressway</span>
+                <p>Left to itself a satnav will send you down the Akita expressway and you will see almost nothing. The drive worth doing runs <b>north on Route 341 from Tazawako</b> — a mountain road with very little traffic, past <b>Akisen-ko</b> and then <b>Hosen-ko</b>, whose water is a startling lapis blue because the Tamagawa hot spring feeding it is acidic enough to colour the lake. <b>Tamagawa Onsen</b> is on the way if you want to stop.</p>
+                <p>At Kazuno pick up <b>Route 103</b> and climb to <b>Hakka Pass</b> (631 m), where Lake Towada opens up below with the Hakkoda range behind it. Then the lake shore, <b>Oirase on Route 102</b>, and finally <b>Route 103 over Hakkoda</b> — topping out at <b>Kasamatsu Pass, 1,040 m</b>, with Suiren-numa five minutes off the road and the whole ridge reflected in it.</p>
+                <p class="foot" style="margin-top:12px;">Set the waypoints in Maps rather than just the destination, or it will quietly reroute you.</p>
+              </div>
+
+              <div class="callout good">
+                <span class="ct">You have dodged the road closure by a year</span>
+                <p>Oirase closes Route 102 to private cars for a week each autumn, with shuttle buses instead. <b>In 2025 that ran 27 October to 2 November</b> — which would have caught you squarely on the 29th. <b>For 2026 it has moved to 7–13 September</b>, so the gorge road is open to you. Worth re-checking nearer the time, since the dates move each year, but as published you can drive it.</p>
+              </div>
             </div>
 </details>
         </div>
@@ -3385,6 +3446,30 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 
 
 <!-- ===================== MONEY ===================== -->
+<!-- ===================== WEATHER ===================== -->
+<section class="view" id="v-weather" aria-label="Weather">
+  <div class="wrap">
+    <div class="viewhead">
+      <p class="eyebrow">Every day · temperature, light, sea — and the Hirara tide</p>
+      <h1>What the <em>sky</em> is doing</h1>
+      <p class="sub">Each day header carries its own high, low and daylight hours; Miyakojima days also carry the tide times. This page is the long version — wind, rain odds, sea temperature, swell, and the full tide curve for every day on the island.</p>
+    </div>
+
+    <div class="callout">
+      <span class="ct">Where these numbers come from</span>
+      <p>No forecast exists more than about sixteen days ahead, so until late September 2026 every figure here is a <b>climate normal</b> — fifteen years of ERA5 reanalysis pooled over a week-wide window around that calendar date, labelled <b>Typical</b>. Once the trip enters the forecast window each day quietly switches to a <b>live Open-Meteo forecast</b> and the label changes to <b>Forecast</b>, so you always know which you are reading. Tides are different: 2026 predictions for Hirara are already final, so they are baked in from the Japan Meteorological Agency and work with no signal at all — which matters on a dive boat.</p>
+    </div>
+
+    <div class="wx-tab-body"></div>
+
+    <div class="viewfoot">
+      <a class="back" href="#/overview">← Overview</a>
+      <a class="nextlink" href="#/money">What it costs →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MONEY ===================== -->
 <section class="view" id="v-money" aria-label="Money">
   <div class="wrap">
     <div class="viewhead">
@@ -3415,20 +3500,19 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <table>
         <thead><tr><th>Item</th><th class="mono">Per person</th><th>Basis</th></tr></thead>
         <tbody>
-          <tr><td data-label="Item"><b>NAUI Advanced course</b> · 4 dives / 2 days</td><td class="mono" data-label="Per person">¥49,500</td><td data-label="Basis"><span class="conf">confirmed</span> — Aquatic Adventure’s published price</td></tr>
-          <tr><td data-label="Item"><b>Fun diving</b> · third day, 2 tanks</td><td class="mono" data-label="Per person">≈ ¥18,000</td><td data-label="Basis"><span class="est">estimate</span> — none of the four shops publishes fun-dive rates</td></tr>
-          <tr><td data-label="Item"><b>Kayak / Pumpkin Rock</b> · half day</td><td class="mono" data-label="Per person">≈ ¥7,000</td><td data-label="Basis"><span class="est">estimate</span> — typical Okinawa half-day rate</td></tr>
+          <tr><td data-label="Item"><b>Fun diving</b> · 2 days, 2 tanks each</td><td class="mono" data-label="Per person">≈ ¥36,000</td><td data-label="Basis"><span class="est">estimate</span> — ≈¥18,000/day; none of the four shops publishes fun-dive rates</td></tr>
+          <tr><td data-label="Item"><b>Sea turtle snorkelling</b> · half day, all six</td><td class="mono" data-label="Per person">≈ ¥7,000</td><td data-label="Basis"><span class="est">estimate</span> — operators quote ¥6,000–8,000 with pickup</td></tr>
+          <tr><td data-label="Item"><b>Clear SUP / Pumpkin Rock</b> · half day</td><td class="mono" data-label="Per person">≈ ¥7,000</td><td data-label="Basis"><span class="est">estimate</span> — typical Okinawa half-day rate</td></tr>
           <tr><td data-label="Item"><b>Shigira Ougon Onsen</b></td><td class="mono" data-label="Per person">≈ ¥2,000</td><td data-label="Basis"><span class="est">estimate</span></td></tr>
           <tr><td data-label="Item"><b>Two cars</b> · 5 days, split six ways</td><td class="mono" data-label="Per person">≈ ¥22,600</td><td data-label="Basis"><span class="conf">confirmed</span> — Toyota C3 class, ¥67,738 per car including the Remote Island cover, ¥135,476 for the pair. Fuel on top, but the island is small.</td></tr>
           <tr><td data-label="Item"><b>Food</b> · 5 days incl. one big group dinner</td><td class="mono" data-label="Per person">≈ ¥30,000</td><td data-label="Basis"><span class="est">estimate</span> — ≈¥6,000/day with Miyako beef once</td></tr>
-          <tr><td data-label="Item"><b>Leg total, with the course</b></td><td class="mono" data-label="Per person"><b>≈ ¥129,000</b></td><td data-label="Basis">≈ ¥774,000 for six</td></tr>
-          <tr><td data-label="Item"><b>Leg total, no course</b> · 3 fun-dive days instead</td><td class="mono" data-label="Per person"><b>≈ ¥115,500</b></td><td data-label="Basis">The course adds only ≈¥13,500 net. It is the best value on this page.</td></tr>
+          <tr class="total"><td data-label="Item"><b>Leg total</b></td><td class="mono" data-label="Per person"><b>≈ ¥104,600</b></td><td data-label="Basis">≈ ¥628,000 for six</td></tr>
         </tbody>
       </table>
     </div>
     <div class="callout good">
-      <span class="ct">Worth noticing</span>
-      <p>Because the Advanced course <b>replaces</b> two days of fun diving rather than adding to them, upgrading all six of you from an 18 m limit to 30 m costs roughly <b>¥13,500 each</b> net — and it is what puts Devil’s Palace within reach. There is nothing else on this page that changes the trip that much for that little.</p>
+      <span class="ct">What dropping the course saved</span>
+      <p>The earlier plan was the <b>NAUI Advanced course (¥49,500) plus a third fun-dive day</b> — about <b>¥129,000</b> each for the leg. Diving two days on your existing cards and spending the other two snorkelling brings that to roughly <b>¥104,600</b>, a saving of about <b>¥24,400 each — ¥146,000 across the six of you</b>. Miyakojima is still the most expensive leg of the trip, but it is no longer half the entire budget.</p>
     </div>
 
     <div class="blockhead"><h3>Kakunodate &amp; Aomori</h3><span class="tag">26 Oct – 2 Nov · cheap, and it shows nowhere</span></div>
@@ -3478,19 +3562,19 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
         <thead><tr><th>Leg</th><th class="mono">Per person</th><th class="mono">Six people</th><th>Note</th></tr></thead>
         <tbody>
           <tr><td data-label="Leg"><b>Tokyo</b> · 3 days</td><td class="mono" data-label="Per person">≈ ¥25,000</td><td class="mono" data-label="Six people">≈ ¥150,000</td><td data-label="Note">Assumes the Fuji track on the 20th and teamLab once.</td></tr>
-          <tr><td data-label="Leg"><b>Miyakojima</b> · 5 days</td><td class="mono" data-label="Per person">≈ ¥129,000</td><td class="mono" data-label="Six people">≈ ¥774,000</td><td data-label="Note">With the Advanced course. The trip’s centre of gravity.</td></tr>
+          <tr><td data-label="Leg"><b>Miyakojima</b> · 5 days</td><td class="mono" data-label="Per person">≈ ¥104,600</td><td class="mono" data-label="Six people">≈ ¥628,000</td><td data-label="Note">Two dive days, two snorkel days, no course. Still the trip’s centre of gravity.</td></tr>
           <tr><td data-label="Leg"><b>Kakunodate</b> · 3 days</td><td class="mono" data-label="Per person">≈ ¥34,500</td><td class="mono" data-label="Six people">≈ ¥207,000</td><td data-label="Note">Cars, food, baths, a few entries. Very little else to pay for.</td></tr>
           <tr><td data-label="Leg"><b>Aomori</b> · 5 days</td><td class="mono" data-label="Per person">≈ ¥49,300</td><td class="mono" data-label="Six people">≈ ¥296,000</td><td data-label="Note">Add ≈¥5,000 each if you drive Shimokita for Osorezan.</td></tr>
           <tr><td data-label="Leg"><b>Luggage forwarding</b> · two shipments</td><td class="mono" data-label="Per person">≈ ¥7,500</td><td class="mono" data-label="Six people">≈ ¥45,000</td><td data-label="Note"><span class="est">estimate</span> — Tokyo→Akita and Miyako→Narita. A third, optional, adds ≈¥2,800 each.</td></tr>
           <tr><td data-label="Leg"><b>Internal rail</b> · Komachi, Hayabusa, N’EX</td><td class="mono" data-label="Per person">≈ ¥35,000</td><td class="mono" data-label="Six people">≈ ¥210,000</td><td data-label="Note"><span class="est">estimate</span> — reserved seats, three long legs.</td></tr>
-          <tr class="total"><td data-label="Leg"><b>Total on the ground</b></td><td class="mono" data-label="Per person"><b>≈ ¥280,500</b></td><td class="mono" data-label="Six people"><b>≈ ¥1,683,000</b></td><td data-label="Note">≈ ¥17,500 pp per day. Add ¥22,000 each if the Kyoto option wins.</td></tr>
+          <tr class="total"><td data-label="Leg"><b>Total on the ground</b></td><td class="mono" data-label="Per person"><b>≈ ¥255,900</b></td><td class="mono" data-label="Six people"><b>≈ ¥1,535,000</b></td><td data-label="Note">≈ ¥16,000 pp per day. Add ¥22,000 each if the Kyoto option wins.</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="callout">
       <span class="ct">How to read this</span>
-      <p>Roughly <b>¥17,500 per person per day</b> on the ground, and about <b>half the entire total is Miyakojima</b> — diving is expensive and everything north of Tokyo is not. If the number needs to come down, the levers in order are: <b>Kyoto</b> (−¥22,000 each), the <b>third fun-dive day</b> (−¥18,000 each), and the <b>kayak</b> (−¥7,000 each). Cutting anything in Kakunodate or Aomori saves almost nothing, because most of what you are doing there is free.</p>
+      <p>Roughly <b>¥16,000 per person per day</b> on the ground, and <b>Miyakojima is still about 41% of the whole total</b> — diving is expensive and everything north of Tokyo is not. If the number needs to come down further, the levers in order are: <b>Kyoto</b> (−¥22,000 each), <b>one of the two dive days</b> (−¥18,000 each), and the <b>clear SUP</b> (−¥7,000 each). Cutting anything in Kakunodate or Aomori saves almost nothing, because most of what you are doing there is free.</p>
     </div>
 
     <div class="viewfoot">
@@ -3560,7 +3644,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <div class="checkgroup">
         <h4>Do this week<span class="chkprog"></span></h4>
         <ul>
-          <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="k603edc3d9a"><span class="chktext"><b>Miyakojima dive shop</b> — Aquatic Adventure first. Six divers, all Open Water, 22–24 Oct. Ask about the Advanced course on the 22nd–23rd</span></label></li>
+          <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="k603edc3d9a"><span class="chktext"><b>Miyakojima dive shop</b> — Guide-Ya-San first, Aquatic Adventure as fallback. Six divers, all Open Water, 22–23 Oct, no course. Get the shallow sites named in writing</span></label></li>
           <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="k894e952cd5"><span class="chktext"><b>Shinkansen seats, 26 Oct and 2 Nov</b> — six together to <b>Morioka</b> on the way up, six back from <b>Morioka</b> on the way home</span></label></li>
           <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="k2c79fcdfbc"><span class="chktext"><b>Hayabusa + N'EX, 2 Nov</b> — six seats from <b>Morioka</b>; the Seattle flight sets the timing</span></label></li>
           <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="ke8beec4ad4"><span class="chktext"><b>Ring Toyota Morioka on 019-622-0100</b> — ask <b>what tyres are fitted</b> (Tohoku fleets are often already studless by late Oct, at no extra cost) and for an <b>ETC card in each car</b>. Both hires are otherwise booked and paid</span></label></li>
@@ -3598,7 +3682,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
         <h4>Pack for two climates<span class="chkprog"></span></h4>
         <ul>
           <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="k1583ec1c5b"><span class="chktext"><b>3 mm wetsuits</b> and dive torches — the grottoes need light, and the sea cools from mid-October</span></label></li>
-          <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="k866cc2bfee"><span class="chktext"><b>Certification cards and logbooks</b> — every shop will ask, and the Advanced course needs your OW card to enrol</span></label></li>
+          <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="k866cc2bfee"><span class="chktext"><b>Certification cards and logbooks</b> — every shop will ask to see an Open Water card before it puts you on a boat</span></label></li>
           <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="kc27c3f58f6"><span class="chktext"><b>Reef shoes</b> for Yoshino Kaigan and the rocky entries</span></label></li>
           <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="kea83e05f1b"><span class="chktext"><b>Proper layers, hat, gloves</b> — Komagatake and Hakkoda are a different world from Miyakojima</span></label></li>
           <li><label class="chkline"><input type="checkbox" class="chkbox" data-k="kluggage03"><span class="chktext"><b>One warm layer each in hand luggage on the 26th</b> — your coats travel ahead to the inn, and you land in Morioka at about 8 °C</span></label></li>
@@ -3654,7 +3738,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <div class="card" style="--c:var(--miyako)">
         <svg class="motif" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 26 q12-14 24 0" fill="none" stroke="var(--miyako)" stroke-width="3" stroke-linecap="round"/><path d="M14 30 q6-7 12 0" fill="none" stroke="var(--miyako)" stroke-width="3" stroke-linecap="round"/></svg>
         <span class="k">Before you seal them</span><h4>Dry the wetsuits first</h4>
-        <p>Diving finishes on the <b>24th</b> and the cases go on the <b>25th</b>. Damp neoprene shut in a case for a week arrives as a science experiment. Hang everything the moment you are off the boat on the 24th, give it the morning sun on the 25th, and pack it last.</p>
+        <p>Diving finishes on the <b>23rd</b> and the cases go on the <b>25th</b>. Damp neoprene shut in a case for a week arrives as a science experiment. Hang everything the moment you are off the boat on the 23rd — you now get two clear days of drying instead of one, so there is no excuse for packing it damp. Pack it last on the 25th.</p>
         <p class="foot">Ship in the afternoon, not first thing</p>
       </div>
     </div>
@@ -3849,7 +3933,7 @@ var REGISTRY = [
     meta:[['Ship 1','19–20 Oct · Via Inn → the inn'],['Ship 2','25 Oct · Seahorse → Narita'],['Deliveries','26 Oct and 1 Nov'],['Cost','≈ ¥45,000 · ≈¥7,500 each']],
     note:'The suitcases go ahead and wait at the airport, so the 26 October transit and the 2 November run home are both done on backpacks alone. It also makes NH1080&rsquo;s one-checked-bag limit irrelevant, because you fly off the island carrying almost nothing.',
     book:'<b>Book the pickup in advance and designate 1 November as the delivery date.</b> Yamato allows a designated date only within seven days of dispatch, so shipping on the 25th makes 1 November the last date available — exactly the one you want, with no slack. Confirm on the phone that airport delivery accepts a date that far ahead. Address every case to the <b>Terminal 2</b> counter — both flights leave from there, so there is no split to manage.',
-    when:'Dry the wetsuits on the 24th and pack them last on the 25th. Keep passports, cash, cards, medication and dive computers in the backpack — you will not see these cases again until Narita.',
+    when:'The wetsuits get the 23rd evening and all of the 24th to dry, so they go in properly dry on the 25th. Keep passports, cash, cards, medication and dive computers in the backpack — you will not see these cases again until Narita.',
     url:'https://www.kuronekoyamato.co.jp/ytc/customer/send/services/airport/' },
   { kind:'transport', city:'miyako', status:'ok', title:'Two cars · Miyakojima', sub:'Toyota Rent a Car · airport shop',
     meta:[['Pick up','Wed 21 Oct, 14:00'],['Return','Mon 26 Oct, 10:00'],['Class','C3 · compact, automatic'],['Cars','2 · booked separately'],['Paid','¥67,738 each · ¥135,476 total'],['Ref','in your confirmation email']],
@@ -3898,37 +3982,30 @@ var REGISTRY = [
     url:'https://rent.toyota.co.jp/service/service_option/oneway/simulation.aspx' },
 
   /* ---------- MIYAKOJIMA · DIVING ---------- */
-  { kind:'activity', city:'miyako', status:'todo', title:'Aquatic Adventure', sub:'dive shop · call this one first',
-    meta:[['Takes','intro → advanced'],['Boat','Estrella de Agua, 2023'],['Course','NAUI Advanced, ¥49,500']],
-    note:'The shop that solves your problem: it takes Open Water divers AND runs the deep sites, and it teaches the Advanced course itself — so one shop can take you from where you are to where you want to be.',
-    book:'Email first with the full picture: six divers, all Open Water, 22–24 October. Ask whether you can run the Advanced course on the 22nd–23rd and fun-dive the deeper sites on the 24th.',
-    when:'Now. Late October is high season and you need three consecutive days.',
-    phone:'+81980795009', phoneLabel:'0980-79-5009', email:'info@miyako-aquaticadventure.com',
-    url:'https://miyako-aquaticadventure.com/en/index.html' },
-  { kind:'activity', city:'miyako', status:'todo', title:'NAUI Advanced Diver course', sub:'the upgrade that unlocks the good sites',
-    meta:[['Dives','4 over 2 days'],['Price','¥49,500 pp'],['Certifies to','30 m'],['Needs','Open Water']],
-    note:'Boat, Deep and Navigation plus one elective. Takes you from an 18 m limit to 30 m, which is what stands between you and Devil’s Palace.',
-    book:'Booked through Aquatic Adventure as part of your three dive days. Other agencies’ Open Water cards are accepted as the prerequisite.',
-    when:'Book with the dive days — it has to occupy the 22nd and 23rd to be useful on the 24th.',
-    phone:'+81980795009', phoneLabel:'0980-79-5009',
-    url:'https://miyako-aquaticadventure.com/en/advanceddiver.html' },
-  { kind:'activity', city:'miyako', status:'todo', title:'Guide-Ya-San', sub:'dive shop · the no-course fallback',
-    meta:[['Ratio','4 guests per guide'],['Mixed levels','named tour'],['Record','18 yrs clean']],
-    note:'Caps at four guests per guide, so six of you means two guides. Runs Devil’s Palace, Nakanoshima Channel and the Blue Cave — the shallow, bright, Open-Water-friendly end of Miyako.',
-    book:'English booking form on their site, or phone between 08:00 and 22:00. Say all six are Open Water and ask what depth they will run you to.',
-    when:'Enquire in parallel with Aquatic Adventure — whoever answers well gets the booking.',
+  { kind:'activity', city:'miyako', status:'todo', title:'Guide-Ya-San', sub:'dive shop · call this one first',
+    meta:[['Ratio','4 guests per guide'],['Mixed levels','named tour'],['Record','18 yrs clean'],['Your plan','2 days, no course']],
+    note:'With the Advanced course ruled out, this is the shop built around what you actually want: diving Open Water divers well. Caps at four guests per guide, so six of you means two guides, and runs a named tour for certified divers and beginners together.',
+    book:'English booking form on their site, or phone between 08:00 and 22:00. Say all six are Open Water, two days on 22–23 October, no course. Ask them to name the sites — you want Nakanoshima Channel, Twin Caves, Mini Toriike and the Wonderful Cave grottoes.',
+    when:'Now. Late October is high season and you need two consecutive days.',
     phone:'+81980755880', phoneLabel:'0980-75-5880',
     url:'https://guide-ya-san.com/en/' },
+  { kind:'activity', city:'miyako', status:'todo', title:'Aquatic Adventure', sub:'dive shop · the fallback',
+    meta:[['Takes','intro → advanced'],['Boat','Estrella de Agua, 2023'],['Your plan','2 days, no course']],
+    note:'Takes Open Water divers happily and runs the newest boat of the four. It also teaches the Advanced course, which you have decided against — so the reason it used to rank first no longer applies.',
+    book:'Email with the full picture: six divers, all Open Water, two days 22–23 October, no course. Reviews call the instructor’s English functional rather than fluent, so put the site list in writing.',
+    when:'Enquire in parallel with Guide-Ya-San — whoever answers well gets the booking.',
+    phone:'+81980795009', phoneLabel:'0980-79-5009', email:'info@miyako-aquaticadventure.com',
+    url:'https://miyako-aquaticadventure.com/en/index.html' },
   { kind:'activity', city:'miyako', status:'todo', title:'Penguin Divers', sub:'dive shop · native English',
     meta:[['English','native speaker'],['Size','small groups']],
     note:'Owner’s husband Joe is Fijian and a native English speaker — the only shop where English is a first language rather than a service.',
     book:'Email is the reliable route. Phone unverified: directory listings disagree on the number.',
     when:'Worth an email if English clarity turns out to be the sticking point elsewhere.',
     email:'penguindivers@hotmail.com', url:'http://diving-penguin.com/english.htm' },
-  { kind:'activity', city:'miyako', status:'todo', title:'Sea turtle snorkelling', sub:'the non-divers&rsquo; day, 22–24 Oct',
+  { kind:'activity', city:'miyako', status:'todo', title:'Sea turtle snorkelling', sub:'the whole group, 24 Oct',
     meta:[['Length','half day'],['Cost','≈ ¥6,000–8,000'],['Suits','complete beginners'],['Pickup','usually included']],
     note:'Miyako&rsquo;s green turtles sit in shallow, sheltered water and the operators here quote encounter rates at or near <b>100%</b> — which, unusually for that kind of claim, is borne out by the reviews. No experience required, wetsuits provided, and most plans include hotel pickup and photos.',
-    book:'This is the single best answer to &ldquo;what do the two of us do while the others dive?&rdquo; Book one for each of the three dive days if it lands well, or just the one. Several operators bundle it with clear SUP for not much more.',
+    book:'Now that nobody is diving on the 24th, book this for all six as the morning of that day. Several operators bundle it with clear SUP for not much more, which would cover the whole day in one booking.',
     when:'Book a week or two out. Compare on the aggregator rather than going direct — the same boats are listed across all of them.',
     url:'https://www.asoview.com/leisure/15/location/are0471708/' },
   { kind:'activity', city:'miyako', status:'todo', title:'Yukishio Salt Museum', sub:'20 minutes, free, genuinely odd',
@@ -4569,7 +4646,7 @@ var REGISTRY = [
   var TODAY = todayEntry();
 
   /* ---- hash router ---- */
-  var views = {}, order = ['overview','tokyo','fuji','kyoto','miyako','kakunodate','aomori','registry','index','money','plan'];
+  var views = {}, order = ['overview','tokyo','fuji','kyoto','miyako','kakunodate','aomori','registry','index','weather','money','plan'];
   order.forEach(function(k){ views[k] = document.getElementById('v-' + k); });
   var navlinks = Array.prototype.slice.call(document.querySelectorAll('[data-nav]'));
 
