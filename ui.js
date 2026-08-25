@@ -270,7 +270,20 @@
     window.open(a.href, '_blank', 'noopener');
   });
 
-  function refresh() { wire(); }
+  /* Lazy keeps hidden panels from fetching megabytes they may never show —
+     but the panel the user is LOOKING at should not queue politely behind
+     the browser's lazy scheduler. Whatever is visible loads now; the rest
+     stays lazy until its tab is opened. */
+  function eagerize() {
+    var imgs = document.querySelectorAll(
+      '.legpanel:not([hidden]) .cardthumb img, .view .cards > .card > .cardthumb img'
+    );
+    Array.prototype.forEach.call(imgs, function (img) {
+      if (img.loading === 'lazy') img.loading = 'eager';
+    });
+  }
+
+  function refresh() { wire(); eagerize(); }
 
   Promise.all([
     fetch('./photos/credits.json').then(function (r) { return r.json(); })

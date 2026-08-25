@@ -14,7 +14,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v35';
+var CACHE = 'japan2026-v36';
 /* Photographs live in their own cache, outside the version. A photo file
    never changes once published (new photos get new names), so wiping them on
    every code deploy — which is what a single versioned cache does — just
