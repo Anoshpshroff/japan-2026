@@ -152,3 +152,41 @@ CITIES / BASES
 SUMMARY
 ------------------------------------------------------
   94 entries · 58 already have a photo · 36 still need one
+
+DAY-HEADER WANT LIST — one photo per day, for the day-by-day pages
+==================================================================
+Specs: landscape, at least 1600px wide, no watermarks / shop listings /
+AI renders (those were the nine rejects last time). October light where
+the subject is seasonal. I crop to a wide strip, so sky/foreground room
+helps. Japanese search terms included — they find far better results.
+
+TOKYO
+  [ ] 18 Oct  Hie Shrine torii tunnel lit at night        日枝神社 千本鳥居 夜
+  [ ] 19 Oct  Meiji Jingu gravel approach, early, empty    明治神宮 参道 早朝
+  [ ] 20 Oct  Shinkansen noses at Tokyo Stn, early morning 東京駅 新幹線 ホーム 朝
+  [ ] 21 Oct  Tokyo Monorail crossing the bay to Haneda    東京モノレール 羽田 海
+
+MIYAKOJIMA
+  [ ] 21 Oct  Yonaha Maehama at sunset (arrival evening)   与那覇前浜 夕日
+  [ ] 22 Oct  Dive boat / divers rolling in, Miyako blue   宮古島 ダイビング ボート
+  [ ] 23 Oct  Cavern light beams underwater (Toriike-ish)  通り池 ダイビング 光
+  [ ] 24 Oct  Inside the Pumpkin limestone dome            パンプキンホール 宮古島
+  [ ] 25 Oct  Ikema Ohashi from the driver's seat          池間大橋 ドライブ 車窓
+  [ ] 26 Oct  Komachi + Hayabusa coupled, red & green      こまち はやぶさ 連結
+
+KAKUNODATE / TAZAWA
+  [ ] 26 Oct  Mountain inn lit at night, autumn dark       乳頭温泉郷 夜 灯り
+  [ ] 27 Oct  Dakigaeri in PEAK foliage, blue river        抱返り渓谷 紅葉
+  [ ] 28 Oct  Aspite Line in late October colour           八幡平アスピーテライン 紅葉
+
+AOMORI
+  [ ] 29 Oct  Hakka Pass overlook down to Lake Towada      発荷峠 展望台 紅葉
+  [ ] 30 Oct  Hakkoda Ropeway cabin over gold canopy       八甲田ロープウェー 紅葉
+  [ ] 31 Oct  Apple orchard with Mt Iwaki behind           岩木山 りんご畑
+  [ ]  1 Nov  Nokkedon bowl, close, at the market          青森魚菜センター のっけ丼
+  [ ]  2 Nov  Morioka station at first light               盛岡駅 朝焼け
+
+STILL OPEN FROM THE LAST ROUND (card photos, not headers)
+  [ ] Hoto in the iron pot (real photo — last one was AI)  ほうとう不動 鍋
+  [ ] Ichigo-ni, the sea-urchin & abalone soup             いちご煮 郷土料理
+  [ ] Devil's Palace dive site (no copyright stamp)        悪魔の宮殿 宮古島
