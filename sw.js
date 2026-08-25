@@ -14,7 +14,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v36';
+var CACHE = 'japan2026-v37';
 /* Photographs live in their own cache, outside the version. A photo file
    never changes once published (new photos get new names), so wiping them on
    every code deploy — which is what a single versioned cache does — just
@@ -63,7 +63,13 @@ self.addEventListener('install', function (e) {
   var rest   = PRECACHE.filter(function (u) { return u.indexOf('/photos/') === -1; });
   e.waitUntil(
     Promise.all([
-      caches.open(CACHE).then(function (c) { return c.addAll(rest); }),
+      // cache:'reload' forces these past the HTTP cache. GitHub Pages serves
+      // with max-age=600, and an install within ten minutes of the previous
+      // deploy was seeding the new versioned cache with the OLD files — the
+      // very thing the version bump exists to prevent.
+      caches.open(CACHE).then(function (c) {
+        return c.addAll(rest.map(function (u) { return new Request(u, { cache: 'reload' }); }));
+      }),
       caches.open(PHOTOS).then(function (c) {
         // addAll would re-download photos we already hold; only fetch the gaps
         return Promise.all(photos.map(function (u) {
