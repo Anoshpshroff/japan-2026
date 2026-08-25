@@ -213,16 +213,19 @@ svg{display:block;}
 
 /* ---------- day cards ---------- */
 .spine{border-left:1px solid var(--rule); margin-left:6px;}
-.day{position:relative; padding:26px 0 26px 30px; border-bottom:1px solid var(--rule); scroll-margin-top:120px;}
-.day::before{content:""; position:absolute; left:-4.5px; top:34px; width:8px; height:8px; border-radius:50%; background:var(--c,var(--ink)); outline:3px solid var(--ground);}
+.day{position:relative; padding:42px 0 42px 30px; border-bottom:1px solid var(--rule); scroll-margin-top:120px;}
+.day::before{content:""; position:absolute; left:-4.5px; top:50px; width:8px; height:8px; border-radius:50%; background:var(--c,var(--ink)); outline:3px solid var(--ground); transition:transform .2s ease;}
+details.day[open]::before{transform:scale(1.5);}
 .day:last-child{border-bottom:none;}
 .dayhead{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
 .daynum{font-family:var(--f-mono); font-size:12px; letter-spacing:.1em; color:var(--c,var(--ink)); text-transform:uppercase; font-weight:600;}
-.dayhead h3{font-size:23px; letter-spacing:-.01em;}
+.dayhead h3{font-size:24px; letter-spacing:-.01em; text-wrap:balance; transition:color .15s ease;}
+summary.daysum:hover .dayhead h3{color:var(--c,var(--ink));}
 .daytag{font-family:var(--f-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--rule-2); color:var(--ink-3); padding:3px 8px; border-radius:99px;}
 .daytag.move{border-color:var(--c); color:var(--c);}
-.daybody{margin-top:14px;}
-.dayicon{position:absolute; right:0; top:22px; width:52px; height:52px; opacity:.16; pointer-events:none;}
+.daybody{margin-top:18px;}
+.dayicon{position:absolute; right:0; top:38px; width:60px; height:60px; opacity:.30; pointer-events:none; transition:opacity .2s ease, transform .25s ease;}
+summary.daysum:hover ~ * .dayicon, details.day:hover .dayicon{opacity:.5; transform:translateY(-2px);}
 
 /* ---------- day summary / disclosure ---------- */
 details.day > summary.daysum{
@@ -438,7 +441,7 @@ summary.daysum:hover .daytoggle{opacity:.72;}
   /* Cards arrive with a short stagger. Driven purely by display changing, so
      there is no observer that can fail and leave the page invisible. */
   .view:not([hidden]) .cards > .card,
-  .legpanel:not([hidden]) .cards > .card, .view .crit .item, .view .tracks > .track{animation:riseIn .46s cubic-bezier(.22,.68,.36,1) both;}
+  .legpanel:not([hidden]) .cards > .card, .view .crit .item, .view .tracks > .track, .legpanel:not([hidden]) .spine > .day{animation:riseIn .46s cubic-bezier(.22,.68,.36,1) both;}
   @keyframes riseIn{from{opacity:0; transform:translateY(11px);} to{opacity:1; transform:none;}}
   .cards > .card:nth-child(1){animation-delay:.02s}
   .cards > .card:nth-child(2){animation-delay:.06s}
@@ -446,6 +449,11 @@ summary.daysum:hover .daytoggle{opacity:.72;}
   .cards > .card:nth-child(4){animation-delay:.14s}
   .cards > .card:nth-child(5){animation-delay:.18s}
   .cards > .card:nth-child(n+6){animation-delay:.21s}
+  .spine > .day:nth-child(1){animation-delay:.02s}
+  .spine > .day:nth-child(2){animation-delay:.07s}
+  .spine > .day:nth-child(3){animation-delay:.12s}
+  .spine > .day:nth-child(4){animation-delay:.17s}
+  .spine > .day:nth-child(n+5){animation-delay:.21s}
 }
 
 /* Cards are doors now, so they should behave like it. */
@@ -1706,7 +1714,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
 <text x="130" y="174" text-anchor="end">Kyoto</text>
 <text x="532" y="114" text-anchor="start">Tokyo, deeper</text></g>
 <g class="mlabel sm">
-<text x="130" y="70" text-anchor="end">own van via Hachioji · ≈ ¥7k pp</text>
+<text x="130" y="70" text-anchor="end">own van via Hachioji · ≈ ¥7k each</text>
 <text x="130" y="188" text-anchor="end">from Tokyo Stn · 2 h 15 · ¥28k</text>
 <text x="532" y="128" text-anchor="start">no intercity travel · ¥2k</text></g>
 <text x="320" y="98" text-anchor="middle" class="mtitle">20 OCT · SPLIT THE GROUP</text>
@@ -1727,7 +1735,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
                   </button>
                 </div>
                 <div class="panel" data-print-title="Mt Fuji" role="tabpanel" id="panel-fuji" aria-labelledby="tab-fuji" tabindex="0">
-                  <div class="cost"><span>≈ 2h each way</span><span>≈ ¥7,000 pp all-in, driving</span><span>Out 06:15 · back ~20:00</span></div>
+                  <div class="cost"><span>≈ 2h each way</span><span>≈ ¥7,000 each all-in (≈ ¥42k group), driving</span><span>Out 06:15 · back ~20:00</span></div>
                   <a class="seeall" href="#/fuji" style="--c:var(--tokyo)">Full Fuji day · map, the drive, timings →</a>
                   <ol>
                     <li><b>Drive it:</b> train to Hachioji (~50 min), pick up the 8-seater at 08:00 from Toyota by the station, one expressway to the lake. No central-Tokyo driving, no timetable, and Motosuko becomes reachable.</li>
@@ -1892,7 +1900,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <p class="kicker">20 October · Track A <span class="kmore">· day trip from Akasaka</span></p>
       <h1>Mount Fuji<span>Your own van, five lakes, and the clearest air of the year</span></h1>
       <div class="meta">
-        <span><b>Out</b> 06:15</span><span><b>Back</b> ~20:00</span><span><b>All-in</b> ≈ ¥7k pp</span>
+        <span><b>Out</b> 06:15</span><span><b>Back</b> ~20:00</span><span><b>All-in</b> ≈ ¥42k the group · ¥7k each</span>
         <span><b>Wheels</b> your own 8-seater</span><span><b>Walking</b> moderate — 398 steps, avoidable</span>
       </div>
     </div>
@@ -1939,7 +1947,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <table>
         <thead><tr><th>Option</th><th class="mono">Time</th><th class="mono">Cost pp</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td data-label="Option"><b>Self-drive — pick up at Hachioji</b> <span class="conf">recommended</span></td><td class="mono" data-label="Time">~2 h door to lake</td><td class="mono" data-label="Cost pp">≈ ¥7,000 all-in</td><td data-label="Notes">Train to the edge of Tokyo, then drive. Marunouchi to Shinjuku, JR Chuo rapid to <b>Hachioji</b> (~50 min total); <b>Toyota Rent a Car is 3 min from the north exit and opens 08:00</b>; Hachioji IC is minutes away and it is one expressway straight to Kawaguchiko IC (~60 min). Never touches central-Tokyo driving. Van ≈ ¥22–28k + tolls ≈ ¥2–2.4k each way + fuel — about half what six Fuji Excursion tickets cost.</td></tr>
+          <tr><td data-label="Option"><b>Self-drive — pick up at Hachioji</b> <span class="conf">recommended</span></td><td class="mono" data-label="Time">~2 h door to lake</td><td class="mono" data-label="Cost pp">≈ ¥7,000 each<br><span style="opacity:.65">(≈ ¥42k for all six)</span></td><td data-label="Notes">Train to the edge of Tokyo, then drive. Marunouchi to Shinjuku, JR Chuo rapid to <b>Hachioji</b> (~50 min total); <b>Toyota Rent a Car is 3 min from the north exit and opens 08:00</b>; Hachioji IC is minutes away and it is one expressway straight to Kawaguchiko IC (~60 min). Never touches central-Tokyo driving. <b>The maths, for the whole group:</b> van ≈ ¥22–28k for the day + tolls ≈ ¥4.5–5k return + fuel ≈ ¥3k + twelve local train fares ≈ ¥9k = <b>≈ ¥40–45k total, so ≈ ¥7k a head</b> — against ≈ ¥50k just for six Fuji Excursion return tickets.</td></tr>
           <tr><td data-label="Option"><b>Private van charter</b> with driver</td><td class="mono" data-label="Time">~2 h from the hotel door</td><td class="mono" data-label="Cost pp">≈ ¥17–18k</td><td data-label="Notes">Alphard/HiAce with an English-speaking driver, pickup at Via Inn Prime Akasaka, can roll at 06:30 — Chureito by 08:30, before the coaches. Zero logistics and nobody drives, at ~2.5× the self-drive cost. Viator, KKday or GoWithGuide.</td></tr>
           <tr><td data-label="Option"><b>Train + rent at the lake</b></td><td class="mono" data-label="Time">~2 h 20</td><td class="mono" data-label="Cost pp">≈ ¥12–13k</td><td data-label="Notes">Fuji Excursion 07:30 from Shinjuku (reserve ahead), then Toyota Rent a Car 5 min from Kawaguchiko station — <b>that branch takes bookings by phone only</b>. Keeps the famous train; starts you at Chureito an hour later. The fallback if the Hachioji van is gone.</td></tr>
         </tbody>
