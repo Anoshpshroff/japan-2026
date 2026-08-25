@@ -692,7 +692,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   .photo img{aspect-ratio:4/3;}
   .photo .pcap{font-size:13.5px;}
 }
-@media print{ .card .cardthumb{display:none;}
+@media print{ .sheet{display:none !important;} .legbanner.has-photo{height:74pt;} .refbox{page-break-inside:avoid;} .refbox .refbody{display:block;}
+ .card .cardthumb{display:none;}
 
   .photo{break-inside:avoid;}
   .photo .pcred{display:none;}
@@ -712,6 +713,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   font-family:var(--f-mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase;
   color:var(--ink-3); font-weight:700;
 }
+
+/* ---------- reference: the folded small print ---------- */
+.refbox{border:1px solid var(--rule); border-radius:6px; margin-top:14px; background:var(--raised);}
+.refbox summary{cursor:pointer; padding:14px 18px; font-size:15.5px; display:flex; align-items:baseline; gap:12px; list-style:none;}
+.refbox summary::-webkit-details-marker{display:none;}
+.refbox summary::before{content:"+"; font-family:var(--f-mono); color:var(--ink-3); font-weight:700;}
+.refbox[open] summary::before{content:"\2212";}
+.refbox .refhint{font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:.06em;}
+.refbox .refbody{padding:2px 18px 16px; border-top:1px solid var(--rule);}
+.refbox .refbody p{font-size:14.4px; color:var(--ink-2); margin-top:11px; max-width:74ch;}
 .callout p{margin-top:3px; font-size:14.2px; line-height:1.55; color:var(--ink-3); max-width:74ch;}
 .callout p b{color:var(--ink-2); font-weight:600;}
 .callout.good{border-left-color:var(--go);}
@@ -2353,7 +2364,8 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
         <div class="callout"><span class="ct">Three Hirara names, four dinners</span>
           <p>Every dinner on the island is a short walk in Hirara, and the good rooms book out. <b>Akagara</b> (あかがーら) &mdash; Miyako beef seared on lava stone, two sanshin shows nightly, <b>reservation-only and the book opens on the 1st of the month</b> &mdash; is the 24th&rsquo;s group dinner. <b>Umarizuma</b> (うまりずま) &mdash; island cooking in a recreated old Miyako house, also with live sanshin &mdash; is the softer first-night landing on the 21st. <b>P&#333;cha Tatsuya</b> (ぽうちゃたつや), a sake-and-fish izakaya a minute from the A&amp;W in Shimosato, is the 23rd &mdash; the quiet, excellent one for tired divers. Book all three the same week.</p></div>
         <div class="callout"><span class="ct">Book the diving now, not in Japan</span>
-          <p>Late October is high season for exactly this. Tell the shop plainly: <b>six divers, all Open Water, two consecutive days 22–23 October, no course, flying at 11:50 on the 26th.</b> Then ask the question that decides the quality of those two days — <b>which shallow sites will you actually run us to?</b> You want <b>Nakanoshima Channel, Twin Caves, Mini Toriike and the Wonderful Cave grottoes</b> named back to you. A shop that answers "we'll see on the day" is a shop that will default to the easiest mooring.</p></div>
+          <p>Late October is high season for exactly this. Tell the shop plainly: <b>six divers, all Open Water, two consecutive days 22–23 October, no course, flying at 11:50 on the 26th.</b> Then ask the question that decides the quality of those two days — <b>which shallow sites will you actually run us to?</b> You want <b>Nakanoshima Channel, Twin Caves, Mini Toriike and the Wonderful Cave grottoes</b> named back to you. A shop that answers "we'll see on the day" is a shop that will default to the easiest mooring.</p>
+          <p class="foot">Dive insurance, the 118 coast-guard number and the island hospital live under Reference &rarr; the small print.</p></div>
       </div>
 
       <div class="legpanel" data-print-title="Beaches &amp; drives" role="tabpanel" id="p-miy-do" aria-labelledby="t-miy-do" tabindex="0" hidden>
@@ -2679,7 +2691,7 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
                 <dt>18:30</dt><dd><b>Kiritanpo nabe</b> if the inn will make it. It is the dish of Akita and autumn is its season.</dd>
               </dl>
               <div class="callout"><span class="ct">Ring Tsurunoyu ahead &mdash; this is <i>the</i> onsen of the trip</span>
-                <p>One bath done properly beats seven done dutifully, and this is the one: 300 years old, thatched, milky-blue water in mountain forest. <b>The famous rotenburo is mixed, but single-sex indoor baths sit right beside it</b> &mdash; the onsen-shy can have the water without the exposure, and nobody has to opt out. Day-use capacity is limited and reservations are taken by phone well in advance. Closed Monday mornings for cleaning — a Wednesday is fine. If it's full, <b>Taenoyu</b> has an open-air bath facing a waterfall and is arguably the more beautiful of the two; <b>Kuroyu</b> and <b>Ganiba</b> are both excellent.</p></div>
+                <p>One bath done properly beats seven done dutifully, and this is the one: 300 years old, thatched, milky-blue water in mountain forest. <b>The famous rotenburo is mixed, but single-sex indoor baths sit right beside it</b> &mdash; the onsen-shy can have the water without the exposure, and nobody has to opt out. Full bath etiquette, tattoos included, is under Reference &rarr; the small print. Day-use capacity is limited and reservations are taken by phone well in advance. Closed Monday mornings for cleaning — a Wednesday is fine. If it's full, <b>Taenoyu</b> has an open-air bath facing a waterfall and is arguably the more beautiful of the two; <b>Kuroyu</b> and <b>Ganiba</b> are both excellent.</p></div>
             </div>
 </details>
 
@@ -3427,6 +3439,28 @@ details.regcard[open] .rmore .lbl-open{display:inline;}
       <a class="back" href="#/overview">← Overview</a>
       <a class="nextlink" href="#/plan">Pre-departure plan →</a>
     </div>
+  
+    <div class="blockhead" style="margin-top:52px;"><h3>The small print, folded away</h3><span class="tag">Open only what you need</span></div>
+    <details class="refbox">
+      <summary><b>If something goes wrong</b><span class="refhint">ambulance, divers, quakes, wildlife</span></summary>
+      <div class="refbody">
+        <p><b>Numbers.</b> <b>119</b> is fire and ambulance, <b>110</b> is police, <b>118</b> is the coast guard &mdash; the one that matters on a dive trip. Operators can bridge to interpreters; say the place name first.</p>
+        <p><b>Divers.</b> The island&rsquo;s emergency hospital is <b>Okinawa Prefectural Miyako Hospital</b> in Hirara. For anything decompression-shaped, the dive shop leads &mdash; they know the current recompression referral &mdash; and <b>DAN Japan&rsquo;s 24-hour dive emergency line</b> (dan.or.jp; short-term cover available) should be in the phones of all six of you before the 22nd. Fly no earlier than 24 hours after the last tank &mdash; the itinerary&rsquo;s no-fly 25th exists for exactly this.</p>
+        <p><b>Earthquakes.</b> Phones shriek a few seconds before shaking &mdash; that is the point of the alert, not a malfunction. Drop low, cover your head, stay away from glass; in a hotel, stay put, lifts off-limits until checked. <b>Near any coast, a long or strong quake means walk uphill immediately</b>, no gear-collecting &mdash; both Miyakojima and the Aomori bayfront are tsunami country, and the signed evacuation routes are the green running-figure arrows.</p>
+        <p><b>Wildlife.</b> Two honest notes: <b>Miyakojima has no habu</b> &mdash; the island group is famously free of Okinawa&rsquo;s pit viper &mdash; and late October is past the worst of box-jellyfish season, but heed any beach&rsquo;s posted flags. In Tohoku, <b>bears are real in beech country</b>: the Anmon Falls trail and quiet Shirakami paths want a bell or a chatty group, and dawn/dusk are theirs.</p>
+      </div>
+    </details>
+    <details class="refbox">
+      <summary><b>How Japan works</b><span class="refhint">bath rules, phrases, konbini, small change</span></summary>
+      <div class="refbody">
+        <p><b>The bath, in one paragraph.</b> Naked is non-negotiable, swimwear never. Sit and <b>wash thoroughly at the stools first</b> &mdash; the tub is for soaking, not cleaning. The small towel stays out of the water (fold it on your head like everyone else). Tie long hair up. Tattoos: rural Tohoku inns are generally relaxed about small ones; cover-patches from a konbini settle any doubt. At Tsurunoyu, the milky water makes the mixed rotenburo far less exposed than it sounds &mdash; and the single-sex indoor baths are always there.</p>
+        <p><b>Six phrases that do real work.</b> <i>Sumimasen</i> (excuse me / sorry / thank you, the universal key) &middot; <i>Onegai shimasu</i> (please) &middot; <i>Arigat&#333; gozaimasu</i> &middot; <i>Eigo no menyu wa arimasu ka?</i> (is there an English menu?) &middot; <i>Osusume wa?</i> (what do you recommend?) &middot; <i>Oaiso onegai shimasu</i> (the bill, please).</p>
+        <p><b>Mum&rsquo;s card, in Japanese.</b> Show this at any counter: <b>&#29275;&#32905;&#12399;&#39135;&#12409;&#12425;&#12428;&#12414;&#12379;&#12435;&#12290;&#40786;&#32905;&#12392;&#39770;&#12399;&#22823;&#19976;&#22827;&#12391;&#12377;&#12290;</b> &mdash; &ldquo;I cannot eat beef; chicken and fish are fine.&rdquo; Saved as a photo on her phone, it outperforms any pronunciation.</p>
+        <p><b>Konbini are infrastructure.</b> 7-Eleven, Lawson and FamilyMart handle breakfast, coffee, ATMs that take foreign cards (7-Eleven&rsquo;s are the reliable ones), bin-free rubbish (take it with you &mdash; bins are rare), umbrellas, phone cables and tattoo patches. Nobody tips, anywhere, ever &mdash; it causes confusion, not delight.</p>
+        <p><b>Small change matters</b> in the north: temple gates, coin lockers (&yen;300&ndash;700, every station), laundry machines (most hotels have coin laundry &mdash; the Aomori hotel does, which is why the packing list is as small as it is), and rural vending machines. Japan is <b>100 V, type-A flat-pin</b> &mdash; US plugs fit straight in; Indian round-pin kit needs the adapter on the packing list.</p>
+      </div>
+    </details>
+
   </div>
 </section>
 

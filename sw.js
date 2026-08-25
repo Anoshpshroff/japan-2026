@@ -14,7 +14,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v31';
+var CACHE = 'japan2026-v32';
 var PRECACHE = [
   // Not './' as well — it is byte-for-byte the same document as index.html, so
   // listing both stored the whole itinerary twice. Navigations fall back to
