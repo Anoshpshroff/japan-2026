@@ -14,7 +14,7 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v24';
+var CACHE = 'japan2026-v25';
 var PRECACHE = [
   // Not './' as well — it is byte-for-byte the same document as index.html, so
   // listing both stored the whole itinerary twice. Navigations fall back to
@@ -40,7 +40,7 @@ var PRECACHE = [
   './photos/u-juniko-aoike.jpg',
   './photos/u-osorezan.jpg',
   './photos/u-cape-hennazaki.jpg',
-  './photos/tsurunoyu-autumn.jpg',
+  './photos/u-dakigaeri.jpg',
   './photos/oirase-stream.jpg',
   './photos/nebuta-float.jpg',
   // Weather normals and the JMA tide table. Both are small, and both are the

@@ -226,6 +226,21 @@
           && !photoFor(h.textContent.trim(), '')) return;
       card.dataset.wired = '1';
       card.classList.add('is-tappable');
+      /* Surface the photograph on the card itself, not only inside the sheet.
+         Title-match only: the body fallback that helps the sheet find *a*
+         picture is too loose for an always-visible one — a wrong photograph
+         on a card is worse than none. Cards without a match keep the motif. */
+      var thumbFile = photoFor(h.textContent.trim(), '');
+      if (thumbFile) {
+        var cr = CREDITS[thumbFile] || {};
+        var fig = document.createElement('figure');
+        fig.className = 'cardthumb';
+        fig.innerHTML = '<img src="./photos/' + thumbFile + '" alt=""' +
+          (cr.w ? ' width="' + cr.w + '" height="' + cr.h + '"' : '') +
+          ' loading="lazy" decoding="async">';
+        card.insertBefore(fig, card.firstChild);
+        card.classList.add('has-photo');
+      }
       card.setAttribute('tabindex', '0');
       card.setAttribute('role', 'button');
       var t = card.querySelector('h4');
