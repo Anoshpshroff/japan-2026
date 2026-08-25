@@ -295,6 +295,22 @@
       refresh();
       window.addEventListener('hashchange', function () { setTimeout(refresh, 60); });
       document.addEventListener('click', function (e) {
+        // A link that names a tab: switch to that tab (navigating first if the
+        // view differs) and bring the tab strip into view. Exists because a
+        // same-view href="#/x" is silently inert — the hash does not change.
+        var opener = e.target.closest('a[data-open-tab]');
+        if (opener) {
+          e.preventDefault();
+          var go = function () {
+            var tab = document.getElementById(opener.getAttribute('data-open-tab'));
+            if (tab) { tab.click(); tab.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }); }
+          };
+          if (location.hash !== opener.getAttribute('href')) {
+            location.hash = opener.getAttribute('href');
+            setTimeout(go, 120);
+          } else { go(); }
+          return;
+        }
         if (e.target.closest('[role="tab"], .navlink, .railday')) setTimeout(refresh, 60);
       });
     });
