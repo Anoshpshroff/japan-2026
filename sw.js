@@ -14,7 +14,13 @@
      - everything else          : cache-first, refreshed in the background
    Bump CACHE when you redeploy and want clients to drop the old copy.
 */
-var CACHE = 'japan2026-v34';
+var CACHE = 'japan2026-v35';
+/* Photographs live in their own cache, outside the version. A photo file
+   never changes once published (new photos get new names), so wiping them on
+   every code deploy — which is what a single versioned cache does — just
+   forces phones to re-download megabytes they already had. This cache
+   survives version bumps; activation only clears old CODE caches. */
+var PHOTOS = 'japan2026-photos';
 var PRECACHE = [
   // Not './' as well — it is byte-for-byte the same document as index.html, so
   // listing both stored the whole itinerary twice. Navigations fall back to
@@ -53,9 +59,18 @@ var PRECACHE = [
 ];
 
 self.addEventListener('install', function (e) {
+  var photos = PRECACHE.filter(function (u) { return u.indexOf('/photos/') !== -1; });
+  var rest   = PRECACHE.filter(function (u) { return u.indexOf('/photos/') === -1; });
   e.waitUntil(
-    caches.open(CACHE)
-      .then(function (c) { return c.addAll(PRECACHE); })
+    Promise.all([
+      caches.open(CACHE).then(function (c) { return c.addAll(rest); }),
+      caches.open(PHOTOS).then(function (c) {
+        // addAll would re-download photos we already hold; only fetch the gaps
+        return Promise.all(photos.map(function (u) {
+          return c.match(u).then(function (hit) { return hit || c.add(u); });
+        }));
+      })
+    ])
       .then(function () { return self.skipWaiting(); })
       .catch(function () { /* a missing optional file must not break install */ })
   );
@@ -65,7 +80,7 @@ self.addEventListener('activate', function (e) {
   e.waitUntil(
     caches.keys().then(function (keys) {
       return Promise.all(keys.map(function (k) {
-        return k === CACHE ? null : caches.delete(k);
+        return (k === CACHE || k === PHOTOS) ? null : caches.delete(k);
       }));
     }).then(function () { return self.clients.claim(); })
   );
@@ -101,6 +116,7 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
+  var isPhoto = url.pathname.indexOf('/photos/') !== -1;
   e.respondWith(
     caches.match(req).then(function (hit) {
       if (hit) {
@@ -108,7 +124,7 @@ self.addEventListener('fetch', function (e) {
         // changes, so re-fetching it would burn roaming data for nothing.
         // Code and everything else does get refreshed quietly in the
         // background while the cached copy is served now.
-        if (url.pathname.indexOf('/photos/') === -1) {
+        if (!isPhoto) {
           fetch(req).then(function (res) {
             if (res && res.ok) caches.open(CACHE).then(function (c) { c.put(req, res); });
           }).catch(function () {});
@@ -118,7 +134,7 @@ self.addEventListener('fetch', function (e) {
       return fetch(req).then(function (res) {
         if (res && res.ok && res.type === 'basic') {
           var copy = res.clone();
-          caches.open(CACHE).then(function (c) { c.put(req, copy); });
+          caches.open(isPhoto ? PHOTOS : CACHE).then(function (c) { c.put(req, copy); });
         }
         return res;
       });
