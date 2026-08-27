@@ -22,10 +22,20 @@ details[open] .om-shut{display:none}
 details:not([open]) .om-open{display:none}
 details[open] .om-chev{transform:rotate(45deg)}
 section[id],article[id]{scroll-margin-top:66px}
+header nav::-webkit-scrollbar{display:none}
+@media (max-width:760px){
+  header > div{padding:10px 14px !important;gap:10px !important;flex-wrap:nowrap !important}
+  header nav{flex-wrap:nowrap !important;overflow-x:auto !important;scrollbar-width:none;-webkit-overflow-scrolling:touch;max-width:100%}
+  header nav > a, header nav > button{flex:none}
+  section > div, article > div, footer{padding-left:16px !important;padding-right:16px !important}
+  div[style*="margin: 0px -16px"], div[style*="margin:0 -16px"]{margin-left:-8px !important;margin-right:-8px !important}
+  div[style*="130px 1fr"]{grid-template-columns:88px 1fr !important}
+}
 @media (max-width:1100px), (max-height:640px){.hero-kanji{display:none !important}}
 html.dark{background:#0E0C08}
 html.dark body{background:#0E0C08}
 html.dark .sc-host > *{filter:invert(1) hue-rotate(180deg)}
+html.dark .sc-host > [data-keep]{filter:none}
 html.dark body img{filter:invert(1) hue-rotate(180deg)}
 html.dark body [data-keep]{filter:invert(1) hue-rotate(180deg)}
 html.dark body [data-keep] img{filter:none}
@@ -48,6 +58,56 @@ html.dark body [data-keep] img{filter:none}
   </div>
 </header>
 <div style="height:52px"></div>
+
+<sc-if value="{{ showToday }}" hint-placeholder-val="{{ false }}">
+<section id="today" data-screen-label="Today" style="margin:16px auto 0;max-width:700px;padding:0 16px">
+  <div style="border-radius:18px;overflow:hidden;background:#FFFDF6;border:1px solid #E6DECD;box-shadow:0 10px 30px -18px rgba(34,27,19,.4)">
+    <div style="background:{{ tdColor }};padding:14px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(251,247,236,.16);border:1.5px solid rgba(251,247,236,.7);color:#FBF7EC;border-radius:10px;transform:rotate(-4deg);font-family:'Young Serif',serif;font-size:14px;flex:none">今日</span>
+      <div style="display:grid;line-height:1.2">
+        <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:rgba(251,247,236,.85)">Today · {{ tdDate }}</span>
+        <span style="font-family:'Young Serif',serif;font-size:22px;color:#FBF7EC">{{ tdLeg }}</span>
+      </div>
+      <span style="flex:1"></span>
+      <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;color:rgba(251,247,236,.9)">{{ tdKanji }}</span>
+    </div>
+    <div style="padding:16px 18px;display:grid;gap:14px">
+      <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+        <p style="margin:0;font-size:16px;line-height:1.45;color:#221B13;flex:1;min-width:200px"><b>{{ tdSummary }}</b></p>
+        <a href="{{ tdDayHref }}" style="font-family:ui-monospace,Menlo,monospace;font-size:11px;font-weight:700;color:#C0392B;text-decoration:none;white-space:nowrap">The full day ↓</a>
+      </div>
+      <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.7;color:#5C5347">{{ tdWx }}</p>
+      <sc-if value="{{ tdTide }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.7;color:#0A7F8C">{{ tdTide }}</p></sc-if>
+      <div style="background:#F3EDDE;border-radius:12px;padding:12px 14px">
+        <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#8B8070">Tonight</p>
+        <p style="margin:4px 0 0;font-size:14.5px;line-height:1.5;color:#221B13"><b>{{ tdStay }}</b><span style="color:#5C5347"> — {{ tdStayNote }}</span></p>
+      </div>
+      <sc-if value="{{ tdHasTasks }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <p style="margin:0 0 7px;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#B23A2E">Don't miss today</p>
+          <div style="display:grid;gap:7px">
+            <sc-for list="{{ tdTasks }}" as="t" hint-placeholder-count="2">
+              <p style="margin:0;font-size:14px;line-height:1.5;color:#3A332A;display:flex;gap:9px"><span style="width:7px;height:7px;background:{{ t.color }};flex:none;margin-top:6px"></span><span>{{ t.text }}</span></p>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ tdHasRoutes }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ tdRoutes }}" as="rt" hint-placeholder-count="1">
+            <a href="{{ rt.url }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;font-weight:700;color:{{ tdColor }};border:1.5px solid {{ tdColor }};border-radius:999px;padding:8px 14px" style-hover="background:#F3EDDE">Route: {{ rt.label }} ↗</a>
+          </sc-for>
+        </div>
+      </sc-if>
+      <a href="{{ tdExploreHref }}" style="display:flex;align-items:center;gap:10px;text-decoration:none;background:#FFFDF6;border:1px solid #E0D7C4;border-radius:12px;padding:11px 14px" style-hover="background:#F3EDDE">
+        <span style="font-size:14px;color:#221B13"><b>Explore {{ tdLeg }}</b> — spare hours, what's nearby</span>
+        <span style="flex:1"></span>
+        <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;color:#C0392B">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+</sc-if>
 
 <section id="top" data-screen-label="Cover" data-keep="1" style="position:relative;height:min(88vh,760px);min-height:520px;overflow:hidden;background:#0B2A33">
   <img src="dayphotos/web/23_cavern_01.jpg" alt="Shafts of light inside a Miyakojima sea cavern, a diver below" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
@@ -111,7 +171,7 @@ html.dark body [data-keep] img{filter:none}
       <span style="font-family:'Young Serif',serif;font-size:clamp(28px,3.4vw,38px);line-height:1;color:#C0392B">Tokyo</span>
       <span style="display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;padding:3px 5px;background:#B23A2E;color:#FBF7EC;border-radius:9px;transform:rotate(-4deg);font-family:'Young Serif',serif;font-size:15px;line-height:1.05;text-align:center;box-shadow:2px 3px 0 rgba(34,27,19,.14);align-self:center;flex:none">東京</span>
       <span style="flex:1"></span>
-      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#8B8070">18 – 21 Oct · 3 nights · Akasaka</span>
+      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#8B8070">18 – 21 Oct · 3 nights · Akasaka</span><a href="reference.html#explore:tokyo" style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#C0392B;text-decoration:none;border:1.5px solid #C0392B;border-radius:999px;padding:5px 12px;white-space:nowrap">Explore ↗</a>
     </div>
     <div style="height:14px;margin-top:12px;"><svg style="display:block;width:100%;height:14px" aria-hidden="true"><defs><pattern id="omband102" width="24" height="14" patternUnits="userSpaceOnUse"><g stroke='#C0392B' stroke-width='1' opacity='.45' fill='none'><path d='M0.5 0v14M23.5 0v14M0 0.5h24M0 13.5h24M12 0.5v13'/></g></pattern></defs><rect width="100%" height="14" fill="url(#omband102)"></rect></svg></div>
     <div data-wxleg="tokyo" style="display:flex;gap:7px;flex-wrap:wrap;margin-top:14px"></div>
@@ -243,7 +303,7 @@ html.dark body [data-keep] img{filter:none}
       <span style="font-family:'Young Serif',serif;font-size:clamp(28px,3.4vw,38px);line-height:1;color:#3B5A78">Mount Fuji</span>
       <span style="display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;padding:3px 5px;background:#B23A2E;color:#FBF7EC;border-radius:9px;transform:rotate(-4deg);font-family:'Young Serif',serif;font-size:11px;line-height:1.05;text-align:center;box-shadow:2px 3px 0 rgba(34,27,19,.14);align-self:center;flex:none">富士山</span>
       <span style="flex:1"></span>
-      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#8B8070">20 Oct · day trip from Akasaka · decide on the morning</span>
+      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#8B8070">20 Oct · day trip from Akasaka · decide on the morning</span><a href="reference.html#explore:fuji" style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#3B5A78;text-decoration:none;border:1.5px solid #3B5A78;border-radius:999px;padding:5px 12px;white-space:nowrap">Explore ↗</a>
     </div>
     <div style="height:14px;margin-top:12px;"><svg style="display:block;width:100%;height:14px" aria-hidden="true"><defs><pattern id="omband103" width="72" height="14" patternUnits="userSpaceOnUse"><g stroke='#3B5A78' stroke-width='1.4' fill='none' opacity='.55'><path d='M0 14L20 4q6-5 12 0L52 14'/><path d='M48 14l11-6 13 6'/></g></pattern></defs><rect width="100%" height="14" fill="url(#omband103)"></rect></svg></div>
     <div data-wxleg="fuji" style="display:flex;gap:7px;flex-wrap:wrap;margin-top:14px"></div>
@@ -320,7 +380,7 @@ html.dark body [data-keep] img{filter:none}
       <span style="font-family:'Young Serif',serif;font-size:clamp(28px,3.4vw,38px);line-height:1;color:#0A7F8C">Miyakojima</span>
       <span style="display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;padding:3px 5px;background:#B23A2E;color:#FBF7EC;border-radius:9px;transform:rotate(-4deg);font-family:'Young Serif',serif;font-size:11px;line-height:1.05;text-align:center;box-shadow:2px 3px 0 rgba(34,27,19,.14);align-self:center;flex:none">宮古島</span>
       <span style="flex:1"></span>
-      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#8B8070">21 – 26 Oct · 5 nights · 2 cars</span>
+      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#8B8070">21 – 26 Oct · 5 nights · 2 cars</span><a href="reference.html#explore:miyako" style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#0A7F8C;text-decoration:none;border:1.5px solid #0A7F8C;border-radius:999px;padding:5px 12px;white-space:nowrap">Explore ↗</a>
     </div>
     <div style="height:14px;margin-top:12px;"><svg style="display:block;width:100%;height:14px" aria-hidden="true"><defs><pattern id="omband104" width="48" height="14" patternUnits="userSpaceOnUse"><g fill='none' stroke='#0A7F8C' stroke-width='1.3' opacity='.55'><path d='M0 14a24 24 0 0 1 48 0'/><path d='M8 14a16 16 0 0 1 32 0'/><path d='M16 14a8 8 0 0 1 16 0'/><path d='M-24 14a24 24 0 0 1 48 0'/><path d='M24 14a24 24 0 0 1 48 0'/></g></pattern></defs><rect width="100%" height="14" fill="url(#omband104)"></rect></svg></div>
     <div data-wxleg="miyako" style="display:flex;gap:7px;flex-wrap:wrap;margin-top:14px"></div>
@@ -504,7 +564,7 @@ html.dark body [data-keep] img{filter:none}
       <span style="font-family:'Young Serif',serif;font-size:clamp(28px,3.4vw,38px);line-height:1;color:#B4551D">Kakunodate / Lake Tazawa</span>
       <span style="display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;padding:3px 5px;background:#B23A2E;color:#FBF7EC;border-radius:9px;transform:rotate(-4deg);font-family:'Young Serif',serif;font-size:15px;line-height:1.05;text-align:center;box-shadow:2px 3px 0 rgba(34,27,19,.14);align-self:center;flex:none">角館</span>
       <span style="flex:1"></span>
-      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#8B8070">26 – 29 Oct · 3 nights · 2 cars</span>
+      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#8B8070">26 – 29 Oct · 3 nights · 2 cars</span><a href="reference.html#explore:kakunodate" style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#B4551D;text-decoration:none;border:1.5px solid #B4551D;border-radius:999px;padding:5px 12px;white-space:nowrap">Explore ↗</a>
     </div>
     <div style="height:14px;margin-top:12px;"><svg style="display:block;width:100%;height:14px" aria-hidden="true"><defs><pattern id="omband105" width="16" height="14" patternUnits="userSpaceOnUse"><g stroke='#B4551D' stroke-width='1.3' fill='none' opacity='.55'><path d='M0 1.5l8 9 8-9'/><path d='M0 8.5l8 9 8-9' opacity='.5'/></g></pattern></defs><rect width="100%" height="14" fill="url(#omband105)"></rect></svg></div>
     <div data-wxleg="kakunodate" style="display:flex;gap:7px;flex-wrap:wrap;margin-top:14px"></div>
@@ -623,7 +683,7 @@ html.dark body [data-keep] img{filter:none}
       <span style="font-family:'Young Serif',serif;font-size:clamp(28px,3.4vw,38px);line-height:1;color:#8A2B41">Aomori</span>
       <span style="display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;padding:3px 5px;background:#B23A2E;color:#FBF7EC;border-radius:9px;transform:rotate(-4deg);font-family:'Young Serif',serif;font-size:15px;line-height:1.05;text-align:center;box-shadow:2px 3px 0 rgba(34,27,19,.14);align-self:center;flex:none">青森</span>
       <span style="flex:1"></span>
-      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#8B8070">29 Oct – 2 Nov · 4 nights · 2 cars</span>
+      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#8B8070">29 Oct – 2 Nov · 4 nights · 2 cars</span><a href="reference.html#explore:aomori" style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#8A2B41;text-decoration:none;border:1.5px solid #8A2B41;border-radius:999px;padding:5px 12px;white-space:nowrap">Explore ↗</a>
     </div>
     <div style="height:14px;margin-top:12px;"><svg style="display:block;width:100%;height:14px" aria-hidden="true"><defs><pattern id="omband106" width="28" height="14" patternUnits="userSpaceOnUse"><g stroke='#8A2B41' stroke-width='1.2' fill='none' opacity='.6'><circle cx='14' cy='9' r='4.2'/><path d='M14 4.8q0-2.4 2-3.3'/><path d='M15.5 2.6q2.6 0 3 2.2q-2.6 .6-3-2.2z'/></g></pattern></defs><rect width="100%" height="14" fill="url(#omband106)"></rect></svg></div>
     <div data-wxleg="aomori" style="display:flex;gap:7px;flex-wrap:wrap;margin-top:14px"></div>
@@ -820,9 +880,33 @@ html.dark body [data-keep] img{filter:none}
 
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;expandAll&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Reading mode&quot;}, &quot;finePrintOpen&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Reading mode&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;expandAll&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Reading mode&quot;}, &quot;finePrintOpen&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Reading mode&quot;}, &quot;todayPreview&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Today mode&quot;, &quot;options&quot;: [&quot;&quot;, &quot;2026-10-18&quot;, &quot;2026-10-19&quot;, &quot;2026-10-20&quot;, &quot;2026-10-21&quot;, &quot;2026-10-22&quot;, &quot;2026-10-23&quot;, &quot;2026-10-24&quot;, &quot;2026-10-25&quot;, &quot;2026-10-26&quot;, &quot;2026-10-27&quot;, &quot;2026-10-28&quot;, &quot;2026-10-29&quot;, &quot;2026-10-30&quot;, &quot;2026-10-31&quot;, &quot;2026-11-01&quot;, &quot;2026-11-02&quot;]}}">
 class Component extends DCLogic {
-  state = { dark: false, activeLeg: '', scrolled: false };
+  state = { dark: false, activeLeg: '', scrolled: false, wx: null, tides: null };
+  static TODAY = {
+    '10-18': ['tokyo', '#d18', 'Land, meet at Narita, one N\u2019EX in. Torii at Hie Shrine after dark.', 'Via Inn Prime Akasaka', 'check-in runs to midnight; bathhouse on site', [['Every driver: ask for a passport landing stamp at Narita \u2014 the e-gate gives none, and no stamp means no rental car.', '#B23A2E']], [["Narita → Akasaka by rail","https://www.google.com/maps/dir/Narita%20Airport%20Terminal%202/Via%20Inn%20Prime%20Akasaka?travelmode=transit"]]],
+    '10-19': ['tokyo', '#d19', 'The empty shrine early, then the city at your own pace.', 'Via Inn Prime Akasaka', 'bathhouse on site', [['Yamato ship 1: cold-weather cases leave Via Inn today or tomorrow, delivery designated 26 Oct.', '#A8730A']], [["Meiji Jingu from the hotel","https://www.google.com/maps/dir/Via%20Inn%20Prime%20Akasaka/Meiji%20Jingu?travelmode=transit"]]],
+    '10-20': ['fuji', '#d20', 'The fork \u2014 Fuji by van or Tokyo, deeper. Everyone back for Umaya at 21:00.', 'Via Inn Prime Akasaka', 'last Tokyo night', [['Check the Fujigoko webcam before 06:00 \u2014 if the mountain is hidden, switch tracks and cancel the van free.', '#B23A2E'], ['Umaya dinner 21:00 \u00B7 private room for six.', '#A8730A']], [["The Fuji loop","https://www.google.com/maps/dir/Toyota%20Rent%20a%20Car%20Hachioji/Arakurayama%20Sengen%20Park/Hoto%20Fudo%20Higashikoiji/Oishi%20Park%2C%20Fujikawaguchiko/Lake%20Motosu/Hachioji%20Station"]]],
+    '10-21': ['miyako', '#d21', 'South to the island. Two cars, Maehama for sunset.', 'Hotel & Villa Seahorse', 'door code entry \u2014 host releases it early', [['Departs HANEDA, not Narita \u2014 leave Akasaka by 08:15, Toei Asakusa line via Sengakuji.', '#B23A2E']], [["Airport → Maehama → the villa","https://www.google.com/maps/dir/Miyako%20Airport/Yonaha%20Maehama%20Beach/Hotel%20Villa%20Seahorse%20Miyakojima"]]],
+    '10-22': ['miyako', '#d22', 'Dive day one \u2014 the shallow bright stuff.', 'Hotel & Villa Seahorse', 'wetsuits rinse and hang tonight', [], [["To the harbour","https://www.google.com/maps/dir/Hotel%20Villa%20Seahorse%20Miyakojima/Hirara%20Port%2C%20Miyakojima"]]],
+    '10-23': ['miyako', '#d23', 'Dive day two \u2014 Toriike and the caverns.', 'Hotel & Villa Seahorse', 'last tank today \u2014 the 26th flight clears the no-fly window by two days', [['Wetsuits start drying tonight \u2014 they ship on the 25th.', '#A8730A']], [["To the harbour","https://www.google.com/maps/dir/Hotel%20Villa%20Seahorse%20Miyakojima/Hirara%20Port%2C%20Miyakojima"]]],
+    '10-24': ['miyako', '#d24', 'Turtles at 07:30, Pumpkin Rock when the tide says so.', 'Hotel & Villa Seahorse', 'Akagara dinner tonight if the 1 Oct booking landed', [['Turtle snorkel 07:30 \u2014 mask on, breakfast after.', '#A8730A']], [["Pumpkin Rock side of the island","https://www.google.com/maps/dir/Hotel%20Villa%20Seahorse%20Miyakojima/Shimajiri%20Mangrove%20Park%2C%20Miyakojima"]]],
+    '10-25': ['miyako', '#d25', 'The three bridges, slowly. Last island day.', 'Hotel & Villa Seahorse', 'pack the island cases tonight', [['Yamato ship 2: island cases leave Seahorse for Narita Terminal 2, delivery designated 1 Nov.', '#B23A2E'], ['Passports, cash, meds and dive computers stay in the backpacks.', '#A8730A']], [["The three bridges, in order","https://www.google.com/maps/dir/Hotel%20Villa%20Seahorse%20Miyakojima/Ikema%20Ohashi/Kurima%20Ohashi/Irabu%20Ohashi"]]],
+    '10-26': ['kakunodate', '#d26', 'The long day north \u2014 island to mountain inn on hand luggage alone.', 'Katakurinohana, Lake Tazawa', 'they know you arrive ~21:30; kiritanpo dinners booked 27th\u201328th', [['Hard deadline: Morioka rental desk closes 20:00. If NH1080 slips, ring 019-622-0100 from Haneda with your train number.', '#B23A2E'], ['One warm layer in the cabin bag \u2014 26\u00B0 to 8\u00B0 in one day.', '#A8730A']], [["Morioka → the inn tonight","https://www.google.com/maps/dir/Morioka%20Station/Katakurinohana%2C%20Senboku%2C%20Akita"]]],
+    '10-27': ['kakunodate', '#d27', 'Dakigaeri Gorge at peak colour, samurai street after.', 'Katakurinohana, Lake Tazawa', 'kiritanpo dinner at the inn', [], [["Inn → Dakigaeri → samurai street","https://www.google.com/maps/dir/Katakurinohana%2C%20Senboku%2C%20Akita/Dakigaeri%20Gorge/Bukeyashiki%20Street%2C%20Kakunodate"]]],
+    '10-28': ['kakunodate', '#d28', 'Komagatake by car to the 8th station, Nyuto baths after.', 'Katakurinohana, Lake Tazawa', 'second inn dinner', [['Check the Akita road site in the morning \u2014 summit snow is the one variable.', '#A8730A']], [["Inn → Komagatake → Nyuto baths","https://www.google.com/maps/dir/Katakurinohana%2C%20Senboku%2C%20Akita/Mt%20Akita-Komagatake%208th%20Station/Tsurunoyu%20Onsen"]]],
+    '10-29': ['aomori', '#d29', 'North again \u2014 Hakka Pass, Lake Towada, into Aomori city.', 'Art Hotel Aomori', 'walkable to the market and Warasse', [], [["North via Hakka Pass & Towada","https://www.google.com/maps/dir/Katakurinohana%2C%20Senboku%2C%20Akita/Hakka%20Pass%20Observatory/Lake%20Towada/Art%20Hotel%20Aomori"]]],
+    '10-30': ['aomori', '#d30', 'Hakkoda ropeway and Oirase Gorge.', 'Art Hotel Aomori', 'agree parking for the cars', [['Route 103 over Hakkoda: ice is the morning risk \u2014 a later start lets the sun get to the road.', '#B23A2E']], [["Ropeway, then Oirase","https://www.google.com/maps/dir/Art%20Hotel%20Aomori/Hakkoda%20Ropeway/Oirase%20Gorge/Art%20Hotel%20Aomori"]]],
+    '10-31': ['aomori', '#d31', 'The Aomori fork \u2014 Hirosaki & apples, Shirakami, or Osorezan.', 'Art Hotel Aomori', 'Osorezan closes for the season tonight', [['Osorezan shuts 1 Nov until May \u2014 today is the last window.', '#A8730A']], [["If Hirosaki","https://www.google.com/maps/dir/Art%20Hotel%20Aomori/Hirosaki%20Castle"],["If Osorezan","https://www.google.com/maps/dir/Art%20Hotel%20Aomori/Osorezan%20Bodaiji"]]],
+    '11-01': ['aomori', '#d01', 'Furukawa market breakfast, the city on foot, pack.', 'Art Hotel Aomori', 'cars stay parked overnight \u2014 agreed at check-in', [['Check Furukawa market is open today (weekly closing day varies).', '#A8730A'], ['On the road by 07:00 tomorrow \u2014 set the alarms tonight.', '#B23A2E']], [["Furukawa market on foot","https://www.google.com/maps/dir/Art%20Hotel%20Aomori/Furukawa%20Market%20Aomori?travelmode=walking"]]],
+    '11-02': ['aomori', '#d02', 'The drive south at 07:00, trains to Narita, home.', 'The plane home', 'Seattle 17:25 \u00B7 Bengaluru 18:25, both from Terminal 2', [['Collect the island cases at the Terminal 2 Yamato counter \u2014 it wants you 3h to 1h before departure.', '#B23A2E']], [["07:00 — Aomori → Morioka Station","https://www.google.com/maps/dir/Art%20Hotel%20Aomori/Morioka%20Station"]]]
+  };
+  static LEGS = { tokyo: ['Tokyo', '\u6771\u4EAC', '#C0392B', 'tokyo'], fuji: ['Mount Fuji', '\u5BCC\u58EB\u5C71', '#3B5A78', 'kawaguchiko'], miyako: ['Miyakojima', '\u5BAE\u53E4\u5CF6', '#0A7F8C', 'miyako'], kakunodate: ['Kakunodate', '\u89D2\u9928', '#B4551D', 'tazawa'], aomori: ['Aomori', '\u9752\u68EE', '#8A2B41', 'aomori'] };
+  todayIso() {
+    const p = (this.props.todayPreview || '').trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(p)) return p;
+    try { return new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Tokyo' }); } catch (e) { return new Date().toISOString().slice(0, 10); }
+  }
   componentDidMount() {
     let saved = null;
     try { saved = localStorage.getItem('jp26-theme'); } catch (e) {}
@@ -840,17 +924,66 @@ class Component extends DCLogic {
       if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
     };
     window.addEventListener('scroll', this._spy, { passive: true });
+    const iso = this.todayIso();
+    if (Component.TODAY[iso.slice(5)] && iso.slice(0, 4) === '2026') {
+      const j = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
+      Promise.all([j('./weather.json'), j('./tides.json')]).then(([wx, tides]) => this.setState({ wx, tides }));
+    }
   }
   componentDidUpdate() {
     document.documentElement.classList.toggle('dark', this.state.dark);
+  }
+  todayVals() {
+    const iso = this.todayIso();
+    const rec = Component.TODAY[iso.slice(5)];
+    if (!rec || iso.slice(0, 4) !== '2026') return { showToday: false };
+    const [legKey, href, summary, stay, stayNote, tasks, routes] = rec;
+    const [legLabel, kanji, color, wxLoc] = Component.LEGS[legKey];
+    const dt = new Date(iso + 'T00:00');
+    const DOW = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let wxLine = 'Weather loads when the forecast window opens.';
+    let tide = '';
+    const wx = this.state.wx;
+    if (wx) {
+      const dayRec = Object.keys(wx.days).map(k => wx.days[k]).find(r => r.date === iso && r.loc);
+      let live = null;
+      try { const c = JSON.parse(localStorage.getItem('japan2026.wx') || 'null'); live = c && c[wxLoc] && c[wxLoc][iso]; } catch (e) {}
+      const t = v => Math.round(v) + '\u00B0';
+      if (live) wxLine = t(live.tmax) + ' / ' + t(live.tmin) + (live.pop != null ? ' \u00B7 rain ' + live.pop + '%' : '') + ' \u00B7 forecast';
+      else if (dayRec) {
+        const n = dayRec.loc === wxLoc ? dayRec.normal : ((dayRec.alts || []).find(a => a.loc === wxLoc) || {}).normal;
+        if (n) wxLine = t(n.tmax) + ' / ' + t(n.tmin) + ' \u00B7 typical for the date';
+      }
+      if (dayRec && dayRec.sunrise) wxLine += ' \u00B7 light ' + dayRec.sunrise + '\u2013' + dayRec.sunset;
+      if (legKey === 'miyako' && this.state.tides && this.state.tides.days[iso]) {
+        const td = this.state.tides.days[iso];
+        const day = evs => evs.filter(e => { const h = +e.t.slice(0, 2); return h >= 6 && h <= 20; });
+        tide = 'Tide \u00B7 Hirara: ' + day(td.highs).map(e => '\u25B2 ' + e.t).concat(day(td.lows).map(e => '\u25BC ' + e.t)).join(' \u00B7 ');
+      }
+    }
+    return {
+      showToday: true,
+      tdDate: DOW[dt.getDay()] + ' ' + dt.getDate() + ' ' + MON[dt.getMonth()],
+      tdLeg: legLabel, tdKanji: kanji, tdColor: color,
+      tdExploreHref: 'reference.html#explore:' + legKey,
+      tdSummary: summary, tdDayHref: href,
+      tdWx: wxLine, tdTide: tide,
+      tdStay: stay, tdStayNote: stayNote,
+      tdHasTasks: tasks.length > 0,
+      tdTasks: tasks.map(([text, c]) => ({ text, color: c })),
+      tdHasRoutes: !!(routes && routes.length),
+      tdRoutes: (routes || []).map(([label, url]) => ({ label, url }))
+    };
   }
   renderVals() {
     const start = new Date('2026-10-18T00:00:00+09:00');
     const days = Math.max(0, Math.ceil((start - Date.now()) / 86400000));
     return {
       countdown: String(days),
+      ...this.todayVals(),
       brandOp: this.state.scrolled ? 0 : 1,
-      brandMax: this.state.scrolled ? '0px' : '340px',
+      brandMax: this.state.scrolled ? '0px' : '460px',
       navTokyo: this.state.activeLeg === 'tokyo' ? '#EFE8D8' : 'transparent',
       navFuji: this.state.activeLeg === 'fuji' ? '#EFE8D8' : 'transparent',
       navMiyako: this.state.activeLeg === 'miyako' ? '#EFE8D8' : 'transparent',

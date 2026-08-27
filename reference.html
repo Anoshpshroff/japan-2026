@@ -15,7 +15,17 @@ body{margin:0;background:#F7F3EA;color:#221B13;font-family:'Albert Sans',sans-se
 a{color:#221B13}a:hover{color:#C0392B}
 details>summary{list-style:none}details>summary::-webkit-details-marker{display:none}
 details[open] .lchev{transform:rotate(90deg)}
-</style>
+header nav::-webkit-scrollbar{display:none}
+@media (max-width:760px){
+  header nav{overflow-x:auto !important;scrollbar-width:none;-webkit-overflow-scrolling:touch;max-width:100vw}
+  header nav > button{flex:none;padding:12px 10px !important}
+  main{padding-left:16px !important;padding-right:16px !important}
+  summary[style*="150px"]{display:flex !important;flex-wrap:wrap;align-items:baseline;gap:4px 10px !important}
+  summary[style*="64px"]{display:flex !important;flex-wrap:wrap;align-items:baseline;gap:4px 10px !important}
+  div[style*="1fr auto auto"]{grid-template-columns:1fr auto !important}
+  div[style*="1fr auto auto"] > span:nth-child(3){display:none}
+  div[style*="118px"]{grid-template-columns:1fr !important;gap:6px !important}
+}</style>
 </helmet>
 
 <header style="position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(247,243,234,.92);backdrop-filter:blur(10px);border-bottom:1px solid #E6DECD">
@@ -356,6 +366,9 @@ class Component extends DCLogic {
     window.addEventListener('scroll', this._spy, { passive: true });
     let h = (location.hash || '').replace('#', '');
     if (h === 'finds' || h === 'guides') h = 'explore';
+    let hashRegion = '';
+    if (h.indexOf('explore:') === 0) { hashRegion = h.slice(8); h = 'explore'; }
+    this._hashRegion = hashRegion;
     const TABS = ['registry', 'money', 'plan', 'explore', 'weather', 'fineprint'];
     if (!TABS.includes(h)) { try { h = localStorage.getItem('jp26-hbtab') || ''; } catch (e) {} }
     this.setState({ tab: TABS.includes(h) ? h : 'explore' });
@@ -365,7 +378,8 @@ class Component extends DCLogic {
       if (!x) return;
       const iso = new Date().toISOString().slice(0, 10);
       const cur = x.regions.find(r => iso >= r.dates[0] && iso <= r.dates[1]);
-      this.setState({ explore: x, exRegion: cur ? cur.key : 'tokyo' });
+      const hr = this._hashRegion && x.regions.some(rg => rg.key === this._hashRegion) ? this._hashRegion : '';
+      this.setState({ explore: x, exRegion: hr || (cur ? cur.key : 'tokyo') });
     });
     Promise.all([j('./weather.json'), j('./tides.json')]).then(([wx, tides]) => {
       if (!wx) return;
