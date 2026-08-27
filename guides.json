@@ -1,0 +1,679 @@
+{
+ "blocks": [
+  {
+   "city": "overview",
+   "title": "Everything as booked",
+   "tag": "Now in the Registry",
+   "items": [
+    {
+     "text": "Flights, beds, cars and the luggage shipment all live in the Registry — with addresses, check-in windows, cancellation deadlines, tappable phone numbers and a search box. They used to be repeated here as two long tables; that made this page the fourth-longest in the whole itinerary and told you less than one tap away already does.",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "city": "tokyo",
+   "title": "Eating in Tokyo",
+   "tag": "Three nights, two of them jet-lagged",
+   "items": [
+    {
+     "text": "Akasaka backstreets — Behind Akasaka Biz Tower: a dense grid of alleys packed with izakaya, premium yakiniku, ramen and a few themed places. Five minutes from the hotel, which is the whole point on landing night. No booking needed if you go early. 18 Oct · walk-in Lunch · Shibuya",
+     "img": "./photos/u-akasaka-backstreets.jpg"
+    },
+    {
+     "text": "Nonbei Yokocho — \"Drunkards' Alley\" — two lanes of tiny post-war shacks wedged against the Yamanote tracks, most seating six people. Famous after dark, but a few open early for ramen and yakitori, and it's far more atmospheric at lunch than anything in the station. Best after dark · any Tokyo evening Breakfast · if you stay",
+     "img": "./photos/u-nonbei-yokocho.jpg"
+    },
+    {
+     "text": "Tsukiji outer market — The wholesale auction moved to Toyosu but the outer market is still here and still the best breakfast in the city — tamagoyaki on a stick, uni straight from the tray, grilled scallops, and knife shops worth an hour on their own. Go by 09:00. 20 Oct · Tokyo-deeper track Evening · Shinjuku",
+     "img": "./photos/p-tsukiji.jpg"
+    },
+    {
+     "text": "Omoide Yokocho & Golden Gai — Two survivals of post-war Tokyo a few minutes apart: \"Memory Lane\" for smoke-blackened yakitori counters, Golden Gai for two hundred bars in six alleys, most seating five. Some charge a cover for non-regulars — look for the English welcome signs. 20 Oct · after the free observation deck If you go to Fuji",
+     "img": "./photos/p-omoide.jpg"
+    },
+    {
+     "text": "Hoto noodles — Yamanashi's mountain dish and nothing like udon: flat, thick, unsalted wheat noodles simmered straight into a miso broth with pumpkin, taro and mushrooms until the whole pot goes thick. Served in an iron cauldron. Exactly right after a cold morning at the lakes. 20 Oct · Kawaguchiko Practical",
+     "img": ""
+    },
+    {
+     "text": "Depachika & ekiben — The basement food halls under any department store are the best-value quality food in Japan — and the way to feed six people fast. Useful throughout, and the way to stock a picnic for the Fuji drive rather than on the train. Any day · best under Shinjuku or Nihombashi See every dish across the trip → ← Overview Next · Miyakojima →",
+     "img": "./photos/u-depachika-ekiben.jpg"
+    }
+   ]
+  },
+  {
+   "city": "fuji",
+   "title": "Getting there",
+   "tag": "Drive it — the logic is below",
+   "items": [
+    {
+     "text": "The highway bus (¥2,200) and the JR-via-Otsuki route exist, but a timetable is exactly what this day is better without.",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "city": "fuji",
+   "title": "The day",
+   "tag": "",
+   "items": [
+    {
+     "text": "This is the one day worth checking before you commit. The Fujigoko live webcams are pointed at the mountain from Kawaguchiko, and the forecast is usually honest about cloud. If Fuji is hidden, the day loses most of its point — switch to the Tokyo track and keep everyone's money. The van makes that call cheap: Toyota rentals cancel free before pickup, which prepaid train seats do not.",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "city": "fuji",
+   "title": "Worth knowing",
+   "tag": "",
+   "items": [
+    {
+     "text": "Chureito's 398 steps — They are steep and they are the reason some people skip it. There is a gently sloped path from the same car park that gets to the same viewpoint without a single step — ask for the \"slope route\". Worth knowing before anyone talks themselves out of it. Arakurayama Sengen Park Timing",
+     "img": "./photos/p-chureito.jpg"
+    },
+    {
+     "text": "Morning beats afternoon — Cloud builds around the summit as the ground warms, so the mountain is most reliably clear early. That is the argument for the 08:30 train rather than a leisurely start — and for doing Chureito first, before the light flattens. Aim to be at the pagoda by 11:00 Autumn",
+     "img": ""
+    },
+    {
+     "text": "You are just before the peak — The Momiji Corridor's maple festival on the lake's north-west shore normally runs from early November, so late October catches it turning rather than fully lit. The kokia at Oishi Park are red now, though, and the higher slopes have colour. Colour rises with altitude Eat",
+     "img": ""
+    },
+    {
+     "text": "Hoto, and Fujizakura beer — Hoto is the dish to have — nothing like udon despite appearances, and exactly right after a cold morning at the lake. The local Fujizakura Kogen brewery does a very good weizen if anyone wants a beer with the view. Lunch near the station Group of six",
+     "img": "./photos/u-fujizakura-beer.jpg"
+    },
+    {
+     "text": "Why the van wins here — Six people make the arithmetic lopsided: one van costs about half of six train tickets, and it is the only way to reach Motosuko and the quiet west-lake shores without building the day around a bus timetable. Picking up at Hachioji is the trick — you never drive a metre of central Tokyo, and dropping the van there on the way home puts you on a train while the expressway queues into the city. Worth",
+     "img": ""
+    },
+    {
+     "text": "Stay for sunset — Fuji turns pink for a few minutes just after the sun drops — the locals call the snow-lit version \"beni Fuji\". If the sky is clean at 16:00, push the return train back an hour. You will not regret it. Sunset around 17:00 in late Oct ← Tokyo, 20 October Compare · the Kyoto day →",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "city": "kyoto",
+   "title": "The day",
+   "tag": "",
+   "items": [
+    {
+     "text": "Do Fushimi Inari first, before 09:00. Everything else in this plan tolerates crowds; the torii tunnels do not. The photograph everyone wants — an empty corridor of vermilion gates — exists for about ninety minutes a day, and you are on the only train that gets you there in time.",
+     "img": "./photos/kyoto-fushimi.jpg"
+    }
+   ]
+  },
+  {
+   "city": "kyoto",
+   "title": "Worth knowing",
+   "tag": "",
+   "items": [
+    {
+     "text": "Geiko are not an attraction — If you see a geiko or maiko hurrying between appointments in Gion, do not follow or photograph them. Kyoto has posted rules and fines on the private lanes off Hanamikoji after years of harassment. Look, step aside, let them pass. Private alleys are signposted Timing",
+     "img": ""
+    },
+    {
+     "text": "You are three weeks early — Kyoto's maples turn from about the middle of November and peak late in the month. In late October the city is green with the first hints of colour — so you get Kyoto's architecture and streets, but not the thing it is most famous for. Plan accordingly and you will not be disappointed. Crowds, however, are already here Feet",
+     "img": ""
+    },
+    {
+     "text": "Twelve to fifteen kilometres — Fushimi Inari's approach is stairs, Kiyomizu is a hill, and Higashiyama is cobbles the whole way down. This is comfortably the most walking of any day on the trip. Real shoes, and be honest about whether both parents want it on day three. The Tokyo track exists for exactly this Money",
+     "img": "./photos/kyoto-fushimi.jpg"
+    },
+    {
+     "text": "Where the ¥28k goes — Roughly ¥14,000 each way on Nozomi, and it is unavoidable if you want nine hours in the city. Temple entries are small by comparison — a few hundred yen each. For six people the transport alone is about ¥170,000 , which is worth stating plainly before anyone commits. Fuji is roughly a fifth of this Eat",
+     "img": ""
+    },
+    {
+     "text": "Yudofu and obanzai — Kyoto's cooking is vegetable-led and restrained — yudofu (tofu simmered at the table in kombu broth) and obanzai (small seasonal home-style dishes) are the two things worth seeking out. Nishiki Market is the browsing option if the schedule slips. Higashiyama has the best yudofu houses If you split",
+     "img": ""
+    },
+    {
+     "text": "Nobody has to come — This day leaves from Tokyo Station at 06:00 while the Fuji party leaves Shinjuku at 07:30 — different stations, different hours. Agree it the night before, book both, and reconvene in Akasaka around 21:00 so the Kyoto group can join straight off the train. Dinner booking helps here ← Tokyo, 20 October Compare · the Fuji day →",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "city": "miyako",
+   "title": "The dive briefing",
+   "tag": "All Open Water · 22–23 Oct",
+   "items": [
+    {
+     "text": "Devil's Palace — 魔王の宮殿 Three chambers including the \"altar\" and the \"bedroom\", entered through a hole that admits one diver at a time, then a pitch-black passage that opens into shafts of blue light. The signature Miyako dive, ~30 min by boat beside Shimoji airport — and the reason people come back with an Advanced card. ~25 m · below your 18 m limit Out of reach this trip",
+     "img": ""
+    },
+    {
+     "text": "Antonio Gaudí — アントニオガウディ West side of Shimoji. A collapsed reef structure of intricate arches and towers that genuinely looks architected — hence the name. Deeper and more exposed than Devil's Palace, and the most condition-dependent of the three. 30 m+ · well below your limit Out of reach this trip",
+     "img": ""
+    },
+    {
+     "text": "Toriike — 通り池 A national natural monument: two inland ponds connected to the open sea by a submerged tunnel, cave ceilings around 23 m and depths past 40 m. The hardest of the three, and it only goes on days when conditions and the whole team's skills line up. 40 m+ · a true cave · 50+ logged dives Your headline dive",
+     "img": "./photos/u-toriike-dive.jpg"
+    },
+    {
+     "text": "Nakanoshima Channel — 中の島チャネル Shallow, bright and forgiving — a sand channel between reef walls with excellent light. Comfortably inside your 18 m limit, and the site to ask for by name on the 22nd. Good enough that shops run it for experienced divers too, which is the point. 5–18 m · inside your limit · also snorkellable Yes, on an OW card",
+     "img": "./photos/u-nakanoshima-channel.jpg"
+    },
+    {
+     "text": "Wonderful Cave & Mini Grotto — ワンダーホール周辺 The shallower end of the Shimoji cave menu — swim-throughs and grottoes with plenty of ambient light, giving the same cathedral feeling as the Big 3 without the depth or the commitment. ~15–20 m · light all the way, exit in sight Everyone",
+     "img": "./photos/u-wonderful-cave.jpg"
+    },
+    {
+     "text": "Yabiji reef — 八重干瀬 Japan's largest coral reef, a national natural monument, ~15 km north of Ikema. Trips run when the tides allow. The colour-and-fish day rather than the rock-formation day — good for divers and snorkellers on one boat. Tide-dependent · great for mixed groups Three Hirara names, four dinners Every dinner on the island is a short walk in Hirara, and the good rooms book out. Akagara (あかがーら) — Miy",
+     "img": "./photos/p-ikema.jpg"
+    }
+   ]
+  },
+  {
+   "city": "miyako",
+   "title": "Beaches",
+   "tag": "Sea ~27 °C · reef shoes worth packing",
+   "items": [
+    {
+     "text": "Yonaha Maehama — 与那覇前浜 Seven kilometres of powder-fine white sand on the south-west coast, routinely ranked the best sand beach in Japan. Shallow, calm, and facing exactly the right way for sunset. This is your default evening. Sunset ~18:05 · watersports base Most photographed",
+     "img": "./photos/u-yonaha-maehama.jpg"
+    },
+    {
+     "text": "Sunayama Beach — 砂山ビーチ Reached by climbing over a pine-topped sand dune, which is half the fun — then a small cove with a natural rock arch framing the sea. Compact and gets busy, so go early or at golden hour. 10 min from Hirara · short dune climb Best snorkelling",
+     "img": "./photos/p-sunayama.jpg"
+    },
+    {
+     "text": "Yoshino Kaigan — 吉野海岸 Fish swarm you the moment you're in, and a few metres further out the coral becomes a proper maze. The best reef you can reach straight off a beach anywhere on the island. Steep access path, reef shoes essential, and respect the current. East coast · pair with Aragusuku next door Tide-dependent",
+     "img": "./photos/p-yoshino.jpg"
+    },
+    {
+     "text": "17-END — 17エンド At the end of Shimoji airport's runway 17: at low tide the sea pulls back to leave a vast shallow lagoon of impossibly pale blue with a sandbar running out into it. At high tide it's just sea. Check the tide table before you drive out — this one is entirely timing. Shimoji · low tide only Quietest",
+     "img": "./photos/u-17-end-beach.jpg"
+    },
+    {
+     "text": "Toguchi-no-hama — 渡口の浜 A long, soft, curving stretch on Irabu that never seems to have anyone on it. No facilities to speak of, which is exactly why. Pair it with Makiyama Observatory and the drive back over the bridge. Irabu · combine with the bridge drive Closest to town",
+     "img": "./photos/u-toguchi-no-hama.jpg"
+    },
+    {
+     "text": "Painagama — パイナガマビーチ Walking distance from Hirara, so it's the locals' beach — showers, shade, a shop, and the place to take a beer at the end of a driving day without committing to a drive. In Hirara · easy sunset",
+     "img": "./photos/u-painagama-beach.jpg"
+    }
+   ]
+  },
+  {
+   "city": "miyako",
+   "title": "Drives & the three bridges",
+   "tag": "Cars essential — no public transport",
+   "items": [
+    {
+     "text": "Shigira Ougon Onsen — the largest hot spring in Okinawa, and better in bad weather than good",
+     "img": ""
+    },
+    {
+     "text": "Yukishio Salt Museum — short, indoors, genuinely interesting",
+     "img": "./photos/u-yukishio-salt-museum.jpg"
+    },
+    {
+     "text": "Taragawa or Ikema distillery — awamori tasting, nominate a driver",
+     "img": "./photos/p-ikema.jpg"
+    },
+    {
+     "text": "Miyakojima City Museum — island history and the old Ryukyu tax stone",
+     "img": ""
+    },
+    {
+     "text": "Drive the three bridges anyway — heavy sky over that water is its own thing",
+     "img": ""
+    },
+    {
+     "text": "Miyako soba crawl — the one day a queue at 11:00 is no hardship",
+     "img": "./photos/u-miyako-soba.jpg"
+    },
+    {
+     "text": "Move dive days. Tell the shop early. You can slide a lost day onto the 24th and still be well clear of the flight — swap the turtles to the 25th if you do",
+     "img": ""
+    },
+    {
+     "text": "Two compacts, not kei — トヨタレンタカー · C3クラス Booked with Toyota at the airport shop: two C3-class compacts , automatic, collected at 14:00 on the 21st. Two cars means the group splits without negotiating — divers one way, beach party the other — and unlike a kei they take six people and six suitcases in a single run on arrival day. 5 seats a car · a real boot · insurance already paid The great one",
+     "img": ""
+    },
+    {
+     "text": "Irabu Ohashi — 伊良部大橋 · 3,540 m The longest toll-free bridge in Japan, curving out over water that shifts through four shades of blue as you cross. Drive it at golden hour, then stop at Makiyama Observatory on the far side and look back at what you just drove. 5 min · do it more than once Best headland",
+     "img": "./photos/u-irabu-ohashi.jpg"
+    },
+    {
+     "text": "Cape Higashi-Hennazaki — 東平安名崎 A two-kilometre spine of land running into open ocean with sea on both sides of the car and a lighthouse at the end. One of Japan's designated top hundred scenic spots, and it earns it. Windy — take a jacket even here. 30 min from Hirara The other two",
+     "img": "./photos/u-cape-hennazaki.jpg"
+    },
+    {
+     "text": "Kurima & Ikema bridges — 来間大橋 · 池間大橋 1,690 m and 1,425 m. Kurima gives the best single view of the full seven-kilometre sweep of Maehama from the hilltop viewpoint; Ikema opens up the wild northern tip, its wetland, and Nishihennazaki. Both under 20 min from town On the water",
+     "img": "./photos/p-kurima.jpg"
+    },
+    {
+     "text": "Pumpkin Rock & the mangroves — カボチャ岩 Kayak or SUP to a limestone sea cave holding a huge pumpkin-shaped formation — usually sold bundled with reef snorkelling. The Shimajiri mangrove paddle is the calmer alternative. Both are half-days and both suit every energy level in the group. Book ahead · 24 or 25 Oct Wet-weather",
+     "img": "./photos/u-pumpkin-rock.jpg"
+    },
+    {
+     "text": "Salt, awamori & a hot spring — The Yukishio Salt Museum holds a Guinness record for mineral content and gives you the sea in a different form. Taragawa and Ikema distilleries pour awamori — ask for kūsu, the aged one. And Shigira Ougon Onsen is the largest hot spring in Okinawa. Nominate a driver first After dark",
+     "img": "./photos/u-yukishio-salt-museum.jpg"
+    },
+    {
+     "text": "Stargazing — There is almost no light pollution once you're a few minutes out of Hirara. Drive to Maehama or the Higashi-Hennazaki road, kill the headlights, and give your eyes fifteen minutes. Best on the nights either side of a new moon. Any clear night · free If the sea turns Late October is past the peak but Okinawa can still catch a tail-end typhoon, and dive boats are cancelled on sea state rather than r",
+     "img": "./photos/u-stargazing-miyako.jpg"
+    },
+    {
+     "text": "Sea turtle snorkelling — ウミガメシュノーケル Miyako’s green turtles sit in shallow, sheltered water, and operators here quote encounter rates at or near 100% — not marketing bluster, it is genuinely that reliable. Half a day, roughly ¥6,000–8,000, usually with free island pickup and photos thrown in. No experience needed, which is the point. Perfect for the 22nd, 23rd or 24th The one to book",
+     "img": "./photos/u-sea-turtle-snorkel.jpg"
+    },
+    {
+     "text": "Clear SUP to the Pumpkin Rock — クリアSUP A transparent-hulled paddleboard over water this colour is faintly absurd, and the Pumpkin Rock — a limestone dome inside a sea cave, reachable only at the right tide — is the best two hours on the island that does not involve a tank. Around ¥7,000. Tide-dependent, so the operator picks the day, not you. Already pencilled for the 24th or 25th Free, and takes 20 minutes",
+     "img": "./photos/u-pumpkin-rock.jpg"
+    },
+    {
+     "text": "Yukishio Salt Museum — 雪塩ミュージアム Holds a Guinness record for the most minerals in a salt, which sounds like nothing until you taste the difference. Free short tour, faintly eccentric, and it sells things you cannot buy anywhere else — including a salt soft-serve that is much better than it has any right to be. Northern tip, on the way to Ikema After dark",
+     "img": "./photos/u-yukishio-salt-museum.jpg"
+    },
+    {
+     "text": "Stars, with almost nothing in the way — 星空 Once you are five minutes out of Hirara there is effectively no light pollution , and late October gives you long dark evenings. You can simply drive out and look up for free — or take a guided night tour for ¥4,000–5,000, which adds the island’s wildlife and someone who knows what you are pointing at. Best on the 25th, after the bridge at golden hour Two of them pour",
+     "img": "./photos/u-stargazing-miyako.jpg"
+    },
+    {
+     "text": "Awamori distillery — 泡盛 Okinawa’s rice spirit, distilled on the island itself. Taragawa and Ikema both do tastings, and the aged stuff — kusu — is nothing like the harsh young awamori that puts people off. Cheap, quick, and a far better souvenir than anything in an airport. Nominate a driver, obviously",
+     "img": "./photos/u-awamori-cellar.jpg"
+    }
+   ]
+  },
+  {
+   "city": "miyako",
+   "title": "Who to call",
+   "tag": "Four shortlisted · book now, not in Japan",
+   "items": [
+    {
+     "text": "Aquatic Adventure — 宮古島ダイビング アクアティックアドベンチャー Takes Open Water divers happily and runs a good modern boat. It also teaches the Advanced course — which you have decided against , so that advantage no longer applies and this drops behind Guide-Ya-San. Still a perfectly good booking for two shallow days if the other is full. Takes intro → advanced Boat Estrella de Agua, 2023 Your plan 2 days, no course Watch: Reviews call",
+     "img": ""
+    },
+    {
+     "text": "BIGHOLIDAY — 宮古島ファンダイビング専門店 A superb fun-diving-only specialist, and the source of the difficulty tiering used on this page — but not available to you . Kept here so you know it was considered and why it was dropped, rather than wondering later. Minimum 30 logged dives Your group Open Water Verdict not this trip Why it is out: their words — “Participants must have 30 or more dives under their belt and be able ",
+     "img": ""
+    },
+    {
+     "text": "Guide-Ya-San — ガイド屋さん Built for exactly where you now are. Caps at four guests per guide , so six of you means two guides, and runs a named “Dive Together Tour for Certified Divers and Beginners” . Eighteen years accident-free. With the course off the table this is the better room — it is designed around diving Open Water divers well rather than around upgrading them. Ratio 4 guests per guide Mixed levels explic",
+     "img": ""
+    },
+    {
+     "text": "Penguin Divers — ペンギンダイバーズ Owner Yumiko runs it with her husband Joe, who is Fijian and a native English speaker — the only shop of the four where English is a first language rather than a service. Small-group and personal, and the one to pick if any of the six wants a briefing with no ambiguity in it. English native speaker Size small groups Style personal, guided Base Shimozato, Hirara Watch: The smallest operat",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "city": "miyako",
+   "title": "Eating on Miyakojima",
+   "tag": "Hirara is the only real nightlife",
+   "items": [
+    {
+     "text": "Miyako soba — 宮古そば Thick, udon-like wheat noodles in a lighter, ramen-ish broth under fall-apart stewed pork ribs — and traditionally the meat is hidden under the noodles, a local quirk. The famous shops close when the pot runs out, so this is really a lunch dish. Koja Soba is the long-standing name. Go by 11:00 · 25 Oct is your window The big night",
+     "img": "./photos/u-miyako-soba.jpg"
+    },
+    {
+     "text": "Miyako beef — 宮古牛 Rarer than Ishigaki beef and barely leaves the island. Have it as yakiniku, as seared nigiri, or in the beef yakisoba the izakayas do particularly well. This is the 24th's group dinner — book it. 24 Oct · reserve ahead Order it everywhere",
+     "img": ""
+    },
+    {
+     "text": "Umibudo & the island plate — 海ぶどう \"Sea grapes\" — a seaweed of tiny green spheres that burst with salt water like caviar, served with ponzu. Alongside: goya champuru (bitter melon stir-fried with tofu, egg and pork), rafute (belly pork simmered in awamori), and gurukun , the Okinawan prefectural fish, deep-fried whole. Any izakaya The local spirit",
+     "img": "./photos/u-umibudo.jpg"
+    },
+    {
+     "text": "Awamori — 泡盛 Okinawa's rice spirit — distilled rather than brewed, made with long-grain Thai rice and black koji, and older than shochu. Miyako has its own distilleries: Taragawa , Chuko and Ikema . Ask for kūsu , aged three years or more, which is far smoother. Sort your driver out first. Distillery visits on the 25th The right first night",
+     "img": "./photos/p-awamori.jpg"
+    },
+    {
+     "text": "Izakaya with live sanshin — 三線 The sanshin is Okinawa's three-stringed snakeskin banjo and the ancestor of the shamisen. Several Hirara izakayas run live sets nightly, usually ending with everyone up dancing kachāshī. It is not a tourist performance — it's how the island socialises. Book, especially in season. 21 or 24 Oct · reserve Timing note",
+     "img": "./photos/u-izakaya-sanshin.jpg"
+    },
+    {
+     "text": "What's out of season — Miyako mango is the island's most famous export but the season runs June to August — by late October the farm stands are selling jam, juice and soft-serve rather than fruit. Yukishio salt soft-serve is the year-round consolation, and it's genuinely good. Manage expectations See every dish across the trip → ← Tokyo Next · Kakunodate →",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "city": "kakunodate",
+   "title": "Walks around Kakunodate",
+   "tag": "Sunset ~16:45 — start early",
+   "items": [
+    {
+     "text": "Loop the lake, do not cut across — 田沢湖一周・県道38号 Your inn sits on the western shore and the road outside it goes all the way round — about 20 km, thirty to forty minutes without stopping . It passes the gilded Tatsuko statue on the west shore and Gozanoishi shrine on the north, where a torii stands in the water. Any trip from the inn can begin with a half or full circuit rather than joining Route 46 straight away. On a clear morning ",
+     "img": "./photos/u-lake-tazawa-loop.jpg"
+    },
+    {
+     "text": "Route 341, the mountain way north — 国道341号 The road that matters on the 29th. Rather than dropping onto the expressway, Route 341 runs north from Tazawako through the mountains to Kazuno — Japanese drivers describe it as a superb mountain route with very little traffic, which is precisely what an expressway is not. It threads two dam lakes: Akisen-ko , then Hosen-ko below the Tamagawa dam, whose water is an extraordinary lapis blue ",
+     "img": "./photos/u-route-341-akita.jpg"
+    },
+    {
+     "text": "Dakigaeri Gorge — 抱返り渓谷 Ten kilometres of gorge along a mineral blue-green river with maples hanging over it, rock-cut tunnels, a red suspension bridge and the Kaiun-no-taki waterfall. Peak foliage lands on your exact dates. Turn back at the bridge for the easy version; keep going for the quiet. 27 Oct · easy → moderate · the best walk of the trip Alpine · ~2 h",
+     "img": "./photos/u-dakigaeri.jpg"
+    },
+    {
+     "text": "Mt Akita-Komagatake — 秋田駒ヶ岳 · 1,637 m Drive up to the 8th Station at ~1,300 m — private cars are unrestricted after 20 October and the road stays open until 1 November — then walk the crater rim. Huge views over Tazawa and Hachimantai. Snow is the only variable; check on the morning. 28 Oct · moderate · road shuts 1 Nov Easy · flat",
+     "img": "./photos/komagatake-summit.jpg"
+    },
+    {
+     "text": "Lake Tazawa shore — 田沢湖 Japan's deepest lake at 423 m, which is why it holds that cobalt colour year-round. Short level walks to the gilded Tatsuko statue standing in the shallows and the red Gozanoishi Shrine torii on the north shore. Drivable loop with pull-offs the whole way. 28 Oct · easy track Drive + 1–1.5 h walk",
+     "img": "./photos/u-tazawa-shore.jpg"
+    },
+    {
+     "text": "Hachimantai Aspite Line — 八幡平アスピーテライン Twenty-seven kilometres straight over the top of the Hachimantai massif, with an easy crater-lake and marsh boardwalk from the summit car park. Closes in early November , so late October is the last of it. Watch for night closures and early snow. 28 Oct alternative · check before driving Easy · steamy",
+     "img": "./photos/p-aspite.jpg"
+    },
+    {
+     "text": "Oyasukyo Daifunto — 小安峡大噴湯 A short staircase into a narrow gorge where superheated steam and boiling water blast horizontally out of cracks in the rock face, right beside the path. Loud, hot and slightly alarming. Also at peak colour in late October. ~1.5 h south · optional detour Easy · birch forest",
+     "img": "./photos/u-oyasukyo.jpg"
+    },
+    {
+     "text": "Nyuto Kogen trails — 乳頭高原 Gentle paths linking the seven hot springs through beech and birch, with no altitude risk and colour the whole way. The right choice if Komagatake is snowed off but the active four still want to walk before the bath. 28 Oct fallback · all abilities",
+     "img": "./photos/u-nyuto-trails.jpg"
+    }
+   ]
+  },
+  {
+   "city": "kakunodate",
+   "title": "The onsen, and the town itself",
+   "tag": "",
+   "items": [
+    {
+     "text": "Nyuto Onsen — rain makes an open-air bath better, not worse",
+     "img": "./photos/nyuto-onsen.jpg"
+    },
+    {
+     "text": "Aoyagi-ke and Ishiguro-ke — the samurai houses are interiors",
+     "img": "./photos/u-aoyagi.jpg"
+    },
+    {
+     "text": "Kabazaiku Denshokan — the cherry-bark craft museum and workshop",
+     "img": "./photos/u-kabazaiku-bark.jpg"
+    },
+    {
+     "text": "Ando Jozo — miso and soy in a brick warehouse you can walk inside",
+     "img": ""
+    },
+    {
+     "text": "Suzuki Shuzo — Hideyoshi sake, tasting indoors",
+     "img": ""
+    },
+    {
+     "text": "Lake Tazawa by car — the loop works from the car in any weather",
+     "img": "./photos/u-tazawa-shore.jpg"
+    },
+    {
+     "text": "Skip the summit. Komagatake in cloud is a car park with no view — swap it, do not push it",
+     "img": "./photos/komagatake-summit.jpg"
+    },
+    {
+     "text": "Nyuto Onsen — 乳頭温泉郷 Seven independent hot springs in mountain forest, each with different water. Tsurunoyu — thatched roofs, milky sulphur water, a big mixed open-air bath — is the famous one, day-use ~10:00–15:00 for ¥600–700, phone booking advised. Taenoyu faces a waterfall; Kuroyu and Ganiba are quieter and excellent. 28 Oct · arrive by 14:00 In town · 2 h",
+     "img": "./photos/u-tsurunoyu-bath.jpg"
+    },
+    {
+     "text": "Bukeyashiki-dori — 武家屋敷通り An unusually intact samurai quarter: a broad street of black wooden walls and gates, with several houses open to walk through. Aoyagi-ke holds armour and a proper museum; Ishiguro-ke is the oldest and still lived in by the family. The weeping cherries that make it famous in spring turn gold in late October. 27 Oct afternoon · flat, easy Only here",
+     "img": "./photos/u-bukeyashiki.jpg"
+    },
+    {
+     "text": "Kabazaiku cherry bark — 樺細工 A craft that exists nowhere else in Japan: wild cherry bark shaved, polished and laminated onto tea caddies, boxes and trays until it glows a deep reddish brown. Two centuries old, invented here by low-ranking samurai as a side income. The workshops let you watch. 27 Oct · good souvenir If it rains in Akita Autumn rain in Tohoku is usually steady rather than violent, and Dakigaeri is arguably ",
+     "img": "./photos/u-kabazaiku-bark.jpg"
+    },
+    {
+     "text": "Kabazaiku cherry-bark craft — 樺細工 Wild cherry bark, polished until it looks like lacquered stone, worked into tea caddies and boxes. It was the off-season handwork of Kakunodate’s samurai and it is still made nowhere else. The Denshokan on the samurai street has live demonstrations and short hands-on sessions, and the tea caddies are the one souvenir from this trip worth carrying home. Tax-free over ¥5,000 with your passport T",
+     "img": "./photos/u-kabazaiku-craft.jpg"
+    },
+    {
+     "text": "Aoyagi-ke samurai house — 角館歴史村・青柳家 Not a single house but a walled compound — armour, a gun collection, a folk museum and gardens, spread over several buildings. If you only go into one of the six samurai houses, this is the one that repays an hour rather than ten minutes. Ishiguro-ke next door is the older and more austere alternative. Cash is safest here Since 1689",
+     "img": "./photos/u-aoyagi.jpg"
+    },
+    {
+     "text": "Suzuki Shuzo, on the samurai street — 鈴木酒造店 They have brewed Hideyoshi here since 1689, in the middle of the old town rather than on some industrial edge. Akita’s cold winters and soft water are why this prefecture punches so far above its size. A few doors along, Ando Jozo ’s brick miso and soy warehouse does tastings of a different kind. Both are on the 27th’s walk anyway Your inn is on the lake",
+     "img": "./photos/u-bukeyashiki.jpg"
+    },
+    {
+     "text": "Lake Tazawa cruise — 田沢湖遊覧船 Japan’s deepest lake at 423 m, which is why it never freezes and why the water is that improbable blue. The boat runs late April to early November , so your dates catch the very end of the season — and since Katakurinohana sits on the shore, this is a twenty-minute drive rather than an expedition. Check it is still running when you ring the inn Ring ahead",
+     "img": "./photos/u-tazawa-cruise.jpg"
+    },
+    {
+     "text": "Tsurunoyu day bathing — 鶴の湯温泉 The oldest inn at Nyuto, thatched roofs, milky white sulphur water, and a mixed outdoor bath fed from the bottom so the silt keeps you decently hidden. Day bathing needs a phone reservation and capacity is genuinely limited. Already in the plan for the 28th — this is the one not to leave to chance. Note the tattoo restriction on shared baths",
+     "img": "./photos/u-tsurunoyu-bath.jpg"
+    }
+   ]
+  },
+  {
+   "city": "kakunodate",
+   "title": "Eating in Akita",
+   "tag": "Cold-weather food, in its season",
+   "items": [
+    {
+     "text": "Kiritanpo nabe — きりたんぽ鍋 Freshly cooked rice pounded smooth, moulded around cedar skewers, grilled over coals, then cut into a hot pot of Hinai-jidori chicken broth with burdock, maitake and seri — the whole plant, roots included, which is the local signature. Autumn and winter only. 27 or 28 Oct · ask the inn ahead Lunch",
+     "img": "./photos/u-kiritanpo.jpg"
+    },
+    {
+     "text": "Inaniwa udon — 稲庭うどん One of Japan's three great udon and nothing like thick Sanuki: hand-stretched, flattened and air-dried into a pale, unusually silky noodle. Served cold with a dipping sauce even in autumn — have it that way first, because the texture is the entire point. 27 Oct · Kakunodate In town",
+     "img": "./photos/u-inaniwa-udon.jpg"
+    },
+    {
+     "text": "Sake at the source — 日本酒 Akita's cold winters and soft water make it one of the top brewing prefectures. Suzuki Shuzo has made Hideyoshi in Kakunodate since 1689 and sits right on the samurai walk; Ando Jozo 's miso and soy warehouse is a few doors along, its brick storehouse worth entering on its own. 27 Oct afternoon · both walkable The local bird",
+     "img": "./photos/u-sake-akita.jpg"
+    },
+    {
+     "text": "Hinai-jidori — 比内地鶏 One of Japan's three great heritage chickens, raised only in northern Akita and far denser and more flavoured than ordinary bird. It's what makes kiritanpo broth taste like anything — but also worth eating on its own as oyakodon or grilled. Any meal here Winter preserve",
+     "img": "./photos/p-hinai.jpg"
+    },
+    {
+     "text": "Iburigakko — いぶりがっこ Daikon hung in the rafters over a smouldering fire, smoked for days, then pickled in rice bran — a solution to Akita winters too cold and dark to sun-dry anything. Smoky, sweet, crunchy. Best served with cream cheese and sake, which sounds wrong and isn't. Order alongside everything At the onsen",
+     "img": ""
+    },
+    {
+     "text": "Yamai ryori — The Nyuto inns serve mountain food that matches the bath: river fish grilled whole on skewers around a hearth, wild mountain vegetables, mushrooms, and miso hotpots. If you're doing day-use bathing, several will also serve lunch — worth asking when you phone about the bath. 28 Oct · book with the bath See every dish across the trip → ← Miyakojima Next · Aomori →",
+     "img": "./photos/u-yamai-ryori.jpg"
+    }
+   ]
+  },
+  {
+   "city": "aomori",
+   "title": "Walks around Aomori",
+   "tag": "Sunset ~16:35 — mornings only",
+   "items": [
+    {
+     "text": "Hakka Pass, 631 m — 発荷峠展望台 The southern gateway to Lake Towada on Route 103, and the point where the caldera opens up beneath you — the lake, the Ohanabe headland, and the Hakkoda range beyond. Car park, shop and toilets, so it is the natural break on the drive north. Fifteen minutes on foot is Shimeitei , counted among Japan’s eight great views, and the angle from which Towada reads as a heart. Crater-rim foliage pe",
+     "img": "./photos/u-hakka-pass.jpg"
+    },
+    {
+     "text": "Jogakura Ohashi — 城ヶ倉大橋 Japan’s largest deck-type arch bridge — 360 m long, a 255 m span, 122 m of gorge underneath — on Route 394 just west of the Hakkoda road. From the deck you get a genuine 360°: the Hakkoda peaks, Aomori city below, and Mount Iwaki away west. Its foliage peaks mid to late October , which is your window exactly — beech, maple and Erman’s birch, and after rain the colour comes off the water far ",
+     "img": "./photos/u-jogakura-ohashi.jpg"
+    },
+    {
+     "text": "Kasamatsu Pass & Suiren-numa — 傘松峠・睡蓮沼 Route 103 tops out at 1,040 m at Kasamatsu Pass, and Suiren-numa sits right beside the road there. Five minutes along a boardwalk and the whole Hakkoda ridge stands reflected in the pond — the classic view of the range, for almost no walking. On the way to Sukayu — do not drive past it Flat · 1–5 h",
+     "img": ""
+    },
+    {
+     "text": "Oirase Gorge — 奥入瀬渓流 Fourteen kilometres of stream running out of Lake Towada past moss, rapids and a dozen named waterfalls, on a level path the whole way. Walk any length you like. With two cars, drop one carload at Nenokuchi and collect them at Ishigedo — the classic middle section, and the best use of having a driver. 29 Oct · peak foliage mid-Oct to early Nov Easy · ~1 h",
+     "img": "./photos/oirase-stream.jpg"
+    },
+    {
+     "text": "Tsuta-numa pond loop — 蔦沼 Six ponds linked by a level path through old beech forest. Tsuta-numa itself produces the mirror reflection that is one of the most photographed autumn scenes in Japan — and it's only glass early, before the wind gets up. Worth an early start. 30 Oct · easy · go at dawn Easy · 60–90 min",
+     "img": "./photos/u-tsuta-numa.jpg"
+    },
+    {
+     "text": "Hakkoda summit boardwalk — 八甲田 Straight off the ropeway at 1,324 m: a marked, level boardwalk loop across the alpine plateau with views over the whole range. No navigation, no scrambling — but exposed and genuinely cold by late October, so proper layers. 30 Oct · all abilities Easy · ~40 min",
+     "img": "./photos/hakkoda-odake.jpg"
+    },
+    {
+     "text": "Mt Iwaki via the Skyline — 岩木山 · 1,625 m Drive 69 numbered hairpins to the 8th station, take a chairlift to the 9th, then walk the last rocky stretch to the summit of the mountain that dominates every view in Tsugaru. The biggest payoff-to-effort ratio in the region. Road closes early November. 31 Oct · pairs with Hirosaki Easy · 1–2 h",
+     "img": "./photos/u-iwaki-skyline.jpg"
+    },
+    {
+     "text": "Juniko & Aoike — 十二湖・青池 Thirty-three lakes (despite the name) scattered through UNESCO beech forest. Aoike is the reason to come — a small pond of impossible glowing cobalt whose colour still isn't fully explained. Level paths link the main lakes. 31 Oct · 2h drive each way Moderate · ~3 h",
+     "img": "./photos/u-juniko-aoike.jpg"
+    },
+    {
+     "text": "Anmon Falls — 暗門の滝 The real Shirakami walk: a river-gorge trail with boardwalks and crossings leading to three stacked waterfalls, through the largest virgin beech forest in East Asia. Wet underfoot and gear is sometimes required — confirm the trail's open this late. 31 Oct · for the active four Hard · 4–5 h",
+     "img": "./photos/p-anmon.jpg"
+    },
+    {
+     "text": "Mt Odake — 大岳 · 1,585 m The proper Hakkoda traverse, from the ropeway over the high ground and down past the sulphur vents at Jigoku-numa to Sukayu Onsen. Superb, but snow is likely by 30 October and it turns into a winter mountain fast — check conditions and be willing to turn back. 30 Oct · conditions-dependent",
+     "img": "./photos/hakkoda-odake.jpg"
+    }
+   ]
+  },
+  {
+   "city": "aomori",
+   "title": "Drives, and days that aren't walks",
+   "tag": "",
+   "items": [
+    {
+     "text": "Sannai-Maruyama — the Jomon site is largely under cover",
+     "img": "./photos/u-sannai.jpg"
+    },
+    {
+     "text": "Aomori Museum of Art — Nara, Munakata and the Chagall backdrops",
+     "img": ""
+    },
+    {
+     "text": "Nebuta Warasse — the floats, indoors, five minutes from your bed",
+     "img": "./photos/nebuta-float.jpg"
+    },
+    {
+     "text": "Furukawa market — nokkedon is a covered market breakfast",
+     "img": "./photos/p-nokkedon.jpg"
+    },
+    {
+     "text": "A-Factory — cider tasting on the waterfront",
+     "img": "./photos/p-afactory.jpg"
+    },
+    {
+     "text": "Sukayu or Aoni — drive up anyway; the bath is the destination",
+     "img": "./photos/p-sukayu.jpg"
+    },
+    {
+     "text": "Hirosaki — castle park, Western architecture and fifty apple pies",
+     "img": "./photos/p-hirosaki.jpg"
+    },
+    {
+     "text": "Asamushi aquarium — twenty minutes east, fine in a downpour",
+     "img": ""
+    },
+    {
+     "text": "Hakkoda–Towada Gold Line — 国道103号 Aomori city up over the Hakkoda range past Sukayu and Jigoku-numa, down through Tsuta and along Oirase to Lake Towada. One of the most celebrated autumn drives in Japan and the backbone of both your 29th and your 30th. ~2h without stops · you will stop Coastal",
+     "img": "./photos/u-tsuta-numa.jpg"
+    },
+    {
+     "text": "Route 101, the Nihonkai coast — 日本海沿い Empty coastal highway along the Sea of Japan towards Shirakami, with the wave-cut rock shelf at Senjojiki and long unbroken views west. Best driven late, heading home with the sun going down over the water. 31 Oct · the approach to Juniko Indoor · 1 h",
+     "img": ""
+    },
+    {
+     "text": "Nebuta Warasse — ねぶたの家 ワ・ラッセ Five of the previous year's prize-winning Nebuta floats, indoors and lit, at close range — twenty-odd feet of painted washi warriors on wire frames. The festival itself is August, but this is genuinely astonishing year-round, and it's beside the station. Any evening · 5 min from the hotel Indoor + outdoor · 2 h",
+     "img": "./photos/nebuta-float.jpg"
+    },
+    {
+     "text": "Sannai-Maruyama & the art museum — 三内丸山遺跡 A UNESCO-listed Jomon village occupied for over a millennium, with reconstructed pit dwellings and a six-pillar timber tower. Next door, the Aomori Museum of Art holds Nara's giant Aomori-ken dog and Chagall's Aleko backdrops. The best bad-weather day in the prefecture. 1 Nov · 20 min from the hotel If you want a second bath",
+     "img": "./photos/u-sannai.jpg"
+    },
+    {
+     "text": "Sukayu, Tsuta & Aoni — 酸ヶ湯・蔦・青荷 Sukayu 's \"thousand-person bath\" is a vast all-hinoki hall, mixed and famously acidic. Tsuta 's cypress tub has water rising through the floorboards. Aoni , up a mountain road near Kuroishi, has no electricity by design and is lit entirely by oil lamps — day bathing available and worth arranging. 30 or 31 Oct Closes 31 Oct",
+     "img": "./photos/u-tsuta-numa.jpg"
+    },
+    {
+     "text": "Osorezan — 恐山 One of the three holiest sites in Japan: an ash-grey volcanic crater of steaming vents and stone cairns beside a startlingly blue caldera lake, understood as the entrance to the underworld. Free onsen huts on the temple grounds. Two-plus hours each way, and the season ends on 31 October. 30 or 31 Oct only · a full day If Hakkoda is closed in The ropeway stops for wind as often as for snow, and ",
+     "img": "./photos/u-osorezan.jpg"
+    },
+    {
+     "text": "Apple picking at Hirosaki — りんご狩り Aomori grows more than half of Japan’s apples, and Hirosaki Apple Park runs picking until mid-November — which puts you squarely in Fuji season , the best of them and the last to ripen. Eighty varieties, a few hundred yen, and it slots straight into the 31st if you take the Hirosaki option. Pairs with the castle and the cider Nothing like you expect",
+     "img": "./photos/p-hirosaki.jpg"
+    },
+    {
+     "text": "Tsugaru-jamisen, live and close — 津軽三味線 Forget the polite image of shamisen — Tsugaru style is percussive, furiously fast, and played a metre from your table. Hirosaki has dedicated venues ( Anzu , Aiya , Adohadari ) where you eat Tsugaru food while it happens. The single most memorable evening available on this leg , and most people never think to do it. Book a table; the rooms are small Beside the station",
+     "img": "./photos/u-izakaya-sanshin.jpg"
+    },
+    {
+     "text": "A-Factory cidre — シードル工房 A glass-walled cider works in the harbour building, so you watch it being made and then drink it. Kimori and the house flight run dry to sweet, all from Aomori apples. Five minutes from the hotel, open late, and the best possible use of a spare hour before dinner. Also the best place to buy apple everything Try it, do not just look",
+     "img": "./photos/p-afactory.jpg"
+    },
+    {
+     "text": "Nebuta Warasse — ねぶたの家 ワ・ラッセ Prize-winning floats from past festivals kept indoors year-round — enormous, lit from within, genuinely startling at close range. But the part people miss is that you can beat the taiko and be taught the haneto jump yourself. Ten minutes of that beats an hour of reading captions. Walkable from the hotel; already on the 1st Wet-weather insurance",
+     "img": "./photos/nebuta-float.jpg"
+    },
+    {
+     "text": "Tsugaru-han Neputa Village — 津軽藩ねぷた村 Hirosaki’s indoor answer to bad weather: neputa floats, live shamisen through the day, craft workshops and goldfish-neputa painting you can take home. Not high art, but a genuinely good two hours if the 31st turns wet and the mountain options close. Next to Hirosaki Castle park",
+     "img": "./photos/u-izakaya-sanshin.jpg"
+    }
+   ]
+  },
+  {
+   "city": "aomori",
+   "title": "Eating in Aomori",
+   "tag": "Scallop season is just opening",
+   "items": [
+    {
+     "text": "Nokkedon — のっけ丼 At Furukawa market: buy a bowl of rice and a book of tickets, then walk the stalls trading tickets for whatever you want on top — scallop, uni, tuna, salmon roe, squid. You build the bowl yourself, which is most of the pleasure. Mornings only; check the weekly closing day. 1 Nov · 5 min from the hotel Mutsu Bay",
+     "img": "./photos/p-nokkedon.jpg"
+    },
+    {
+     "text": "Hotate & kaiyaki-miso — 帆立・貝焼き味噌 Aomori grows more scallops than anywhere in Japan and the season starts now. Best as kaiyaki-miso — scallop and egg cooked with miso in a big shell used as the pan, a Tsugaru fishermen's dish. Sweet, rich, and served everywhere from markets to izakayas. 1 Nov · last dinner Local rarity",
+     "img": "./photos/u-hotate-kaiyaki-miso.jpg"
+    },
+    {
+     "text": "Ichigo-ni — いちご煮 Sea urchin and abalone in a clear dashi, named because the urchin suspended in the cloudy broth looks like wild strawberries. A Hachinohe festival dish and one of the more expensive things you'll eat — worth ordering once, properly, on the last night. 1 Nov · order it once Everywhere",
+     "img": ""
+    },
+    {
+     "text": "Apples, in every form — りんご Aomori grows over half of Japan's apples, centred on Hirosaki, and late October is harvest. The tourist office maps around fifty distinct local apple pies . Then there's the hard cider poured at A-Factory on the Aomori waterfront, with a tasting flight of four. 31 Oct Hirosaki · A-Factory any evening Hachinohe",
+     "img": "./photos/p-hirosaki.jpg"
+    },
+    {
+     "text": "Senbei-jiru — せんべい汁 Wheat crackers made specifically to be boiled, broken into a chicken or pork broth with vegetables where they go chewy rather than soggy. A frugal Nambu dish turned regional icon, and exactly what you want after a cold day at Hakkoda. Cold days · widely available If you go to Shimokita",
+     "img": "./photos/p-senbeijiru.jpg"
+    },
+    {
+     "text": "Ōma tuna — 大間まぐろ The most famous bluefin in Japan, line-caught one fish at a time off the northern tip of the Shimokita peninsula — the ones that break auction records at Toyosu. Eating it at the port where it lands is a genuinely different proposition from eating it in Tokyo. 31 Oct · only on the Osorezan track See every dish across the trip → ← Kakunodate Pre-departure plan →",
+     "img": "./photos/p-omatuna.jpg"
+    }
+   ]
+  },
+  {
+   "city": "money",
+   "title": "The decision that costs the most",
+   "tag": "20 October",
+   "items": [
+    {
+     "text": "One choice on one day moves the group total more than anything else you will decide. Here it is as arithmetic.",
+     "img": ""
+    },
+    {
+     "text": "Kyoto costs the group roughly ¥130,000 more than Fuji and about ¥150,000 more than staying in Tokyo — for a day with six hours of it spent on trains, in a city three weeks short of its autumn colour. That is not an argument against going. It is the number you should have in front of you when you decide, and it is why splitting the group is the sensible answer rather than a compromise.",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "city": "money",
+   "title": "Getting home on 2 November",
+   "tag": "Decided · drive to Morioka",
+   "items": [
+    {
+     "text": "Because the cars were collected at Morioka, taking them back there is a round trip with no one-way fee — and the Shinkansen is cheaper from Morioka too. Both facts pull the same way, so this is the cheaper route as well as the one you have chosen.",
+     "img": ""
+    },
+    {
+     "text": "Dropping the cars in Aomori and boarding at Shin-Aomori would have cost ¥106,020 in rail alone — ¥17,670 each — plus a cross-prefecture one-way fee on two cars . Driving south comes in around ¥103,000 before the Narita Express, so you are ahead by roughly ¥3,000 at worst and ¥25,000 if that fee would have been in the ¥11,000 range. Confirm the hire is booked as a Morioka round trip so no fee is ever applied.",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "city": "money",
+   "title": "The whole trip, on the ground",
+   "tag": "Excludes flights and hotels, already paid",
+   "items": [
+    {
+     "text": "Roughly ¥16,000 per person per day on the ground, and Miyakojima is still about 41% of the whole total — diving is expensive and everything north of Tokyo is not. If the number needs to come down further, the levers in order are: Kyoto (−¥22,000 each), one of the two dive days (−¥18,000 each), and the clear SUP (−¥7,000 each). Cutting anything in Kakunodate or Aomori saves almost nothing, because most of what you are doing there is free.",
+     "img": ""
+    }
+   ]
+  }
+ ]
+}
