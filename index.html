@@ -52,7 +52,7 @@ html.dark body [data-keep] img{filter:none}
       <a href="#miyako" style="text-decoration:none;color:#0A7F8C;padding:6px 10px;border-radius:6px;background:{{ navMiyako }}" style-hover="background:#EFE8D8">Miyakojima</a>
       <a href="#kakunodate" style="text-decoration:none;color:#B4551D;padding:6px 10px;border-radius:6px;background:{{ navKaku }}" style-hover="background:#EFE8D8">Kakunodate</a>
       <a href="#aomori" style="text-decoration:none;color:#8A2B41;padding:6px 10px;border-radius:6px;background:{{ navAomori }}" style-hover="background:#EFE8D8">Aomori</a>
-      <a href="reference.html" style="text-decoration:none;color:#8B8070;padding:6px 10px;border-radius:6px;border:1px solid #DCD2BE" style-hover="background:#EFE8D8">Handbook ↗</a>
+      <a href="reference.html" data-handbook style="text-decoration:none;color:#8B8070;padding:6px 10px;border-radius:6px;border:1px solid #DCD2BE" style-hover="background:#EFE8D8">Handbook ↗</a>
       <button type="button" onClick="{{ toggleTheme }}" aria-label="Toggle dark mode" style="font-family:inherit;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#221B13;background:none;border:1px solid #DCD2BE;border-radius:999px;padding:6px 13px;cursor:pointer;margin-left:6px" style-hover="background:#EFE8D8">{{ themeLabel }}</button>
     </nav>
   </div>
@@ -966,7 +966,7 @@ class Component extends DCLogic {
       showToday: true,
       tdDate: DOW[dt.getDay()] + ' ' + dt.getDate() + ' ' + MON[dt.getMonth()],
       tdLeg: legLabel, tdKanji: kanji, tdColor: color,
-      tdExploreHref: 'reference.html#explore:' + legKey,
+      tdExploreHref: (function () { var hb = document.querySelector('a[data-handbook]'); var base = hb ? (hb.getAttribute('href') || '').split('#')[0] : ''; return (base || 'reference.html') + '#explore:' + legKey; })(),
       tdSummary: summary, tdDayHref: href,
       tdWx: wxLine, tdTide: tide,
       tdStay: stay, tdStayNote: stayNote,
